@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConTeXt", "ConTeXt\ConTeXt.vcxproj", "{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1AC9958-E6F7-49F8-9D5B-BEAC57099627}"
+	ProjectSection(SolutionItems) = preProject
+		ThirdParty\aux\Buffer.h = ThirdParty\aux\Buffer.h
+		ThirdParty\aux\colors.h = ThirdParty\aux\colors.h
+		ThirdParty\aux\ColourPicker.h = ThirdParty\aux\ColourPicker.h
+		ThirdParty\aux\Common.h = ThirdParty\aux\Common.h
+		ThirdParty\aux\ContextMenu.h = ThirdParty\aux\ContextMenu.h
+		ThirdParty\aux\ControlsTab.h = ThirdParty\aux\ControlsTab.h
+		ThirdParty\aux\dpiManager.h = ThirdParty\aux\dpiManager.h
+		ThirdParty\aux\ImageListSet.h = ThirdParty\aux\ImageListSet.h
+		ThirdParty\aux\menuCmdID.h = ThirdParty\aux\menuCmdID.h
+		ThirdParty\aux\Notepad_plus_msgs.h = ThirdParty\aux\Notepad_plus_msgs.h
+		ThirdParty\aux\Parameters.h = ThirdParty\aux\Parameters.h
+		ThirdParty\aux\resource.h = ThirdParty\aux\resource.h
+		ThirdParty\aux\rgba_icons.h = ThirdParty\aux\rgba_icons.h
+		ThirdParty\aux\ScintillaEditView.h = ThirdParty\aux\ScintillaEditView.h
+		ThirdParty\aux\ScintillaRef.h = ThirdParty\aux\ScintillaRef.h
+		ThirdParty\aux\shortcut.h = ThirdParty\aux\shortcut.h
+		ThirdParty\aux\shortcutRc.h = ThirdParty\aux\shortcutRc.h
+		ThirdParty\aux\StaticDialog.h = ThirdParty\aux\StaticDialog.h
+		ThirdParty\aux\TabBar.h = ThirdParty\aux\TabBar.h
+		ThirdParty\aux\tinystr.h = ThirdParty\aux\tinystr.h
+		ThirdParty\aux\tinystrA.h = ThirdParty\aux\tinystrA.h
+		ThirdParty\aux\tinyxmlA.h = ThirdParty\aux\tinyxmlA.h
+		ThirdParty\aux\ToolBar.h = ThirdParty\aux\ToolBar.h
+		ThirdParty\aux\URLCtrl.h = ThirdParty\aux\URLCtrl.h
+		ThirdParty\aux\UserDefineDialog.h = ThirdParty\aux\UserDefineDialog.h
+		ThirdParty\aux\UserDefineLangReference.h = ThirdParty\aux\UserDefineLangReference.h
+		ThirdParty\aux\UserDefineResource.h = ThirdParty\aux\UserDefineResource.h
+		ThirdParty\aux\Utf8_16.h = ThirdParty\aux\Utf8_16.h
+		ThirdParty\aux\Window.h = ThirdParty\aux\Window.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Debug|x64.ActiveCfg = Debug|x64
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Debug|x64.Build.0 = Debug|x64
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Debug|x86.ActiveCfg = Debug|Win32
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Debug|x86.Build.0 = Debug|Win32
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Release|x64.ActiveCfg = Release|x64
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Release|x64.Build.0 = Release|x64
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Release|x86.ActiveCfg = Release|Win32
+		{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AEE5865-AC8D-42A5-A585-FD837D4F62B4}
+	EndGlobalSection
+EndGlobal

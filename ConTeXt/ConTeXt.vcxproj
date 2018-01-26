@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2E296C24-29A5-4CE1-B9D9-F5FBBAF6DB3F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ConTeXt</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(OutDir)Obj\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)x32-$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IntDir>$(OutDir)Obj\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)x64-$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)x32-$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)Obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)x64-$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)Obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_WINDOWS;_USRDLL;CONTEXT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\NotepadPlusPlus;$(SolutionDir)ThirdParty\Scintilla\lexlib;$(SolutionDir)ThirdParty\Scintilla\include;$(SolutionDir)ThirdParty\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>$(ProjectDir)src\Exports.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_WINDOWS;_USRDLL;CONTEXT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\NotepadPlusPlus;$(SolutionDir)ThirdParty\Scintilla\lexlib;$(SolutionDir)ThirdParty\Scintilla\include;$(SolutionDir)ThirdParty\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>$(ProjectDir)src\Exports.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_USRDLL;CONTEXT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\NotepadPlusPlus;$(SolutionDir)ThirdParty\Scintilla\lexlib;$(SolutionDir)ThirdParty\Scintilla\include;C:\Users\luigicasa\Desktop\Hamid-Luigi\SourceCode\ConTeXt\ThirdParty\auxh;$(SolutionDir)ThirdParty\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>$(ProjectDir)src\Exports.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_WINDOWS;_USRDLL;CONTEXT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\NotepadPlusPlus;$(SolutionDir)ThirdParty\Scintilla\lexlib;$(SolutionDir)ThirdParty\Scintilla\include;$(SolutionDir)ThirdParty\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ModuleDefinitionFile>$(ProjectDir)src\Exports.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ThirdParty\Scintilla\lexlib\Accessor.cxx" />
+    <ClCompile Include="..\ThirdParty\Scintilla\lexlib\LexerBase.cxx" />
+    <ClCompile Include="..\ThirdParty\Scintilla\lexlib\WordList.cxx" />
+    <ClCompile Include="..\ThirdParty\tinyxml\tinyxml.cpp">
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="..\ThirdParty\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="src\AutoCompletion.cpp" />
+    <ClCompile Include="src\ConTeXtEditU.cpp" />
+    <ClCompile Include="src\ContextMacroListView.cpp" />
+    <ClCompile Include="src\ContextMenu.cpp" />
+    <ClCompile Include="src\DynamicIDManager.cpp" />
+    <ClCompile Include="src\Lexer.cpp" />
+    <ClCompile Include="src\MenuManager.cpp" />
+    <ClCompile Include="src\NppAllocator.cpp" />
+    <ClCompile Include="src\Plugin.cpp" />
+    <ClCompile Include="src\StdAfx.cpp" />
+    <ClCompile Include="src\Tag.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Exports.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="src\Plugin.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\..\data\notepad-plus-plus-7.5.1\PowerEditor\src\ScitillaComponent\ScintillaEditView.h" />
+    <ClInclude Include="..\ThirdParty\auxh\Buffer.h" />
+    <ClInclude Include="..\ThirdParty\auxh\colors.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ColourPicker.h" />
+    <ClInclude Include="..\ThirdParty\auxh\Common.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ContextMenu.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ControlsTab.h" />
+    <ClInclude Include="..\ThirdParty\auxh\dpiManager.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ImageListSet.h" />
+    <ClInclude Include="..\ThirdParty\auxh\menuCmdID.h" />
+    <ClInclude Include="..\ThirdParty\auxh\Notepad_plus_msgs.h" />
+    <ClInclude Include="..\ThirdParty\auxh\Parameters.h" />
+    <ClInclude Include="..\ThirdParty\auxh\resource.h" />
+    <ClInclude Include="..\ThirdParty\auxh\rgba_icons.h" />
+    <ClInclude Include="..\ThirdParty\auxh\SciLexer.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ScintillaEditView.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ScintillaRef.h" />
+    <ClInclude Include="..\ThirdParty\auxh\shortcut.h" />
+    <ClInclude Include="..\ThirdParty\auxh\shortcutRc.h" />
+    <ClInclude Include="..\ThirdParty\auxh\StaticDialog.h" />
+    <ClInclude Include="..\ThirdParty\auxh\TabBar.h" />
+    <ClInclude Include="..\ThirdParty\auxh\tinystr.h" />
+    <ClInclude Include="..\ThirdParty\auxh\tinystrA.h" />
+    <ClInclude Include="..\ThirdParty\auxh\tinyxmlA.h" />
+    <ClInclude Include="..\ThirdParty\auxh\ToolBar.h" />
+    <ClInclude Include="..\ThirdParty\auxh\URLCtrl.h" />
+    <ClInclude Include="..\ThirdParty\auxh\UserDefineDialog.h" />
+    <ClInclude Include="..\ThirdParty\auxh\UserDefineLangReference.h" />
+    <ClInclude Include="..\ThirdParty\auxh\UserDefineResource.h" />
+    <ClInclude Include="..\ThirdParty\auxh\Utf8_16.h" />
+    <ClInclude Include="..\ThirdParty\auxh\Window.h" />
+    <ClInclude Include="..\ThirdParty\NotepadPlusPlus\PluginInterface.h" />
+    <ClInclude Include="..\ThirdParty\tinyxml\tinyxml.h" />
+    <ClInclude Include="src\AutoCompletion.h" />
+    <ClInclude Include="src\Buffer.h" />
+    <ClInclude Include="src\ConTeXtEditU.h" />
+    <ClInclude Include="src\ContextMacroListView.h" />
+    <ClInclude Include="src\ContextMenu.h" />
+    <ClInclude Include="src\DynamicIDManager.h" />
+    <ClInclude Include="src\IDAllocator.h" />
+    <ClInclude Include="src\Lexer.h" />
+    <ClInclude Include="src\MenuManager.h" />
+    <ClInclude Include="src\NppAllocator.h" />
+    <ClInclude Include="src\ScintillaEditView.h" />
+    <ClInclude Include="src\ScintillaRef.h" />
+    <ClInclude Include="src\StdAfx.h" />
+    <ClInclude Include="src\Tag.h" />
+    <ClInclude Include="src\Version.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
