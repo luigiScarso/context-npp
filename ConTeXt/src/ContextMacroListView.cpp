@@ -674,8 +674,9 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 		LPNMITEMACTIVATE pnmitem = (LPNMITEMACTIVATE)lParam;
 		UserMacroIndexSelected = pnmitem->iItem;
 		getUserMacroSelected();
-		DestroyWindow(hwndListView);
-		DestroyWindow(hwndCurrentParent);
+		SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
+		//DestroyWindow(hwndListView);
+		//DestroyWindow(hwndCurrentParent);
 	}
 	return 0;
 
@@ -694,8 +695,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 			UserMacroIndexSelected = i;
 		}
 		getUserMacroSelected();
-		DestroyWindow(hwndListView);
-		DestroyWindow(hwndCurrentParent);
+		SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
 	}
 	return 0;
 	}
