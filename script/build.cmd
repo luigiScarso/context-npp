@@ -2,7 +2,7 @@
 SETLOCAL ENABLEEXTENSIONS
 SET me=%~n0
 SET parent=%~dp0
-REM The root tree of the context distro
+REM The root tree of the context distro, i.e.
 REM SET CTXDIR=C:\data\context\standalone
 SET CTXDIR=C:\data\context\context-setup-win64\context
 

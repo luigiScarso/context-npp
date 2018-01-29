@@ -665,7 +665,7 @@ LexerStyles = ET.XML("".join([
             r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="1" name="SYSTEM" nesting="0" styleID="5" />',
             r'<WordsStyle bgColor="D3D5C5" fgColor="268BD2" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="2" name="DOCUMENT" nesting="0" styleID="6" />',
             r'<WordsStyle bgColor="D3D5C5" fgColor="DC322F" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="3" name="STYLE" nesting="0" styleID="7" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="4" name="OTHER" nesting="0" styleID="8" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="4" name="CHARDEF" nesting="0" styleID="8" />',
             r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="5" name="CONSTRUCT" nesting="0" styleID="9" />',
             r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="6" name="PRIVATE" nesting="0" styleID="10"/>',
             r'<WordsStyle bgColor="D3D5C5" fgColor="2AA198" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="7" name="START OPEN" nesting="0" styleID="11"/>',
