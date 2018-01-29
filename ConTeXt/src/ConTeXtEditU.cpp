@@ -145,7 +145,10 @@ HWND ConTeXtEditU::InsertCtxMacro()
 		usermacro.insert(usermacro.end(), v);
 	}
 	
-	ctxmacro->LoadMacro(&usermacro);
+	if (pairs.size() && usermacro.size())
+	{
+		ctxmacro->LoadMacro(&usermacro);
+	}
 	ContextMacroListView::Register();
 	ContextMacroListView::ComposeAndShowWindow(TEXT("Context User Macro"), hSci);
 	return NULL;

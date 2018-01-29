@@ -929,30 +929,29 @@ ContextMacroListView::getUserMacroSelected()
 BOOL
 ContextMacroListView::loademptymacro()
 {
+	UserMacroIndexSelected = -1;
 	UserMacro.clear();
 	/*UserMacro.insert(UserMacro.begin(),20,
 			 {TEXT("***"),
 			  TEXT("                              "),
 			  TEXT("0")});*/
 	UserMacro.insert(UserMacro.end(), 1, { TEXT(""), TEXT("Topic 1"),  TEXT(""),TEXT("0") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("0"), TEXT("name"),TEXT("KEY 0 \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("1"), TEXT("name"),TEXT("KEY 1 \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("2"), TEXT("name"),TEXT("KEY 2 \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("3"), TEXT("name"),TEXT("KEY 3 \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("4"), TEXT("name"),TEXT("KEY 4 \\sttarttext|\\stoptext"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("0"), TEXT("main text"),TEXT("\\starttext"),TEXT("\\stoptext"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("1"), TEXT("chapter"),TEXT("\\startchapter"),TEXT("\\stopchapter"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("2"), TEXT("section"),TEXT("\\startsection"),TEXT("\\stopsection"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("3"), TEXT("sub.section"),TEXT("\\startsubsection"),TEXT("\\stopsubsection"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("4"), TEXT("sub.sub.section"),TEXT("\\startsubsubsection"),TEXT("\\stopsubsubsection"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("5"), TEXT("sub.sub.sub.section"),TEXT("\\startsubsubsubsection"),TEXT("\\stopsubsubsubsection"),  TEXT("1") });
 	UserMacro.insert(UserMacro.end(), 1, { TEXT(""),  TEXT("Topic 2"), TEXT(""), TEXT("0") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("a"), TEXT("name"),TEXT("KEY a \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("b"), TEXT("name"),TEXT("KEY b \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("c"), TEXT("name"),TEXT("KEY c \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("d"), TEXT("name"),TEXT("KEY d \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("e"), TEXT("name"),TEXT("KEY e \\sttarttext|\\stoptext"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("a"), TEXT("itemize"),TEXT("\\startitemize"),TEXT("\\stopitemize"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("b"), TEXT("itemize.n"),TEXT("\\startitemize[n]"),TEXT("\\stopitemize"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("c"), TEXT("item"),TEXT("\\startitem"),TEXT("\\stopitem"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("d"), TEXT("head"),TEXT("\\starthead"),TEXT("\\stophead"),  TEXT("1") });
 	UserMacro.insert(UserMacro.end(), 1, { TEXT(""),  TEXT("Topic 3"), TEXT(""), TEXT("0") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("A"), TEXT("name"),TEXT("KEY A \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("B"), TEXT("name"),TEXT("KEY B \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("C"), TEXT("name"),TEXT("KEY C \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("D"), TEXT("name"),TEXT("KEY D \\sttarttext|\\stoptext"),  TEXT("1") });
-	UserMacro.insert(UserMacro.end(), 1, { TEXT("E"), TEXT("name"),TEXT("KEY E \\sttarttext|\\stoptext"),  TEXT("1") });
-
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("A"), TEXT("framed"),TEXT("\\startframedtext[frame=on]"),TEXT("\\stopframedtext"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("B"), TEXT("inline framed"),TEXT("\\framed{"),TEXT("}"),  TEXT("1") });
+	UserMacro.insert(UserMacro.end(), 1, { TEXT("C"), TEXT("typing"),TEXT("\\starttyping"),TEXT("\\stoptyping"),  TEXT("1") });
+	makeshortcutprefix();
 	return TRUE;
 }
 

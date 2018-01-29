@@ -119,12 +119,12 @@ private:
 
 
 
-//if (false) {//Debug begin
-//	std::time_t result = std::time(nullptr);
-//	std::wfstream ws("C:\\data\\lex.txt", std::ios::app);
-//	ws << result << L" text" << std::endl;
-//	ws.close();
-//}//Debug end
+if (true) {//Debug begin
+	std::time_t result = std::time(nullptr);
+	std::wfstream ws("C:\\data\\lex.txt", std::ios::app);
+	ws << result << L" text" << std::endl;
+	ws.close();
+}//Debug end
 
 
 
