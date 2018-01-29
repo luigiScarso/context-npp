@@ -65,7 +65,7 @@ private:
 	int autocStatus = CompletionBoth; //< auto completion status, None/Func/Word/Both
 	int autocFromLen = 3; //< Show autocompletion when the input length equals to or exceeds this number
 	bool autocIgnoreNumbers = true; //< Whether to ignore numbers
-	bool _ignoreCase = true; //< whether to ignore case
+	bool _ignoreCase = false; //< whether to ignore case
 
 	bool _funcCompletionActive = false; //< indicator whether reading keywords from ConTeXt.xml succeeds
 	TiXmlDocument *_pXmlFile = nullptr; //< pointer to ConTeXt.xml
@@ -117,22 +117,15 @@ private:
  //	delete[] _name;
 }//Debug end
 
-//execute(SCI_CALLTIPSETHLT, 0, 25); execute(SCI_CALLTIPSETHLT, 30, 55);
+
+
 //if (false) {//Debug begin
 //	std::time_t result = std::time(nullptr);
-//	std::wfstream _s("C:\\data\\lex.txt", std::ios::app);
-//	HWND hwct;
-//	hwct = ::FindWindow(NULL, TEXT("ACallTip"));
-//	_s << result << " updateCalltip hwct=0x" << std::hex << hwct << std::endl;
-//	hwct = ::GetParent(hwct);
-//	_s << result << " updateCalltip parent hwct=0x" << std::hex << hwct << std::endl;
-//	// ScintillaWin *sciThis = reinterpret_cast<ScintillaWin *>(PointerFromWindow(hWnd));
-//          //  return reinterpret_cast<void *>(::GetWindowLongPtr(hWnd, 0));
-//	//ScintillaWin *sciThis = reinterpret_cast<ScintillaWin *>( reinterpret_cast<void *>(::GetWindowLongPtr(hSci, 0)) );
-//	void* ptr = reinterpret_cast<void *>(::GetWindowLongPtr(hSci, 0));
-//	_s << result << " updateCalltip parent ptr=0x" << std::hex << ptr << std::endl;
-//	_s.close();
+//	std::wfstream ws("C:\\data\\lex.txt", std::ios::app);
+//	ws << result << L" text" << std::endl;
+//	ws.close();
 //}//Debug end
+
 
 
 
