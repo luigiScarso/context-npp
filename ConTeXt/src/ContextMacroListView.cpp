@@ -398,6 +398,8 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 	H += (2 * pad);
 	W += (4 * pad);
 
+	H = std::ceil(H);
+
 	GetClientRect(hwndParent, &rc);
 	MoveWindow(hwndListView,
 		rc.left,
@@ -411,7 +413,7 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 	ListView_EnsureVisible(hwndListView, UserMacro.size() / 2, FALSE);
 	SetWindowPos(hwndParent, NULL,
 		0, 0, //ignored due SWP_NOMOVE
-		static_cast<int>(W), static_cast<int>(H),
+		static_cast<int>(W), 25+static_cast<int>(H), // still not ok, not a multiple of a row height
 		SWP_DRAWFRAME | SWP_SHOWWINDOW | SWP_NOMOVE);
 
 }
@@ -446,7 +448,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 				l = (l > 0) ? (l) : 1; // ensure NULL 
 				l = l > (MAX_PATH) ? (MAX_PATH) : l;
 				s[l - 1] = 0;
-				// Sigh Microsoft doens't like s.copy
+				// Sigh Microsoft doesn't like s.copy
 				//s.copy(plvdi->item.pszText, l);
 				_tcsncpy_s(plvdi->item.pszText, MAX_PATH,//plvdi->item.cchTextMax,
 					s.c_str(), _TRUNCATE);
@@ -721,7 +723,8 @@ ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			if (CMLVW->hwndCurrentListView)
 			{
-				DestroyWindow(CMLVW->hwndCurrentListView);
+				//DestroyWindow(CMLVW->hwndCurrentListView);
+				SendMessage(CMLVW->hwndCurrentListView, WM_CLOSE, NULL, NULL);
 			}
 			HWND hwndListView = CMLVW->CreateListView(HMod1, hWnd);
 			if (hwndListView)
