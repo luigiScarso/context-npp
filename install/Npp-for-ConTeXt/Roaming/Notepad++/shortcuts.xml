@@ -1,0 +1,96 @@
+<NotepadPlus>
+    <InternalCommands>
+        <Shortcut id="10001" Ctrl="yes" Alt="no" Shift="yes" Key="86" />
+        <Shortcut id="44022" Ctrl="yes" Alt="yes" Shift="no" Key="87" />
+        <Shortcut id="42026" Ctrl="no" Alt="yes" Shift="no" Key="88" />
+        <Shortcut id="42027" Ctrl="no" Alt="yes" Shift="no" Key="90" />
+        <Shortcut id="43039" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43040" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43041" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43042" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43043" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43044" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43033" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43034" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43035" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43036" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43037" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43038" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <Shortcut id="43045" Ctrl="yes" Alt="no" Shift="no" Key="118" />
+        <Shortcut id="44009" Ctrl="no" Alt="no" Shift="no" Key="121" />
+    </InternalCommands>
+    <Macros>
+        <Macro name="setWordChars" Ctrl="yes" Alt="yes" Shift="no" Key="100">
+            <Action type="1" message="2077" wParam="0" lParam="0" sParam="01...9ABC......Z_abc....z\" />
+        </Macro>
+        <Macro name="Trim Trailing and save" Ctrl="no" Alt="yes" Shift="yes" Key="83">
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+            <Action type="0" message="2327" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2327" wParam="0" lParam="0" sParam="" />
+            <Action type="2" message="0" wParam="42024" lParam="0" sParam="" />
+            <Action type="2" message="0" wParam="41006" lParam="0" sParam="" />
+        </Macro>
+        <Macro name="End TeX Control Sequence" Ctrl="yes" Alt="no" Shift="yes" Key="67">
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam="{" />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam="}" />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+        </Macro>
+    </Macros>
+    <UserDefinedCommands>
+        <Command name="Command Prompt" Ctrl="yes" Alt="no" Shift="no" Key="54">cmd</Command>
+        <Command name="Windows Explorer" Ctrl="yes" Alt="no" Shift="yes" Key="69">explorer /e, $(CURRENT_DIRECTORY)</Command>
+        <Command name="Launch in Opera" Ctrl="yes" Alt="yes" Shift="yes" Key="79">&quot;C:\Program Files\Opera\opera&quot; &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+        <Command name="Launch in IE" Ctrl="yes" Alt="yes" Shift="yes" Key="73">iexplore &quot;$(FULL_CURRENT_PATH)&quot;</Command>
+        <Command name="ConTeXt Wiki Search" Ctrl="no" Alt="yes" Shift="no" Key="112">http://wiki.contextgarden.net/Special:Search?search=$(CURRENT_WORD)</Command>
+        <Command name="Google Search" Ctrl="no" Alt="yes" Shift="no" Key="113">http://www.google.com/search?q=$(CURRENT_WORD)</Command>
+        <Command name="Wikipedia Search" Ctrl="no" Alt="yes" Shift="no" Key="114">http://en.wikipedia.org/wiki/Special:Search?search=$(CURRENT_WORD)</Command>
+        <Command name="open file" Ctrl="no" Alt="yes" Shift="no" Key="116">$(NPP_DIRECTORY)\notepad++.exe $(CURRENT_WORD)</Command>
+        <Command name="open in another instance" Ctrl="no" Alt="yes" Shift="no" Key="117">$(NPP_DIRECTORY)\notepad++.exe $(CURRENT_WORD) -multiInst</Command>
+        <Command name="Run Aspell" Ctrl="yes" Alt="yes" Shift="yes" Key="65">aspell.exe check -t &quot;$(FILE_NAME)&quot;</Command>
+    </UserDefinedCommands>
+    <PluginCommands>
+        <PluginCommand moduleName="NppExec.dll" internalID="1" Ctrl="no" Alt="no" Shift="no" Key="118" />
+        <PluginCommand moduleName="NppExec.dll" internalID="28" Ctrl="yes" Alt="yes" Shift="yes" Key="65" />
+        <PluginCommand moduleName="NppExec.dll" internalID="16" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="17" Ctrl="yes" Alt="yes" Shift="yes" Key="48" />
+        <PluginCommand moduleName="NppExec.dll" internalID="18" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="19" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="20" Ctrl="yes" Alt="no" Shift="yes" Key="48" />
+        <PluginCommand moduleName="NppExec.dll" internalID="21" Ctrl="yes" Alt="no" Shift="no" Key="49" />
+        <PluginCommand moduleName="NppExec.dll" internalID="22" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="23" Ctrl="yes" Alt="no" Shift="no" Key="50" />
+        <PluginCommand moduleName="NppExec.dll" internalID="24" Ctrl="yes" Alt="no" Shift="no" Key="51" />
+        <PluginCommand moduleName="NppExec.dll" internalID="25" Ctrl="yes" Alt="no" Shift="no" Key="52" />
+        <PluginCommand moduleName="NppExec.dll" internalID="26" Ctrl="yes" Alt="yes" Shift="yes" Key="82" />
+        <PluginCommand moduleName="NppExec.dll" internalID="27" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="29" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="30" Ctrl="yes" Alt="yes" Shift="yes" Key="76" />
+        <PluginCommand moduleName="NppExec.dll" internalID="31" Ctrl="yes" Alt="yes" Shift="yes" Key="88" />
+        <PluginCommand moduleName="NppExec.dll" internalID="32" Ctrl="yes" Alt="no" Shift="no" Key="69" />
+        <PluginCommand moduleName="NppTextFX.dll" internalID="40" Ctrl="yes" Alt="yes" Shift="yes" Key="72" />
+        <PluginCommand moduleName="NppTextFX.dll" internalID="52" Ctrl="yes" Alt="yes" Shift="yes" Key="67" />
+        <PluginCommand moduleName="NppTextFX.dll" internalID="54" Ctrl="yes" Alt="yes" Shift="yes" Key="46" />
+        <PluginCommand moduleName="NppExec.dll" internalID="33" Ctrl="yes" Alt="yes" Shift="yes" Key="85" />
+        <PluginCommand moduleName="NppExec.dll" internalID="34" Ctrl="yes" Alt="no" Shift="yes" Key="51" />
+        <PluginCommand moduleName="NppExec.dll" internalID="35" Ctrl="yes" Alt="no" Shift="yes" Key="72" />
+        <PluginCommand moduleName="NppTextFX.dll" internalID="100" Ctrl="yes" Alt="yes" Shift="yes" Key="45" />
+        <PluginCommand moduleName="NppExec.dll" internalID="36" Ctrl="yes" Alt="no" Shift="yes" Key="49" />
+        <PluginCommand moduleName="NppTextFX.dll" internalID="132" Ctrl="yes" Alt="yes" Shift="no" Key="76" />
+        <PluginCommand moduleName="NppTextFX.dll" internalID="21" Ctrl="no" Alt="yes" Shift="yes" Key="85" />
+        <PluginCommand moduleName="XMLTools.dll" internalID="17" Ctrl="yes" Alt="yes" Shift="yes" Key="80" />
+        <PluginCommand moduleName="XMLTools.dll" internalID="11" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="37" Ctrl="yes" Alt="no" Shift="yes" Key="50" />
+        <PluginCommand moduleName="XMLTools.dll" internalID="4" Ctrl="yes" Alt="yes" Shift="yes" Key="90" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="1" Ctrl="no" Alt="yes" Shift="no" Key="220" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="4" Ctrl="no" Alt="yes" Shift="no" Key="76" />
+        <PluginCommand moduleName="NppExec.dll" internalID="38" Ctrl="yes" Alt="no" Shift="yes" Key="79" />
+    </PluginCommands>
+    <ScintillaKeys>
+        <ScintKey ScintID="2011" menuCmdID="42004" Ctrl="yes" Alt="no" Shift="yes" Key="90" />
+        <ScintKey ScintID="2373" menuCmdID="44033" Ctrl="yes" Alt="no" Shift="no" Key="48" />
+        <ScintKey ScintID="2169" menuCmdID="0" Ctrl="yes" Alt="yes" Shift="no" Key="40" />
+        <ScintKey ScintID="2342" menuCmdID="0" Ctrl="yes" Alt="no" Shift="no" Key="40" />
+    </ScintillaKeys>
+</NotepadPlus>
