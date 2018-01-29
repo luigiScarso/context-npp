@@ -23,6 +23,8 @@ optional arguments:
                         ConTeXt mtxrun program
   -i IFCFILE, --ifcfile IFCFILE
                         ConTeXt XML interface file
+  -u IFCUFILE, --ifcufile IFCFILE
+                        ConTeXt XML interface user file
   -c CMDFILE, --cmdfile CMDFILE
                         ConTeXt XML command file
   -p PRIMFILE, --primfile PRIMFILE
@@ -71,6 +73,14 @@ def parseifcfile(ifcfilename):
     root = tree.getroot()
     return root
 
+def merge(root, ifcufilename):
+    """merge an interface user file with root
+    """
+    uroot = parseifcfile(ifcufilename)
+    for child in uroot:
+        root.append(child)
+    return root
+
 
 
 encoding = 'UTF-8'
@@ -82,6 +92,9 @@ parser.add_argument("-m", "--mtxcmd",
 parser.add_argument("-i", "--ifcfile",
                     default='C:/context/tex/texmf-context/tex/context/interface/mkiv/context-en.xml',
                     help="ConTeXt XML interface file")
+parser.add_argument("-u", "--ifcufile",
+                    default='context-user-en.xml',
+                    help="ConTeXt XML interface user file")
 parser.add_argument("-c", "--cmdfile",
                     default='C:/context/tex/texmf-context/tex/context/base/mkiv/mult-prm.lua',
                     help="ConTeXt XML command file")
@@ -99,6 +112,7 @@ parser.add_argument("-r", "--macrochardeffile",
 args = parser.parse_args()
 
 ifcfile          = args.ifcfile
+ifcufile         = args.ifcufile
 contextcmd       = args.cmdfile
 mtxrun           = args.mtxcmd
 chardef          = args.chardef
@@ -278,6 +292,8 @@ kwords.update([i.split('\\')[1] for i in macrochardef])
 ## Input from context-en.xml
 cd  = '{http://www.pragma-ade.com/commands}'
 root = parseifcfile(ifcfile)
+if ( os.path.isfile(ifcufile)):
+    root = merge(root, ifcufile)
 ## A sax/xslt approach is more elegant, but
 ## we want a fast generation of the final elements
 kwords_Begin  = set()
