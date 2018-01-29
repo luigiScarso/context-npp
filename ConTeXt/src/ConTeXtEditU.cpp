@@ -41,12 +41,14 @@ HWND ConTeXtEditU::InsertCtxMacro()
 	hMod = (HINSTANCE)GetModuleHandle(TEXT("ConTeXt.dll"));
 	UINT cp = static_cast<UINT>(::SendMessage(hSci, SCI_GETCODEPAGE, 0, 0));
 	ContextMacroListView* ctxmacro = ContextMacroListView::CreateStaticInstance();
+
+	
 	if (!ctxmacro)
 	{
 		return NULL;
 	}
-	
-	// Setup values
+
+		// Setup values
 	if (setup_ins.size() > 0)
 	{
 		for (auto it = setup_ins.begin(); it != setup_ins.end(); ++it)
@@ -54,7 +56,7 @@ HWND ConTeXtEditU::InsertCtxMacro()
 			ctxmacro->SetSetupValue(it->first, it->second);
 		}
 	}
-	
+		
 	ContextMacro usermacro;
 	//int NrOfCols = ctxmacro->getNrOfColumns();
 	usermacro.reserve(pairs.size());
@@ -65,18 +67,20 @@ HWND ConTeXtEditU::InsertCtxMacro()
 	generic_string const ValidRange = TEXT("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz -_,;.:@#§|!$&=");
 	std::map<int, bool> groupmap;
 
-	for (auto v : groupStarts)
+	
+	for (auto v1 : groupStarts)
 	{
-		groupmap[v] = true;
+		groupmap[v1] = true;
+	
 	}
 
 	// Fill the usermacro
-	int k = 0;
+	size_t  k = 0;
 	for (size_t i = 0; i < pairs.size(); i++)
 	{
 		v.fill(TEXT(""));
 		// 
-		if (groupmap[i])
+		if (groupmap[i] && (k<groupNames.size()) )
 		{
 			lenWc = groupNames[k].size() + 1;
 			destW = new TCHAR[lenWc];
@@ -96,7 +100,6 @@ HWND ConTeXtEditU::InsertCtxMacro()
 		if (n != generic_string::npos)
 		{
 			delete[] destW;
-
 			/*if (KeyRangeIndex < KeyRange.size())
 			{
 				v[0] = KeyRange[KeyRangeIndex++]; // shortcut
@@ -139,9 +142,9 @@ HWND ConTeXtEditU::InsertCtxMacro()
 			delete[] destW;
 			v[4] = TEXT("0");
 		}
-
 		usermacro.insert(usermacro.end(), v);
 	}
+	
 	ctxmacro->LoadMacro(&usermacro);
 	ContextMacroListView::Register();
 	ContextMacroListView::ComposeAndShowWindow(TEXT("Context User Macro"), hSci);
@@ -527,7 +530,10 @@ void ConTeXtEditU::ReadConfig()
 				{
 					pairs.push_back(Pair());
 					if (LineToPair(pairs[numRead], line))
+					{
 						++numRead;
+					}
+						
 				}
 				// Pairs end when [CommandsEnd] is reached  
 
