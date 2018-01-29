@@ -892,6 +892,12 @@ ContextMacroListView::getUserMacroSelected()
 			if (sstart == send)
 			{
 				SendMessage(hSci, SCI_ADDTEXT, lenMbcs, reinterpret_cast<LPARAM>(_s));
+				if (UserMacro[UserMacroIndexSelected][3].size()>0)
+				{
+					int pos = SendMessage(hSci, SCI_GETCURRENTPOS, 0, 0) - UserMacro[UserMacroIndexSelected][3].size();;
+					SendMessage(hSci, SCI_GOTOPOS, pos, 0);
+
+				}
 			}
 			else
 			{
