@@ -1,0 +1,27 @@
+Currently the plugin has to be installed by manually copying 
+the files into the folder listed below.
+The plugin is compiled for Notepad++ 7.5.1 32-bit x86
+that is assumed installed under 
+C:\Program Files (x86)\Notepad++
+It should work for later release of Notepad++ 32-bit. x86
+It doesn't work for Notepad++ 64-bit.
+
+Before installation, be sure that there are not
+instances of Notepad++ running.
+Download and unzip Npp-for-ConTeXt.zip into a suitable 
+folder (e.g Desktop/context-npp) and then copy 
+the global files from
+Npp-for-ConTeXt\Program Files (x86)\Notepad++
+into 
+C:\Program Files (x86)\Notepad++
+
+The files for the local setup has to be copied into the
+%APPDATA% folder, i.e. from 
+Npp-for-ConTeXt\Roaming\Notepad++
+into 
+C:\Users\{username}\AppData\Roaming\Notepad++
+
+Once started, under Language there should be the ConTexT item,
+and Plugins should have the ConTeXt item too.
+
+
