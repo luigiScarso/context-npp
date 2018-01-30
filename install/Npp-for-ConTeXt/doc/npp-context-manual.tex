@@ -1,0 +1,1078 @@
+% interface=en modes=icon,screen language=us
+% format shamelessly adopted from Hans' manual: scite-context-readme.tex
+\unprotect
+\setuplanguage[en]
+[leftsentence={{} \endash\nobreakspace},
+ rightsentence={{} \endash\nobreakspace},
+ leftsubsentence={{} \textbar\nobreakspace},
+ rightsubsentence={{} \textbar\nobreakspace}]
+
+\definecolor[walayahred][h=A8636E]
+\definecolor[walayahgreen][h=0BA18C]
+\definecolor[walayahdeepblue][h=001C4C]	
+\definecolor[walayahblue][h=0F2787]	
+\definecolor[walayahsand][h=FFE3B3]
+
+\definecolor[gray][s=.2,t=.5,a=1]
+
+% spp = solarized++
+\definecolor[sppyellow] [h=B58900]
+\definecolor[spporange] [h=CB4B16]
+\definecolor[sppred]    [h=DC322F]
+\definecolor[sppmagenta][h=D33682]
+\definecolor[sppviolet] [h=6C71C4]
+\definecolor[sppblue]   [h=268BD2]
+\definecolor[sppcyan]   [h=2AA198]
+\definecolor[sppgreen]  [h=399900]
+\definecolor[sppmaroon] [h=A12A33]
+\definecolor[sppyellowgreen] [h=859900]
+
+\definecolor[nppcyan]   [h=80FFFF] 
+
+\definecolor[sppbase04][h=1E2D2E]
+\definecolor[sppbase03][h=324140]
+\definecolor[sppbase02][h=475652]
+\definecolor[sppbase01][h=5C6B64]
+\definecolor[sppbase0] [h=718076]
+\definecolor[sppbase1] [h=899589]
+\definecolor[sppbase2] [h=A2AA9D]
+\definecolor[sppbase3] [h=BABFB1]
+\definecolor[sppbase4] [h=D3D5C5]
+
+\definecolor[sppantibase0] [h=73606D]
+\definecolor[sppantibase1] [h=897781]
+\definecolor[sppantibase2] [h=9F8E96]
+\definecolor[sppantibase3] [h=B5A5AA]
+\definecolor[sppantibase4] [h=CCBDBF]
+
+\define[1]\SPP{\dontleavehmode\framed[background=color,
+        backgroundcolor=#1,
+        % location=lohi, % \setupframed[]
+        width=2em,
+        height=2em]{}}
+
+\usemodule[art-01]
+\usemodule[abr-02]
+\logo [NPP]       {Notepad++}
+\logo [NPPEXEC]   {NppExec}
+\logo [WINEDT]    {WinEdt}
+\logo [UDL]       {UDL}
+\logo [WEBEDIT]   {WebEdit}
+\logo [PYTHON]    {Python}
+\logo [OPENTYPE]  {OpenType}
+\logo [SCINTILLA] {Scintilla}
+\logo [NPPEXEC]   {NppExec}
+\logo [BIBTEXX]   {Bib\TEX}
+\logo [SOLARIZED] {Solarized}
+
+\useURL[solarized] [http://ethanschoonover.com/solarized] % [] [Solarized.]
+
+\useURL[semantic1]
+[https://visualstudiomagazine.com/Articles/2014/08/01/Semantic-Code-Highlighting.aspx]
+\useURL[semantic2]
+[https://zwabel.wordpress.com/2009/01/08/c-ide-evolution-from-syntax-highlighting-to-semantic-highlighting/]
+
+\definehighlight[important][style=bold]
+
+% \setupbodyfont[pagella,11pt]
+
+% Colors
+\setupbackgrounds[page] [background=color,backgroundcolor=walayahsand]
+
+\setuphead % \pagebreak[]
+  [chapter]
+  [color=walayahgreen]
+  
+\setuphead
+  [section]
+  [color=walayahgreen]
+
+\setuptype
+  [color=walayahred]
+
+\setuptyping
+  [color=walayahred]
+
+\setuptyping
+  [margin=yes]
+  
+\define\TT{\tt \walayahred}
+  
+\setupurl
+   [color=walayahred]  
+
+% Layout
+\setuphead
+  [title]
+  [page=yes]
+  
+\setuphead
+  [section]
+  [alternative=inmargin]
+
+\setupwhitespace
+  [big]
+  
+\setupitemize[headstyle=bold]   
+\setupitemize[1,packed,inmargin]
+
+\walayahdeepblue
+
+\startuseMPgraphic{TitlePage}{darkness} %% adapted from Hans
+    StartPage ;
+
+        numeric factor   ; factor   := 0.56 ;
+        numeric multiple ; multiple := PaperHeight/PaperWidth ; % 1.6 ;
+        numeric stages   ; stages   := multiple/14 ; % .1 ;
+        numeric darkness ; darkness := \MPvar{darkness} ;
+
+        def Scaled(expr s, m) =
+            if m = 1 :
+                scaled (2*s*PaperWidth)
+            else :
+                xscaled (2*s*PaperWidth) yscaled (2*s*PaperHeight)
+            fi
+        enddef ;
+
+        fill Page withcolor (1*\MPcolor{walayahdeepblue}) ;
+
+        fill fullcircle scaled (multiple*PaperWidth) shifted llcorner Page withcolor (factor*\MPcolor{walayahsand}) ;
+        fill fullcircle scaled (multiple*PaperWidth) shifted ulcorner Page withcolor (factor*\MPcolor{walayahgreen}) ;
+        fill fullcircle scaled (multiple*PaperWidth) shifted urcorner Page withcolor transparent (1,0.91,factor*\MPcolor{walayahblue}) ;
+        fill fullcircle scaled (multiple*PaperWidth) shifted lrcorner Page withcolor transparent (1,0.91,factor*\MPcolor{walayahred}) ;
+
+        for i = llcorner Page, ulcorner Page, urcorner Page, lrcorner Page :
+            for j = 0 step stages until (10*stages-eps) : % or .8
+                fill fullcircle Scaled(j,1) shifted i withcolor transparent(1,\MPvar{darkness}*(0.98-j),\MPcolor{walayahsand}) ;
+            endfor ;
+        endfor ;
+
+        draw Page withpen pencircle scaled .1PaperWidth withcolor transparent(1,.5,.7\MPcolor{walayahsand}) ;
+
+    StopPage
+\stopuseMPgraphic
+
+\startmode[icon,screen]
+
+  \setuppapersize[S66][S66]
+
+  \setupbodyfont[10pt]
+
+\stopmode
+
+\startmode[icon]
+
+  \starttext
+
+  \startTEXpage
+     \useMPgraphic{TitlePage}{darkness=0.4}
+  \stopTEXpage
+
+  \stoptext
+
+\stopmode
+
+% title page
+
+\definelayer
+  [TitlePage]
+  [width=\paperwidth,
+   height=\paperheight]
+
+\setlayer
+  [TitlePage]
+  {\useMPgraphic{TitlePage}{darkness=1}}
+
+\setlayerframed
+  [TitlePage]
+  [preset=lefttop,
+   hoffset=0.05\paperwidth,
+   voffset=0.05\paperwidth]
+  [align=flushleft,
+   width=0.9\paperwidth,
+   height=1.315\paperwidth,
+   % frame=on,
+   frame=off,
+   offset=overlay,
+   foregroundcolor=walayahdeepblue]
+  {\switchtobodyfont[24.5pt]\bf
+  \vskip2.8ex
+   Idris Samawi Hamid\endgraf
+   \kern-.35\bodyfontsize
+   Luigi Scarso 
+   \vfill
+   {\switchtobodyfont[84pt]\hskip-.03em \NPP}
+   \endgraf
+   \kern.35\bodyfontsize FOR 
+   \Context{} {\bf M{\bfx K}IV}
+   \vskip2.8ex   
+  }
+
+\startbuffer [bib]
+@BOOK{lawvere2009,
+ author    = {Lawvere, F. W. and Schanuel, S. H.},
+ title     = {Conceptual Mathematics: A First Introduction to Categories, 2\high{nd} Edition},
+ publisher = {Cambridge University Press},
+ year      = {2009}
+ }
+ 
+@InProceedings{sarkar2015, 
+    author={Sarkar, Advait}, 
+    booktitle={{Proceedings of the 26th Annual Conference of the Psychology of Programming Interest Group (PPIG 2015)}}, 
+    title={The impact of syntax colouring on program comprehension}, 
+    month=jul,
+    year={2015},
+    pages={49--58}
+}
+
+@book{bringhurst2004,
+  title={The Elements of Typographic Style, Version~3.2},
+  author={Bringhurst, Robert},
+  year={2008},
+  publisher={Hartley \& Marks, Publishers}
+}
+
+% @manual{senn2009,
+  % title  = "Using {\LaTeX} for Your Thesis",
+  % author = "Mark Senn",
+  % url    = "http://engineering.purdue.edu/~mark/puthesis",
+  % year   = "2009 (accessed February 3, 2014)"
+}
+\stopbuffer
+\usebtxdefinitions [apa]
+\setupbtxrendering [apa] [pagestate=start] % index cite pages in bibliography
+
+\usebtxdataset  [bib.buffer]
+\protect
+
+\starttext
+
+% \cite[authoryears] [lawvere2009]. \cite[authoryears] [senn2009].  \cite[authoryears] [sarkar2015]
+
+\startTEXpage
+  \tightlayer[TitlePage]
+\stopTEXpage
+
+% main text
+
+\starttitle[title={Table of Contents},reference={}]
+\start
+\setupinterlinespace[line=2.1ex]
+\placecontent[alternative=c]
+\stop
+\stoptitle
+
+\page
+
+\startsection[title={Background},reference={}]
+\startsubsection[title={Motivation},reference={}]
+A continuing desideratum for \Context{} is a user-friendly writing and editing environment, where the range of application of the category \quotation{user-friendly} especially includes non-experts in programming or software development. The lack of such an environment is one factor that inhibits the wider use of \Context. Despite its incredible power and precision, at present it is not generally feasible for instructors and researchers in, e.g., the humanities to assign the use of \Context{} to students, or to use it to collaborate on projects. 
+
+The first author of this manual, Idris Samawi Hamid, is a professor who has felt the acuteness of this lacuna. In the course of an ongoing effort to address it, in 2017 a project to develop a set of utilities for the Windows editor \NPP, including a dedicated \Context{} lexer plugin, was launched. The software development plan was developed and supervised by Hamid, as well as the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}.
+\stopsubsection
+% \startsubsection[title={Needs},reference={}]
+
+% \stopsubsection
+\startsubsection[title={History},reference={}]
+Prior to his move to \Context, Hamid was using the shareware editor \WINEDT. At that time  \WINEDT{} was (and probably still is) a very polished environment for writing and processing documents written in \TEX. However, configuring \WINEDT{} for \Context{} was critically impeded, due in major part to the fact that much of its graphical user interface was hardcoded for a certain famous document preparation system. Around the same time, lexers and tools were being developed for \SCITE, which eventually became the standard text-editor for \Context. Despite its \Context-friendly tools, Hamid continued to miss many of the configuration and interface options of \WINEDT{} that made editing and processing \TEX{} documents so efficient and user-friendly for non-programmers. After trying virtually every available option|<|explicitly \TEX-friendly or other|>| he finally settled upon \NPP. Its look, feel, and extensive configuration options allowed Hamid to quickly achieve a setup analogous to \WINEDT. A few characteristics of \WINEDT{} were still missed; on the other hand, \NPP{} brought to the table other features missing in \WINEDT{}; these made the transition worth it. For example, \NPP{} supports global bidirectional text editing essential for the Arabic script \endash \nobreakspace \WINEDT{} had no such support).
+% \startfootnote
+% Apparently \WINEDT{} finally implemented support for bidirectional text editing in 2017.
+
+% http://lists.gnu.org/archive/html/info-gnu-emacs/2012-06/msg00000.html
+ 
+% So Emacs 24.1, Sun, 10 Jun 2012.
+% \stopfootnote{}
+
+Eventually, over a decade ago, a basic package for \NPP{} was released to the \Context{} community by Hamid. It consisted of a number of configuration files, including, among other things, 
+
+\startitemize%[packed]
+\startitem
+a \UDL{} (User-Defined Language) file for code highlighting of different classes of \TEX-commands and other keywords;  
+\stopitem
+\startitem
+an autocompletion \quotation{API}; and
+\stopitem
+\startitem
+some console scripts, many of which appear under the menu item \quotation{Macros}. These provided, among other things, a functionality largely identical to that provided by the corresponding \SCITE{} scripts for \Context{} \endash \nobreakspace found under the menu item \quotation{Tools}.
+\startfootnote
+That package, now obsolete, is remains available here: 
+\type{http://wiki.contextgarden.net/File:Npp_ConTeXt-Uni.zip}
+\stopfootnote{}
+\stopitem
+\stopitemize
+Although remarkably versatile, the \UDL{} system was still too restrictive. Other \NPP{} mechanisms, such as auto-completion of control sequences, were not designed with \TEX-type languages in mind, resulting in certain limitations or annoyances. Among other issues: As \Context{} \MKIV{} has continued to develop in the direction of a pure markup language, its syntax has 
+
+\startitemize%[packed]
+\startitem
+become considerably more verbose; and
+\stopitem
+\startitem
+demanded a mechanism for easy tagging of text with, e.g., braces or a set of \type{\start|stop} commands.
+\stopitem
+\stopitemize
+Mere auto-completion of commands was no longer sufficient for efficient content writing and editing. Fortunately \WEBEDIT, a \NPP{} plugin designed for XML-type tagging and related function completion, came to the rescue. Unfortunately it also had certain limitations which inhibited a fully satisfactory solution.
+
+In the wake of these and other limitations: What we needed was a dedicated \Context{} lexer and plugin to assist content writing and editing. In combination with other mechanisms and plugins, the result would be a complete \NPP{} system for writing, editing, and processing \Context{} documents. Hence \important{\NPP{} for \Context{} \MKIV}.
+\stopsubsection
+\stopsection
+
+\startsection[title={Introduction to \NPP},reference={}]
+\startsubsection[title={Features},reference={}]
+Developed by Don Ho, \NPP{} is a very popular text editor for the Windows platform. Although geared towards programmers and web designers, it has a number of features that make it exceptionally appropriate for non-programmers. \NPP{} features, among other things 
+
+\startitemize%[packed]
+\startitem[]
+A user-friendly configuration system, via graphical dialogs and settings saved to editable XML files;
+\stopitem
+\startitem[]
+both multiple and single-document splitting;
+\stopitem 
+\startitem[]
+translation of its display interface into multiple languages;
+\stopitem 
+\startitem[]
+the toolset TextFX, which provides a plethora of functions that would normally involve writing scripts on the part of the user;
+\stopitem 
+\startitem[]
+a plugin system and a vast catalogue of over 100 available plugins which immensely extend the capabilities of \NPP{} in a user-friendly manner.
+\stopitem  
+\startitem[]
+the User-Defined Language system, which allows the user to easily define folding rules and syntax highlighting for a coding language that does not already come with \NPP. It is especially useful for simple scripting languages or text-file formats.
+\startfootnote
+For example, one may edit tables in an \OPENTYPE{} font editor, then save those tables to a text file with an associated syntax. One may then choose to work with the text file instead of the Graphical User Interface (GUI).
+\stopfootnote{}
+\stopitem 
+% \startitem[]
+
+% \stopitem 
+\stopitemize 
+% Global bidi
+% languages
+% TextFX
+% Plugins
+% multiple and single-document splitting
+% configuration via dialogs and xml files
+
+\stopsubsection
+\startsubsection[title={\NPP{} and \SCITE},reference={}]
+As mentioned earlier, \Context\ already comes with \SCITE. Both \SCITE{} and \NPP{} are based on the text-editing component \SCINTILLA. Thus a user switching between the two editors can expect a similar typing experience. A fundamental difference between the is that \NPP's preferences, thematic styles, and shortcuts are all extensively configurable via a system of menus and dialogs, whose style is mostly common to mainstream programs that use a GUI. For non-programmers and the like, this is more comfortable than, e.g., editing the \type{.properties} files used by \SCITE.
+
+One of the most important features of \NPP{} is its support for global bidirectional editing. Some background: Unfortunately \SCINTILLA{} never implemented bidirectional editing, and the developer of Scintilla apparently has little interest in pursuing it. Visually, basic mixed right-to-left (RTL) and left-to-right (LTR) text \emph{may} look normal, but selection of text whose direction is opposite to that of the global direction of the editor will \emph{generally} not copy and paste correctly. For \SCITE{} the global direction is, naturally, LTR; hence RTL will \emph{generally} not copy and paste correctly.
+\startfootnote
+The use of \quote{may} and \quote{generally} are meant to indicate that there are some important subtleties: See \in{Section}[section:bidi].
+\stopfootnote{}
+\NPP{} provides a mechanism that mirrors \SCINTILLA{} behavior so that it can be used for RTL editing, except that LTR will now generally not copy and paste correctly. So for proper RTL or LTR editing one must switch the global direction to match the immediately desired editing direction.
+
+\SCITE\ in \Context{} features a set of commonly used scripts that may be found under the Tools menu. In \NPP{} for \Context{} a similar set of tools|<|with identical shortcuts as much as possible|>|may be found under the Macros menu.
+
+% \startfootnote
+The core of \NPP{} is explicitly designed for speed. On Windows \NPP{} generally starts up fast, even faster than \SCITE. A few plugins will slow \NPP{} down, however.
+% \stopfootnote{}
+\stopsubsection
+\startsubsection[title={Lexers and Plugins},reference={}]
+\NPP{} ships with highlighting and theme support (\emph{internal lexers}) for over 50 code languages, and the UDL system allows the user to easily confiure and add more. For maximum flexibility and control, \NPP{} also supports \emph{external lexers}, development of which requires some C++ programming skill: This will appear under the Language menu and in the associated dialogs. An external lexer can add support for a previously unsupported language, or it can be used to provide an alternative to a currently supported language. For example, one can use the Lua highlighting that comes with \NPP, or one can download the external lexer Gmod Lua, then configure that to be the default lexer for the Lua language. An external lexer can also be augmented by other features, which will then appear under the Plugins Menu.
+
+For use as a complete environment for writing and editing documents, a number of plugins complement the \NPP{} for \Context{} system. The following are highly recommended:
+
+\startitemize
+\starthead {\NPPEXEC} 
+
+This is the console, and is an integral component of \NPP{} for \Context. Although one can have \NPP{} launch the command prompt or other console of one's choosing, \NPPEXEC{} is also needed to show a set of select scripts under the Macros menu. A standard installation gives the option of installing the console.
+\stophead 
+
+\starthead {Explorer} 
+
+\NPP{} can launch the normal Windows Explorer. But there is also the Explorer plugin which can be docked inside of the editor or detached; it has some useful features such as a filter which allows one to view only files of a selected type.
+\stophead 
+
+\starthead {DSpellCheck} 
+
+This spell checker works well, although it could be improved. Currently it doesn't make exceptions for words that begin with a backslash; this means that most \TEX{} are treated as misspelled. We hope to have this fixed in the short term.
+\stophead 
+
+\starthead {Compare} 
+
+This is a plugin for comparing files; it launches a double-pane view and a dockable applet.
+\stophead 
+
+\starthead {XBrackets Lite} 
+
+This plugin provides automatic completion of different types of brackets and is configurable. \NPP{} comes with some facility for bracket control, but XBrackets Lite is more useful.
+\stophead 
+
+\starthead {Plugin Manager} 
+
+This plugin maintains a list of i) all registered plugins, ii) installed plugins, iii) installed plugins for which updates are available. One can choose to install, update, or delete any given plugin as desired.
+\stophead 
+\stopitemize 
+
+In addition to the recommended set above, there are many other plugins available, e.g., NppDocShare for collaborative editing, MarkdownViewer++ for previewing markdown output, and XMLTools. With a little research and some tweaking, it is not hard to turn \NPP{} into a development environment to suit most of one's needs.
+\stopsubsection
+\startsubsection[title={Installing \NPP},reference={}]
+
+\stopsubsection
+\stopsection
+
+\startsection[title={The \NPP{} for \CONTEXT{} Package},reference={}]
+% List package components
+
+\startsubsection[title={Components},reference={}]
+\NPP{} for \CONTEXT{} is organized as follows:
+
+% /Npp-for-ConTeXt
+% /Npp-for-ConTeXt/Roaming/Notepad++/stylers.xml
+\starttyping
+/Npp-for-ConTeXt/Program Files
+/Npp-for-ConTeXt/Roaming
+/Npp-for-ConTeXt/scripts
+
+/Npp-for-ConTeXt/Program Files/Notepad++
+
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/ConTeXt.dll
+
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/APIs
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/APIs/context.xml
+
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/Config
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/Config/ConTeXt.xml
+
+/Npp-for-ConTeXt/Roaming/Notepad++
+/Npp-for-ConTeXt/Roaming/Notepad++/contextMenu.xml
+/Npp-for-ConTeXt/Roaming/Notepad++/shortcuts.xml
+/Npp-for-ConTeXt/Roaming/Notepad++/userDefineLang.xml
+/Npp-for-ConTeXt/Roaming/Notepad++/stylers.xml
+
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins
+
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/ConTeXt.ini
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/NppExec.ini
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/npes_saved.txt
+
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/doc
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/doc/context/npp-context-manual.pdf
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/doc/context/npp-context-manual.tex
+
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes/Silver Twilight Hi.xml
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes/Silver Twilight Lo.xml
+
+/Npp-for-ConTeXt/scripts/command_primitives_api_new.py
+/Npp-for-ConTeXt/scripts/update-ConTeXt.py
+\stoptyping
+
+Following is a brief description of each component of this system:
+
+\startitemize[n]
+\starthead {\Context{} Lexer and Plugin} 
+
+\type{ConTeXt.dll} is the heart of the system. It manages the classes specified for content highlighting, autocompletion, and tooltips, as well as the content-markup and templates system.
+
+\starttyping
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/ConTeXt.dll
+\stoptyping
+\stophead 
+
+\starthead {Initialize Plugin} 
+
+\type{ConTeXt.ini} allows the user to add, remove, configure, and organize commands for content markup into menus and submenus, as well as to specify shortcuts that can be replaced by templates in running text.
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/ConTeXt.ini
+\stoptyping
+\stophead 
+
+\starthead {Right-Click Menu} 
+\NPP{} features a right-click menu mechanism, whose settings are managed via the configuration file \type{contextMenu.xml}. The full set of markup menus in the plugin can be added to this file, then edited manually as desired. Note that, despite appearances, the name \type{contextMenu.xml} has nothing to do with \Context{}; it is native to \NPP.
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/contextMenu.xml
+\stoptyping
+\stophead 
+
+\starthead {Autocompletion API} 
+The so-called \quotation{API} \type{context.xml} features (what aims to be) a complete list of official \Context{} commands, organized alphabetically for autocompletion purposes. 
+\startfootnote
+The list of \Context{} commands is currently generated from the \Context{} sources by a \PYTHON{} script; see below. There is still a small residue of commands that are missed in the sources for the list, and thus by the script as well. We hope to see that gap closed in the near future.
+\stopfootnote{}
+For a subset of this list, each is also tagged with information about usage; when typed and followed by a left bracket \quote{\type{[}}, this information will appear as a \emph{tooltip} (also called a \emph{calltip}).
+
+\starttyping
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/APIs/context.xml
+\stoptyping
+\stophead 
+
+\starthead {Content-Highlighting Classes} 
+\type{ConTeXt.xml} includes the same list of official \Context{} commands, this time organized into semantic \emph{classes}. These and other classes are configured for content highlighting through \NPP{'s'} Style Configurator.
+
+\starttyping
+/Npp-for-ConTeXt/Program Files/Notepad++/plugins/Config/ConTeXt.xml
+\stoptyping
+\stophead 
+
+\starthead {Highlighting: Silver Twilight High and Silver Twilight Lo} 
+
+Two general themes for content highlighting have been developed especially for this project: the first and default theme is light, the second dark. Each may be accessed and tweaked via Style Configurator, or copied to a new name and modified to make a new theme. See \in{Section}[silvertwilight].
+
+Silver Twilight themes apply to one degree or other throughout the default languages that come with \NPP{} (there remains some work to do in that respect).
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes/Silver Twilight Hi.xml
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes/Silver Twilight Lo.xml
+\stoptyping
+
+The file \type{stylers.xml} is optional: It is identical to Silver Twilight Hi, and is a starting point for the user to make one's own changes to the theme. This file will appear in Style Configurator labeled {\TT Default (stylers.xml)}.
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/stylers.xml
+\stoptyping
+\stophead 
+
+\starthead {\NPPEXEC{} Scripts} 
+A number of scripts commonly used for \Context{} productivity are saved in \type{npes_saved.txt}. Normally one configures these through the dialog that appears when the console is executed (by typing \type{F6}).
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/npes_saved.txt
+\stoptyping
+\stophead 
+
+\starthead {Initialize \NPPEXEC{} and Configure Macro Menu} 
+Default settings for the appearance of \NPPEXEC, consistent with the Silver Twilight themes, are saved in \type{NppExec.ini}. This file also maintains a list of console scripts that are to appear under the Macro menu; this is normally edited via the \NPPEXEC{} Advanced Options dialog.
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/NppExec.ini
+\stoptyping
+\stophead 
+
+\starthead {Users Manual} 
+The user's manual (this document) and its source are named, respectively, \type{npp-context-manual.pdf} and \type{npp-context-manual.tex}.
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/doc/context/npp-context-manual.pdf
+/Npp-for-ConTeXt/Roaming/Notepad++/plugins/doc/context/npp-context-manual.tex
+\stoptyping
+\stophead 
+
+\starthead {Shortcuts} 
+Most menu commands can be assigned a keyboard shortcut, and each shortcut is configurable. A basic system of shortcuts, consistent across a number of recommended or useful plugins, is provided by \type{shortcuts.xml}. % This component may be considered optional.
+\blank
+\NPP{} has a {\TT Run\textellipsis} command that allows the user to execute a script that will call an external programs; that script can be saved. Saved scripts appear under the \type{Run} menu; these are also saved in \type{shortcuts.xml}. The user will almost certainly want to edit the \type{Run} menu at some point.
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/shortcuts.xml
+\stoptyping
+\stophead 
+
+\starthead {\PYTHON{} Scripts} 
+New versions of \Context{} are released often, and the addition of new commands is not uncommon. For those who update often: The lists of official commands in \type{ConTeXt.xml} and \type{context.xml} are generated from the sources via the \PYTHON{} script \type{command_primitives_api_new.py}; \type{update-ConTeXt.py} makes sure that local changes to the \type{ConTeXt.xml} configuration are saved and not overridden. 
+
+\starttyping
+/Npp-for-ConTeXt/scripts/command_primitives_api_new.py
+/Npp-for-ConTeXt/scripts/update-ConTeXt.py
+\stoptyping
+\stophead 
+
+\starthead {\BIBTEXX} 
+Finally, there is a UDL (user-defined language) file configured for content highlighting of \type{.bib} files; it is consistent with the Silver Twilight themes. This file may be considered optional. Any additional UDL's defined or imported by the user will also be saved to the file \type{userDefineLang.xml}.
+
+\starttyping
+/Npp-for-ConTeXt/Roaming/Notepad++/userDefineLang.xml
+\stoptyping
+\stophead 
+
+% \starthead {} 
+%
+%
+% \starttyping
+%
+% \stoptyping
+% \stophead 
+
+\stopitemize 
+
+\stopsubsection
+
+% \startsubsection[title={Extras},reference={}]
+
+% \starthead {stylers.xml} 
+%
+%
+% \starttyping
+%
+% \stoptyping
+% \stophead 
+% \stopsubsection
+
+\startsubsection[title={Installation},reference={}]
+
+\stopsubsection
+\stopsection
+
+\startsection[title={Highlighting and Themes},reference={}]
+\startsubsection[title={Solarized++: Screen Contrast and Color Scheme},reference={colorscheme}]
+Writing and editing content via a digital display for many hours on end can cause severe strain on the eye. One way to ameliorate this is to use a comfortable color scheme for one's editor. The individual colors provide the building blocks for themes and for distinguishing the various types of written content involved in one's editing. 
+
+Color-scheme preferences will naturally differ from person to person to one degree or other. However, a couple of general rules appear to stand out: 
+
+\startitemize
+\startitem
+Maintain a \emph{medium-to-high} balance of contrast between text and background color; i.e., strong contrast, but not too high.
+\stopitem
+\startitem
+Choose \emph{soft} colors for text; not too bright, not too dim.
+\stopitem
+\stopitemize
+
+% A dark theme is not necessarily better than a light theme and vice versa. 
+
+One of the most thought out and successful color schemes is \SOLARIZED, by Ethan Schoonover.
+\startfootnote
+See \url[solarized].
+\stopfootnote{}
+It features two series: a series of eight \emph{background tones} and another series of eight \emph{accent colors}. As excellent as it is, the first author found the background tones to exude something of a murky and \quotation{swampy} aesthetic. The light theme is too bright for continuous full-screen use (see \in{Section}[silvertwilight]). The content colors are more successful: They are both soft and distinct, although \SOLARIZED{} green contains perhaps too much yellow.
+
+In \NPP{} for \Context{} the first author has developed a modification of the \SOLARIZED; our resultant color scheme is called, perhaps appropriately, \important{\SOLARIZED++}. There are nine background tones and ten accent colors. The background colors are entirely different from the original \SOLARIZED{}. The accent colors are largely the same. However, \SOLARIZED{} green has been replaced with \SOLARIZED++ green, \SOLARIZED{} green has become \SOLARIZED++ yellowgreen, and an additional color, \SOLARIZED++ maroon, has been added. See \in{Figure}[solarizedpp].
+
+\startplacefigure[title={\SOLARIZED++: Base Tones and Accent Colors},location=here,number=yes,reference={solarizedpp}]
+\starttabulate[|l|l|r|l|l|r|]
+\HL 
+\NC Name        \NC Hex                 \NC Sample           \VL Name       \NC Hex                \NC Sample           \NC\NR
+\HL             
+\HL             
+\NC Base        \NC                     \NC                  \VL Accent     \NC                    \NC                  \NC\NR
+\TB[-0.28ex]    
+\NC Tones       \NC                     \NC                  \VL Colors     \NC                    \NC                  \NC\NR
+\HL             
+\NC Yellow      \NC {\TT \hash B58900} \NC \SPP{sppyellow}  \VL Base04     \NC {\TT \hash 1E2D2E} \NC \SPP{sppbase04} \NC\NR
+\NC Orange      \NC {\TT \hash CB4B16} \NC \SPP{spporange}  \VL Base03     \NC {\TT \hash 324140} \NC \SPP{sppbase03} \NC\NR
+\NC Red         \NC {\TT \hash DC322F} \NC \SPP{sppred}     \VL Base02     \NC {\TT \hash 475652} \NC \SPP{sppbase02} \NC\NR
+\NC Magenta     \NC {\TT \hash D33682} \NC \SPP{sppmagenta} \VL Base01     \NC {\TT \hash 5C6B64} \NC \SPP{sppbase01} \NC\NR
+\NC Violet      \NC {\TT \hash 6C71C4} \NC \SPP{sppviolet}  \VL Base0      \NC {\TT \hash 718076} \NC \SPP{sppbase0}  \NC\NR
+\NC Blue        \NC {\TT \hash 268BD2} \NC \SPP{sppblue}    \VL Base1      \NC {\TT \hash 899589} \NC \SPP{sppbase1}  \NC\NR
+\NC Cyan        \NC {\TT \hash 2AA198} \NC \SPP{sppcyan}    \VL Base2      \NC {\TT \hash A2AA9D} \NC \SPP{sppbase2}  \NC\NR
+\NC Green       \NC {\TT \hash 399900} \NC \SPP{sppgreen}   \VL Base3      \NC {\TT \hash BABFB1} \NC \SPP{sppbase3}  \NC\NR
+\NC Maroon      \NC {\TT \hash A12A33} \NC \SPP{sppmaroon}  \VL Base4      \NC {\TT \hash D3D5C5} \NC \SPP{sppbase4}  \NC\NR
+\NC Yellowgreen \NC {\TT \hash 859900} \NC \SPP{sppyellowgreen}  \VL       \NC {\TT \hash } \NC   \NC\NR
+\HL
+\stoptabulate
+\stopplacefigure
+
+In addition, \SOLARIZED++ currently features a series of five supplementary \emph{anti-base} tones for purposes of contrast when needed. As the name suggests, these five are meant to complement the base tones; see \in{Figure}[solarizedanti].
+
+\startplacefigure[title={\SOLARIZED++: Anti-Base Tones},reference={solarizedanti},location=here,number=yes]
+\starttabulate[|l|l|r|]
+\HL
+\NC Anti-Base \NC \NC  \NC\NR
+\TB[-0.28ex]
+\NC Tones     \NC \NC   \NC\NR
+\HL
+\NC Antibase0 \NC {\TT \hash 73606D} \NC \SPP{sppantibase0} \NC\NR
+\NC Antibase1 \NC {\TT \hash 897781} \NC \SPP{sppantibase1} \NC\NR
+\NC Antibase2 \NC {\TT \hash 9F8E96} \NC \SPP{sppantibase2} \NC\NR
+\NC Antibase3 \NC {\TT \hash B5A5AA} \NC \SPP{sppantibase3} \NC\NR
+\NC Antibase4 \NC {\TT \hash CCBDBF} \NC \SPP{sppantibase4} \NC\NR
+\HL
+\stoptabulate 
+\stopplacefigure
+
+\stopsubsection
+\startsubsection[title={On Syntax and Semantic Highlighting},reference={}]
+Syntax highlighting has been shown to have a positive impact on the comprehension of computer programs.
+\startfootnote
+See, e.g., \cite[authoryears][sarkar2015]. 
+\stopfootnote{}
+In the experience of the authors, the same is true for highlighting of structural and stylistic markup in \Context{}. There is a (perhaps pedantic) difference: Although the \emph{basic} \Context{} interface is expressed in terms of control sequences that take the form of \TEX{} commands, \TEX{} per~se closely exemplifies the paradigm of a \emph{programming} language in a strict sense; whereas \Context{} has developed towards exemplifying the paradigm of a \emph{markup} language. Technically speaking, even if one writes a basic \Context{} document with pure markup and no deeper commands, one still has to run that document through a compiler which will interpret the input and convert it to some output, normally a PDF document. We might describe the basic \Context{} interface as a hybrid: markup language in appearance and programming language in reality. 
+
+Markup is focused more on meaning, i.e., \emph{semantics}, and less on grammar, i.e., \emph{syntax}. Programming involves syntax to a high degree, and also semantics. Because syntax is often subtle and slippery to the programmer, code highlighting for programming languages generally takes the form of \emph{syntax highlighting}, so much so that \quote{code highlighting} and \quote{syntax highlighting} are often treated as synonymous. In recent years, some coders have begun to emphasize a distinction between syntax highlighting and \emph{semantic highlighting}.
+\startfootnote
+For detailed discussion of the distinction between syntax and semantic highlighting, see 
+
+\url[semantic1]; and
+
+\url[semantic2].
+\stopfootnote{}
+Because the interpreting of structural and stylistic markup pertains much more to matters of meaning than to grammar, highlighting of \Context{} code is best contextualized in terms of semantic highlighting. Of course, there is syntax to \Context{} as well: The different mechanisms between the earlier \type{Table} and the now standard \type{TABLE} environments (for typesetting of tabular data) exhibit stark differences in syntax. Considering possible models and implementations of code highlighting specific to the clarification of \Context{} syntax is a matter for future research.
+
+Settings for semantic highlighting of \Context{} keywords in \NPP{} are saved in the configuration file \type{ConTeXt.xml}, mentioned earlier. In particular, there are 14 classes of keywords; members of each class are given a specific color; these may be viewed (and edited) in Style Configurator, under \type{Language:ConTeXt}.
+\startfootnote
+Because the \Context{} language comes in the form of a lexer plugin, it will generally appear near the bottom of the language list on the left side of the dialog, after the natively supported languages, and along with other lexer plugins, if installed. Some classes allow the user to add one's own keywords to the class as well
+\stopfootnote{}
+
+Following is a brief description of each keyword class supported in the \Context{} lexer. See also \in{Figure}[styleconfigurator].
+
+\startplacefigure[title={\Context{} Lexer and \NPP{} Style Configurator},reference={styleconfigurator},location=here,number=yes]
+\externalfigure[style-configurator][scale=910]
+\stopplacefigure
+
+\startitemize[n]
+\starthead {DEFAULT}
+
+% \SPP{sppbase03} Base03
+ 
+This is the default keyword class, applied to strings which involve no other semantics. Normal text will generally belong to the default class. As default, there are no keywords specified for this class.
+\stophead 
+
+\starthead {LINE COMMENTS} 
+
+% \SPP{sppbase0} Base0
+
+This class includes the percent sign and all text on the same line that comes after it. Of general scope, there are no keywords specified for this class.
+\stophead 
+
+\starthead {TEX ETEX} 
+
+Primitive commands of \TEX{} and \ETEX{} are treated as one class.
+
+\emph{Allows user-defined keywords:} {\bf No}
+\stophead 
+
+\starthead {LUATEX} 
+
+\LUATEX{} has its own class. Although not often, new primitives can appear, and \LUATEX{perts} can define their own. 
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+
+\starthead {SYSTEM} 
+
+This is an official \Context{} keyword class. It includes system-level commands, those which are not meant for general typesetting and which the average user will never see.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+
+\starthead {DOCUMENT} 
+
+This is an official \Context{} keyword class. It includes commands that are generally meant to \emph{produce} a stream of text within a document.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+
+\starthead {STYLE} 
+
+This is an official \Context{} keyword class. It includes commands that are generally meant to \emph{style} a stream of text within a document.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+\starthead {CHARDEF (formerly OTHER)} 
+
+This is an official \Context{} keyword class. It consists of commands that translate to certain Unicode characters that are needed but normally inconvenient to typeset directly.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+\starthead {CONSTRUCT} 
+
+This class includes keywords used to constitute prefixes to other keywords, such as \type{\place} and \type{\set}. The prefix and any immediately following string connected to that prefix is treated as a keyword. Words in other classes that already contain one of these prefixes are not effected.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+\starthead {PRIVATE} 
+
+These are for keywords defined by the user. A few highlight commands are given for illustration, and the user can add more.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+\starthead {START OPEN} 
+
+These are opening commands that begin a folding environment; each must have an associated closing keyword in the STOP~CLOSE class. A small symbol will appear in the margin next to the opening keyword, with a bright line leading to the closing symbol.
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+\starthead {STOP CLOSE} 
+
+These are closing commands that end a folding environment; each must have an associated opening keyword in the START OPEN class. 
+
+\emph{Allows user-defined keywords:} {\bf Yes}
+\stophead 
+\starthead {OPERATORS} 
+
+This class includes punctuation and related symbols.
+
+\emph{Allows user-defined keywords:} {\bf No}
+\stophead 
+\starthead {NUMBERS} 
+
+This includes numerals and related symbols.
+
+\emph{Allows user-defined keywords:} {\bf No}
+\stophead 
+\stopitemize  
+\stopsubsection
+
+\startsubsection[title={Silver Twilight Hi and Silver Twilight Lo},reference={silvertwilight}]
+The \SOLARIZED++ color scheme and lexer keyword classes for semantic highlighting together constitute the components which go into Silver Twilight. Silver Twilight consists of two closely related themes which are designed for writing and editing for long hours, usually on a monitor in portrait mode. Portrait mode is generally more efficient than landscape mode for writing and editing productivity: It allows for the editor to comfortably fill most or all of the width of the screen, depending on the monitor resolution. The maximum width of the editor window should correspond to a maximum of between 77 to 105 characters per line within the typing area of the editor (average 91), depending on the zoom level and the choice of fixed-width font. 
+\startfootnote
+Typographers recommend a length of 45 to 75 characters per line (average 60); see \cite[authoryears][bringhurst2004]. However, writing and editing in a fixed-width font is not the same as reading the final output in a book or on a web page. Restricting the typing area of an editor to 45 to 75 characters per line feels forced (and is probably bad for anyone who has or is at risk for myopia). That said, \NPP{} can display a vertical edge and the user can choose a value for "number of columns", i.e., number of characters per line (we set it to 91). It would be nice if \NPP{} could automatically soft wrap (i.e., wrap without line breaks) the text at the vertical edge instead of at the border of the edge of the typing area.
+\stopfootnote{}
+This leaves a generous full length of the rest of the screen available for writing or editing with a minimum need for scrolling.
+
+\setupTABLE[r][1,2][width=.17\textwidth,offset=.84ex]
+\setupTABLE[r][3,4,5,6,7,8][width=.17\textwidth,toffset=.84ex]
+\setupTABLE[c][3,6]  [align=middle]
+\setupTABLE[c][each] [align=middle]
+\setupTABLE[r][1,2]    [style=bold,align=middle]
+% \setupTABLE[r][each]    [align=left]
+\startplacefigure[title={Global Style: Silver Twilight Hi},reference={globaltwilighthi},location=here,number=yes]
+\bTABLE
+\bTR\bTD[nc=6] Hi                                                                                                                                                                 \eTD\eTR
+\bTR\bTD Style                          \eTD\bTD Color     \eTD\bTD Sample             \eTD\bTD Style                          \eTD\bTD Color      \eTD\bTD Sample             \eTD\eTR
+\bTR\bTD Global Override Background (B) \eTD\bTD Base4     \eTD\bTD \SPP{sppbase4}     \eTD\bTD Global Override Foreground (F) \eTD\bTD Base04     \eTD\bTD \SPP{sppbase04}    \eTD\eTR
+\bTR\bTD Line Number Margin B           \eTD\bTD Base3     \eTD\bTD \SPP{sppbase3}     \eTD\bTD Line Number Margin F           \eTD\bTD Antibase0  \eTD\bTD \SPP{sppantibase0} \eTD\eTR
+\bTR\bTD Current Line Background        \eTD\bTD Base3     \eTD\bTD \SPP{sppbase3}     \eTD\bTD Comment                        \eTD\bTD Base0      \eTD\bTD \SPP{sppbase0}     \eTD\eTR
+\bTR\bTD Inactive Tabs                  \eTD\bTD Base2     \eTD\bTD \SPP{sppbase2}     \eTD\bTD Smart Highlighting             \eTD\bTD Cyan       \eTD\bTD \SPP{sppcyan}      \eTD\eTR
+\bTR\bTD Selected Text Color            \eTD\bTD Base1     \eTD\bTD \SPP{sppbase1}     \eTD\bTD Fold Active                    \eTD\bTD Cyan (NPP) \eTD\bTD \SPP{nppcyan}      \eTD\eTR
+% \bTR\bTD Fold Margin F              \eTD\bTD Base0 \eTD\bTD \SPP{sppbase0} \eTD\bTD Fold Margin B              \eTD\bTD Antibase4  \eTD\bTD \SPP{sppantibase4} \eTD\eTR
+\bTR\bTD Fold Margin B                  \eTD\bTD Antibase4 \eTD\bTD \SPP{sppantibase4} \eTD\bTD Fold Margin F                  \eTD\bTD Base0      \eTD\bTD \SPP{sppbase0}     \eTD\eTR
+\eTABLE
+\stopplacefigure
+
+\startplacefigure[title={Global Style: Silver Twilight Lo},reference={globaltwilightlo},location=here,number=yes]
+\bTABLE
+\bTR\bTD[nc=6] Hi                                                                                                                                                                   \eTD\eTR
+\bTR\bTD Style                          \eTD\bTD Color      \eTD\bTD Sample              \eTD\bTD Style                          \eTD\bTD Color      \eTD\bTD Sample             \eTD\eTR
+\bTR\bTD Global Override Background (B) \eTD\bTD Base04     \eTD\bTD \SPP{sppbase04}     \eTD\bTD Global Override Foreground (F) \eTD\bTD Base4     \eTD\bTD \SPP{sppbase4}      \eTD\eTR
+\bTR\bTD Line Number Margin B           \eTD\bTD Base03     \eTD\bTD \SPP{sppbase03}     \eTD\bTD Line Number Margin F           \eTD\bTD Antibase0  \eTD\bTD \SPP{sppantibase0} \eTD\eTR
+\bTR\bTD Current Line Background        \eTD\bTD Base03     \eTD\bTD \SPP{sppbase03}     \eTD\bTD Comment                        \eTD\bTD Base0      \eTD\bTD \SPP{sppbase0}     \eTD\eTR
+\bTR\bTD Inactive Tabs                  \eTD\bTD Base02     \eTD\bTD \SPP{sppbase02}     \eTD\bTD Smart Highlighting             \eTD\bTD Cyan       \eTD\bTD \SPP{sppcyan}      \eTD\eTR
+\bTR\bTD Selected Text Color            \eTD\bTD Base01     \eTD\bTD \SPP{sppbase01}     \eTD\bTD Fold Active                    \eTD\bTD Cyan (NPP) \eTD\bTD \SPP{nppcyan}      \eTD\eTR
+% \bTR\bTD Fold Margin F              \eTD\bTD Base0 \eTD\bTD \SPP{sppbase0} \eTD\bTD Fold Margin B              \eTD\bTD Antibase4  \eTD\bTD \SPP{sppantibase4} \eTD\eTR
+\bTR\bTD Fold Margin B                  \eTD\bTD Antibase4 \eTD\bTD \SPP{sppantibase4} \eTD\bTD Fold Margin F                  \eTD\bTD Base0      \eTD\bTD \SPP{sppbase0}       \eTD\eTR
+\eTABLE
+\stopplacefigure
+
+\startplacefigure[title={\Context{} Lexer Style: Silver Twilight},reference={globaltwilighlexer},location=here,number=yes]
+\bTABLE
+\bTR\bTD               \eTD\bTD[nc=2] Hi    \eTD\bTD[nc=2] Lo                                                                 \eTD\eTR
+\bTR\bTD Keyword Class \eTD\bTD Color       \eTD\bTD Sample               \eTD\bTD Color       \eTD\bTD Sample               \eTD\eTR
+\bTR\bTD DEFAULT (F)   \eTD\bTD Base03      \eTD\bTD \SPP{sppbase04}      \eTD\bTD Base03      \eTD\bTD \SPP{sppbase4}       \eTD\eTR
+\bTR\bTD LINE COMMENTS \eTD\bTD Base0       \eTD\bTD \SPP{sppbase0}       \eTD\bTD Base0       \eTD\bTD \SPP{sppbase0}       \eTD\eTR
+\bTR\bTD TEX/ETEX      \eTD\bTD Maroon      \eTD\bTD \SPP{sppmaroon}      \eTD\bTD Maroon      \eTD\bTD \SPP{sppmaroon}      \eTD\eTR
+\bTR\bTD LUATEX        \eTD\bTD Orange      \eTD\bTD \SPP{spporange}      \eTD\bTD Orange      \eTD\bTD \SPP{spporange}      \eTD\eTR
+\bTR\bTD SYSTEM        \eTD\bTD Yellowgreen \eTD\bTD \SPP{sppyellowgreen} \eTD\bTD Yellowgreen \eTD\bTD \SPP{sppyellowgreen} \eTD\eTR
+\bTR\bTD DOCUMENT      \eTD\bTD Green       \eTD\bTD \SPP{sppgreen}       \eTD\bTD Green       \eTD\bTD \SPP{sppgreen}       \eTD\eTR
+\bTR\bTD STYLE         \eTD\bTD Yellow      \eTD\bTD \SPP{sppyellow}      \eTD\bTD Yellow      \eTD\bTD \SPP{sppyellow}      \eTD\eTR
+\bTR\bTD CHARDEF       \eTD\bTD Magenta     \eTD\bTD \SPP{sppmagenta}     \eTD\bTD Magenta     \eTD\bTD \SPP{sppmagenta}     \eTD\eTR
+\bTR\bTD CONSTRUCT     \eTD\bTD Violet      \eTD\bTD \SPP{sppviolet}      \eTD\bTD Violet      \eTD\bTD \SPP{sppviolet}      \eTD\eTR
+\bTR\bTD PRIVATE       \eTD\bTD Blue        \eTD\bTD \SPP{sppblue}        \eTD\bTD Blue        \eTD\bTD \SPP{sppblue}        \eTD\eTR
+\bTR\bTD STOP OPEN     \eTD\bTD Cyan        \eTD\bTD \SPP{sppcyan}        \eTD\bTD Cyan        \eTD\bTD \SPP{sppcyan}        \eTD\eTR
+\bTR\bTD STOP CLOSE    \eTD\bTD Cyan        \eTD\bTD \SPP{sppcyan}        \eTD\bTD Cyan        \eTD\bTD \SPP{sppcyan}        \eTD\eTR
+\bTR\bTD OPERATORS     \eTD\bTD Maroon      \eTD\bTD \SPP{sppmaroon}      \eTD\bTD Maroon      \eTD\bTD \SPP{sppmaroon}      \eTD\eTR
+\bTR\bTD NUMBERS       \eTD\bTD Cyan        \eTD\bTD \SPP{sppcyan}        \eTD\bTD Cyan        \eTD\bTD \SPP{sppcyan}        \eTD\eTR
+\eTABLE
+\stopplacefigure
+
+On the other hand, staring at such a large area of writing space for long periods needs to be ameliorated, as discussed earlier. The Silver Twilight themes are designed to address and meet that need. Silver Twilight Hi is a light theme, perhaps best for daylight hours, but works for nighttime as well. Silver Twilight Lo is a dark theme, perhaps best for nighttime, but works for daylight as well. At the time of writing this manual, the first author is somewhat more satisfied with Silver Twilight Hi than with Silver Twilight Lo; your mileage may vary. Both could benefit from improvement in future versions; suggestions from the \Context{} community are welcome! 
+
+In \NPP{} Style Configurator, a \emph{global style} may be configured to set the general appearance of the editor. See (\type{Language: Global Styles}): Individual elements for configuration are listed to the right under \type{Language: Style: <element>}. A \emph{lexer style} involves setting the code highlighting rules for each keyword class of a given lexer. See  {\TT Language:<language>}: Individual keyword classes for each lexer are also listed under \type{Language: Style: <keyword class>}. See also \in{Figure}[styleconfigurator].
+
+Each Silver Twilight theme consists of a global and a lexer style. See \in{Figures}[globaltwilighthi] and \in{}[globaltwilightlo] for the global style of Silver Twilight High and of Silver Twilight Lo respectively. 
+
+Note that the lexer styles for Silver Twilight Hi and Lo for \Context{} are almost identical: The only difference is that the foreground and background colors for the DEFAULT keyword class are reversed; see \in{Figure}[globaltwilighlexer]. This is intentional: the two themes are intended to form a single system. In order for a common lexer style to work well between themes, the color scheme has to be well thought out.
+\startfootnote
+The developer of \SOLARIZED{} had this ideal in mind: A single color scheme should work across nearly all keyword classes for each of a pair of light and dark themes. Note that a pair of \SOLARIZED{} themes is available for \NPP{} (the user will have to change any background tones used by the \Context{} lexer style, as they are not compatible). 
+\stopfootnote{}
+Again, there is always room for improvement.
+
+
+\stopsubsection
+
+\startsubsection[title={ALM Fixed},reference={}]
+The default font for Silver Twilight is Arabic-Latin Modern Fixed, a derivation from Latin-Modern Mono developed by Idris Samawi Hamid. Designed for extensive use of Arabic script and its diacritics, it has a larger than usual interline spacing. For those who desire tighter interline spacing or just another default tpeface: Instead of tediously replacing the font in every dialog of Style Configurator, one can open {\TT ConTeXt.xml} and {\TT stylers.xml} and make a global substitution of ALM Fixed with another font (preferably fixed-width) of one's choosing, such as Dejavu Sans Mono.
+\stopsubsection
+% \startsubsection[title={\BIBTEX},reference={}]
+
+% \stopsubsection
+\stopsection
+
+\startsection[title={The \NPPEXEC{} Plugin, Scripts, and Macros},reference={}]
+\startsubsection[title={\NPPEXEC{} and the Macro Menu},reference={}]
+The \NPPEXEC{} console is an integral part of the \NPP{} for \Context{} system. When executed, it open a window which features a typing area to write your script, an option to save it, as well as a drop-down list of saved scripts. See \in{Figure}[nppexec1]. There are 24 scripts that come with \NPP{} for \Context{} but you can add your own private scripts here as well.
+
+\startplacefigure[title={\NPPEXEC{} and \Context-related Scripts},reference={nppexec1},location=here,number=yes]
+\externalfigure[nppexec1][scale=1000]
+\stopplacefigure
+
+Let's take a look at {\TT Plugins->NppExec->Advanced Options}; see \in{Figure}[nppexec2]. At the top right you will notice that a script can be executed when \NPP{} starts or exits. By default, the {\TT Scratch TeX File} script is executed when \NPP{} starts: The user will have to edit that script to the corerct directory for one's scratch file. Of course one can disable the execution of any script. The {\TT Purge Files} script is executed when \NPP{} exits; again, one can disable this. 
+
+\startplacefigure[title={\NPPEXEC{} Advanced Options},reference={nppexec2},location=here,number=yes]
+\externalfigure[nppexec2][scale=1000]
+\stopplacefigure
+
+Another feature is that any console script can be placed at the bottom of the \type{Macro} submenu.We have configured 14 \NPPEXEC{} scripts appear there; see \in{Figure}[nppexec3]. Note the submenu name need not be the same as the original script name!
+
+\startplacefigure[title={\NPPEXEC{} Scripts and the Macro Submenu},reference={nppexec3},location=here,number=yes]
+\externalfigure[nppexec3][scale=1000]
+\stopplacefigure
+\stopsubsection
+\startsubsection[title={\NPPEXEC{} and \CONTEXT},reference={}]
+A brief description of the each console script that ships with \NPP{} for \Context{} follows; the names should be self-explanatory.
+
+\startitemize[n]
+\starthead {Check \TEX{} File (Ctrl-0)} 
+
+Note
+
+\type{mtxrun --autogenerate --script check}
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+
+\starthead {} 
+
+
+\stophead 
+\stopitemize  
+\stopsubsection
+% \stopsection
+
+% \startsection[title={Scripts and Macros},reference={}]
+% \startsubsection[title={The Macro Menu},reference={}]
+
+% \stopsubsection
+\startsubsection[title={\CONTEXT{} Macro Scripts},reference={}]
+
+\stopsubsection
+\startsubsection[title={Configuring Shortcut Mapper},reference={}]
+
+\stopsubsection
+\stopsection
+
+\startsection[title={The \CONTEXT{} Lexer},reference={}]
+\startsubsection[title={Components of the Lexer},reference={}]
+
+\stopsubsection
+\startsubsection[title={Configuring Keyword Classes: Style Configurator and \type{context.xml}},
+                  reference={}]
+
+\stopsubsection
+\startsubsection[title={Configuring Autocompletion and Tooltips: \type{ConTeXt.xml}},reference={}]
+
+\stopsubsection
+\startsubsection[title={Configuring Macros, Tags, and Shortcuts: \type{ConTeXt.ini}},reference={}]
+
+\stopsubsection
+\startsubsection[title={Configuring the Right-Click Menu},reference={}]
+
+\stopsubsection
+\startsubsection[title={Usage},reference={}]
+
+\stopsubsection
+\startsubsection[title={Note on bidirectional editing},reference={section:bidi}]
+In some cases, \SCINTILLA{} will
+\stopsubsection
+\stopsection
+
+\startsection[title={References},reference={}]
+\placelistofpublications
+\stopsection
+
+\startsubject[title={The Authors},reference={}]
+\starttabulate[|l|l|]
+\NC author      \NC Idris Samawi Hamid, Professor  \NC \NR
+\NC email       \NC \type{ishamid@colostate.edu}   \NC \NR
+\NC affiliation \NC Department of Philosophy       \NC \NR
+\NC             \NC Colorado State University      \NC \NR
+\NC             \NC The Oriental \TEX{} Project     \NC \NR
+\NC             \NC                                \NC \NR
+\NC author      \NC Luigi Scarso                   \NC \NR
+\NC email       \NC \type{luigi.scarso@gmail.com}  \NC \NR
+\NC affiliation \NC The \CONTEXT{} Development Team \NC \NR
+\NC             \NC The \LUATEX{}  Team\NC          \NR
+\NC             \NC                                \NC \NR
+\NC version     \NC \currentdate                   \NC \NR
+\stoptabulate
+\stopsubject
+
+\stoptext
