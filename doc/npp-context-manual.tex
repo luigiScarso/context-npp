@@ -876,16 +876,16 @@ Again, there is always room for improvement.
 \stopsubsection
 
 \startsubsection[title={ALM Fixed},reference={}]
-The default font for Silver Twilight is Arabic-Latin Modern Fixed, a derivation from Latin-Modern Mono developed by Idris Samawi Hamid. Designed for extensive use of Arabic script and its diacritics, it has a larger than usual interline spacing. For those who desire tighter interline spacing or just another default tpeface: Instead of tediously replacing the font in every dialog of Style Configurator, one can open {\TT ConTeXt.xml} and {\TT stylers.xml} and make a global substitution of ALM Fixed with another font (preferably fixed-width) of one's choosing, such as Dejavu Sans Mono.
+The default font for Silver Twilight is Arabic-Latin Modern Fixed, a derivation from Latin-Modern Mono developed by Idris Samawi Hamid. Designed for extensive use of Arabic script and its diacritics, it has a larger than usual interline spacing. For those who desire tighter interline spacing or just another default tpeface: Instead of tediously replacing the font in every dialog of Style Configurator, one can open {\TT ConTeXt.xml} and {\TT stylers.xml} and make a global substitution of the name \quote{{\TT ALM Fixed}} with that of another font (preferably fixed-width) of one's choosing, e.g., \quote{{\TT Dejavu Sans Mono}}.
 \stopsubsection
 % \startsubsection[title={\BIBTEX},reference={}]
 
 % \stopsubsection
 \stopsection
 
-\startsection[title={The \NPPEXEC{} Plugin, Scripts, and Macros},reference={}]
-\startsubsection[title={\NPPEXEC{} and the Macro Menu},reference={}]
-The \NPPEXEC{} console is an integral part of the \NPP{} for \Context{} system. When executed, it open a window which features a typing area to write your script, an option to save it, as well as a drop-down list of saved scripts. See \in{Figure}[nppexec1]. There are 24 scripts that come with \NPP{} for \Context{} but you can add your own private scripts here as well.
+\startsection[title={The \NPPEXEC{} Console},reference={}]
+\startsubsection[title={\NPPEXEC{} and Console Scripts},reference={}]
+The \NPPEXEC{} console is an integral part of the \NPP{} for \Context{} system. When executed, it open a window which features a typing area for you to write a script, an option to save it, as well as a drop-down list of saved scripts. See \in{Figure}[nppexec1]. There are 24 scripts that come with \NPP{} for \Context; you can add and remove these or your own private scripts as well.
 
 \startplacefigure[title={\NPPEXEC{} and \Context-related Scripts},reference={nppexec1},location=here,number=yes]
 \externalfigure[nppexec1][scale=1000]
@@ -896,13 +896,8 @@ Let's take a look at {\TT Plugins->NppExec->Advanced Options}; see \in{Figure}[n
 \startplacefigure[title={\NPPEXEC{} Advanced Options},reference={nppexec2},location=here,number=yes]
 \externalfigure[nppexec2][scale=1000]
 \stopplacefigure
-
-Another feature is that any console script can be placed at the bottom of the \type{Macro} submenu.We have configured 14 \NPPEXEC{} scripts appear there; see \in{Figure}[nppexec3]. Note the submenu name need not be the same as the original script name!
-
-\startplacefigure[title={\NPPEXEC{} Scripts and the Macro Submenu},reference={nppexec3},location=here,number=yes]
-\externalfigure[nppexec3][scale=1000]
-\stopplacefigure
 \stopsubsection
+
 \startsubsection[title={\NPPEXEC{} and \CONTEXT},reference={}]
 A brief description of the each console script that ships with \NPP{} for \Context{} follows; the names should be self-explanatory.
 
@@ -911,107 +906,169 @@ A brief description of the each console script that ships with \NPP{} for \Conte
 
 Note
 
-\type{mtxrun --autogenerate --script check}
+\starttyping
+mtxrun --autogenerate --script check
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Process TeX File} 
 
-
+\starttyping
+context.exe --synctex "$(NAME_PART).tex"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Process TeX Project} 
 
-
+\starttyping
+cd "C:\<path to your directory>"
+context.exe --synctex "<your project>.tex" 
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Process TeX File (fast)} 
 
-
+\starttyping
+context.exe -mode=*nofonts "$(NAME_PART).tex"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Process TeX Demo} 
 
-
+\starttyping
+context.exe --mode=demo "$(NAME_PART).tex"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Process TeX File (module)} 
 
-
+\starttyping
+context --ctx=s-mod typo-mar.mkiv
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Purge Files} 
 
-
+\starttyping
+context --purge
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Generate Format} 
 
-
+\starttyping
+luatools.exe --generate
+context.exe --make
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Update ConTeXt} 
 
-
+\starttyping
+first-setup.bat --engine=luatex
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Refresh Filename Database} 
 
-
+\starttyping
+mktexlsr
+luatools.exe --generate
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {\ConTeXt: Refresh FNDB (verbose)} 
 
-
+\starttyping
+luatools.exe --verbose --generate
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {LuaTeX: Generate Formats (luatex-plain)} 
 
-
+\starttyping
+luatex --ini luatex-plain.tex
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {LuaTeX: Plain luaTeX} 
 
-
+\starttyping
+luatex --ini luatex-plain.tex
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {TEX: Scratch TeX File} 
 
-
+\starttyping
+notepad++.exe "C:\<path to your directory>\scratch.tex"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {PDF: View PDF File} 
 
-
+\starttyping
+sumatra.bat "$(CURRENT_DIRECTORY)\$(NAME_PART).pdf"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {PDF: View PDF File (project)} 
 
-
+\starttyping
+cd "C:\<path to your directory>
+sumatra.bat "<your project>.pdf"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {VIEW: Open logfile} 
 
-
+\starttyping
+noepad++.exe  "$(CURRENT_DIRECTORY)\$(NAME_PART).log"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {VIEW: Generate Listing} 
 
-
+\starttyping
+mtxrun --autogenerate --script context --extra=listing --pretty --result="$(NAME_PART)" "$(NAME_PART).tex" 
+sumatra.bat "$(CURRENT_DIRECTORY)\$(NAME_PART).pdf"
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {Fonts: Purge Font Cache} 
 
-
+\starttyping
+mtxrun.exe --script cache --erase
+mtxrun --generate
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {Fonts: List OpenType Features} 
 
-
+\starttyping
+mtxrun.exe --script font --list --info lmroman12-regular.otf
+\stoptyping
 \stophead 
 
-\starthead {} 
+\starthead {Fonts: OpenType Tables -- Lua} 
 
+\starttyping
+mtxrun.exe --script font --save lmroman12-regular.otf
+\stoptyping
+\stophead 
 
+\starthead {Fonts: Generate font.tma} 
+
+\starttyping
+mtxrun.exe -- convert lmroman12-regular.otf
+\stoptyping
+\stophead 
+
+\starthead {Fonts: Reload Fonts} 
+
+\starttyping
+mtxrun --script fonts --reload --force
+\stoptyping
 \stophead 
 \stopitemize  
 \stopsubsection
@@ -1021,8 +1078,12 @@ Note
 % \startsubsection[title={The Macro Menu},reference={}]
 
 % \stopsubsection
-\startsubsection[title={\CONTEXT{} Macro Scripts},reference={}]
+\startsubsection[title={\NPPEXEC{} and the Macro Submenu},reference={}]
+From the \NPPEXEC{} Advanced Options dialog, any console script can be made to appear at the bottom of the \type{Macro} submenu.We have configured 14 \NPPEXEC{} scripts appear there; see \in{Figure}[nppexec3]. Note the submenu name need not be the same as the source console script name!
 
+\startplacefigure[title={\NPPEXEC{} Scripts and the Macro Submenu},reference={nppexec3},location=here,number=yes]
+\externalfigure[nppexec3][scale=1000]
+\stopplacefigure
 \stopsubsection
 \startsubsection[title={Configuring Shortcut Mapper},reference={}]
 
