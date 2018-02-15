@@ -76,8 +76,10 @@
 
 \useURL[npp][https://notepad-plus-plus.org/download/]
 \useURL[solarized] [http://ethanschoonover.com/solarized] % [] [Solarized.]
-\useURL[semantic1][https://goo.gl/dB5d9u]
-\useURL[semantic2][https://goo.gl/jTPwD1]
+\useURL[semantic1][https://goo.gl/dB5d9u] [] 
+[Semantic Code Highlighting]
+\useURL[semantic2][https://goo.gl/jTPwD1] [] 
+[C++ IDE Evolution: From Syntax Highlighting to Semantic Highlighting]
 \useURL[rightclick][http://docs.notepad-plus-plus.org/index.php/Context_Menu]
 \useURL[spacemacs][http://spacemacs.org/doc/DOCUMENTATION.html]
 \useURL[nppforcontext1][https://github.com/luigiScarso/context-npp]
@@ -229,8 +231,8 @@
    {\switchtobodyfont[84pt]\hskip-.03em \NPP}
    \endgraf
    \kern.35\bodyfontsize FOR 
-   % \Context{} {\bf M{\bfx K}IV \hfill \switchtobodyfont[17pt] \tf Version 0.98\ \ }
-   \Context{} {\bf M{\bfx K}IV \hfill \switchtobodyfont[17pt] \tf Version 0.91\ \kern.1em }
+   \Context{} {\bf M{\bfx K}IV \hfill \switchtobodyfont[17pt] \tf Version 0.98\ \ }
+   % \Context{} {\bf M{\bfx K}IV \hfill \switchtobodyfont[17pt] \tf Version 0.91\ \kern.1em }
    \vskip2.8ex
   }
 
@@ -265,6 +267,11 @@
   % year   = "2009 (accessed February 3, 2014)"
 }
 \stopbuffer
+
+\startbuffer[oldvbox]
+\begingroup \let\oldvbox\vbox \let\vbox\relax .\vbox{..} \endgroup 
+\stopbuffer
+
 \usebtxdefinitions [apa]
 \setupbtxrendering [apa] [pagestate=start] % index cite pages in bibliography
 
@@ -302,7 +309,7 @@ The first author of this manual, Idris Samawi Hamid, is a professor who has felt
 \startsubsection[title={History},reference={history}]
 Prior to his move to \Context, Hamid was using the shareware editor \WINEDT. At that time  \WINEDT{} was (and probably still is) a very polished environment for writing and processing documents written in \TEX. However, configuring \WINEDT{} for \Context{} was critically impeded, due in major part to the fact that much of its graphical user interface was hardcoded for a certain famous document preparation system. Around the same time, lexers and tools were being developed for \SCITE, which eventually became the semi-official text-editor for \Context. Despite its \Context-friendly tools, Hamid continued to miss many of the configuration and interface options of \WINEDT{} that made editing and processing \TEX{} documents so efficient and user-friendly for non-programmers. After trying virtually every available option|<|explicitly \TEX-friendly or other|>|he finally settled upon \NPP. 
 \startfootnote
-First author Hamid was first introduced to \NPP{} by Hans Hagen, the founder and primary developer of \Context. Hagen also developed the \TEX{} and \METAPOST{} interface used by \important{\SCITE{} in \Context{} \MKIV}: \crlf 
+First author Hamid was introduced to \NPP{} by Hans Hagen, the founder and primary developer of \Context. Hagen also developed the \TEX{} and \METAPOST{} interface used by \important{\SCITE{} in \Context{} \MKIV}: \crlf 
 \url[scitecontextmkiv].
 \stopfootnote{}
 Its look, feel, and extensive configuration options allowed Hamid to quickly achieve a setup analogous to \WINEDT. A few characteristics of \WINEDT{} were still missed; on the other hand, \NPP{} brought to the table other features missing in \WINEDT{}; these helped to make the transition worth it. For example, \NPP{} supports global bidirectional text editing essential for the Arabic script|=|\WINEDT{} had no such support.
@@ -473,6 +480,10 @@ This is analogous to the standalone directory for \SCITE:
 \stopsubsubsection
 
 \startsubsubsection[title={Recommended Settings},reference={recommended}]
+
+\startitemize
+
+\startitem
 \NPP{} does not support automatic \emph{hard wrap} of lines that surpass a certain length (as does \WINEDT). That is, \NPP{} doesn't insert new-line breaks when a line reaches the maximum width of the editing window (or some user-specified width). \NPP{} does supports \emph{soft wrap} of lines: This means that a line longer than the editing-window length will appear as though it is split into multiple lines, but is treated by \NPP{} as a single line. Soft wrap can be toggled on and off:
 
 \starttyping
@@ -488,13 +499,26 @@ TextFX – Edit – ReWrap Text to (Clipboard or 72) width (Ctrl+Alt+Shift+INS)
 \stoptyping
 
 Eventually the first author came to the conclusion that automatic text breaking is not as helpful as first thought. For example, a search for a string of text longer than one word will miss instances if a line break occurs within that string. 
+\stopitem
 
+\startitem
 Based on extensive writing and editing work with \NPP, the first author has found it helpful, for purposes of organization and productivity, to maintain the following setting:
 
 \starttyping
 Settings – Preferences – Editing – Line Wrap – Indent
 \stoptyping
-Indented wrapping happens with respect to the beginning of the line. So if a given line is tabbed or padded with spaces prior to its first character, any soft-wrapped text will always be indented with respect to the column where the line begins. This allows for, e.g., hierarchical organization or nesting of paragraph levels if desired.  
+Indented wrapping happens with respect to the beginning of the line. So if a given line is tabbed or padded with spaces prior to its first character, any soft-wrapped text will always be indented with respect to the column where the line begins. This allows for, e.g., hierarchical organization or nesting of paragraph levels if desired.
+\stopitem
+
+\startitem
+\NPP{} has a toolbar, but its style is quite dated. The first author has found it more productive to leave it turned off:
+
+\starttyping
+Settings – Preferences – General – Toolbar – Hide
+\stoptyping
+
+% On the other hand, there are ways to configure the toolbar if one decides to turn it on, including the Customize Toolbar Plugin.
+\stopitem
 \stopsubsubsection
 \stopsubsection
 \stopsection
@@ -650,7 +674,7 @@ Virtually all menu commands can be assigned a keyboard shortcut, and each shortc
 \stophead 
 
 \starthead[head:pythonscripts] {\PYTHON{} Scripts} 
-New versions of \Context{} are released often, and the addition of new control sequences (= commands) is not uncommon. For those who update often: The lists of official commands in \type{ConTeXt.xml} and \type{context.xml} are generated from the sources via the \PYTHON{} script \type{command_primitives_api_new.py}; \type{update-ConTeXt.py} makes sure that local changes to the \type{ConTeXt.xml} configuration are saved and not overridden. 
+New versions of \Context{} are released often; the addition of new control sequences (= commands) or an update of the parameters of some existing ones is not uncommon. For those who update often: The lists of official commands in \type{ConTeXt.xml} and \type{context.xml} are generated from the sources via the \PYTHON{} script \type{command_primitives_api_new.py}; \type{update-ConTeXt.py} makes sure that local changes to the \type{ConTeXt.xml} configuration are saved and not overridden.
 
 \starttyping
 /Npp-for-ConTeXt/scripts/command_primitives_api_new.py
@@ -858,9 +882,9 @@ In \NPP{} for \Context{} the first author has developed a modification of \SOLAR
 \NC Name        \NC Hex                 \NC Sample           \VL Name       \NC Hex                \NC Sample           \NC\NR
 \HL             
 \HL             
-\NC Accent      \NC                     \NC                  \VL Base       \NC                    \NC                  \NC\NR
-\TB[-0.28ex]    
-\NC Colors      \NC                     \NC                  \VL Tones      \NC                    \NC                  \NC\NR
+\NC \rlap{Accent Colors} \NC            \NC                  \VL \rlap{Base Tones} \NC             \NC                  \NC\NR
+% \TB[-0.28ex]    
+% \NC Colors      \NC                     \NC                  \VL Tones      \NC                    \NC                  \NC\NR
 \HL             
 \NC Yellow      \NC {\TT \hash B58900} \NC \SPP{sppyellow}  \VL Base04     \NC {\TT \hash 1E2D2E} \NC \SPP{sppbase04} \NC\NR
 \NC Orange      \NC {\TT \hash CB4B16} \NC \SPP{spporange}  \VL Base03     \NC {\TT \hash 324140} \NC \SPP{sppbase03} \NC\NR
@@ -881,9 +905,9 @@ In addition, \SOLARIZED++ currently features a series of five supplementary \emp
 \startplacefigure[title={\SOLARIZED++: Anti-Base Tones},reference={solarizedanti},location=here,number=yes]
 \starttabulate[|l|l|r|]
 \HL
-\NC Anti-Base \NC \NC  \NC\NR
-\TB[-0.28ex]
-\NC Tones     \NC \NC   \NC\NR
+\NC \rlap{Anti-Base Tones} \NC \NC  \NC\NR
+% \TB[-0.28ex]
+% \NC     \NC \NC   \NC\NR
 \HL
 \NC Antibase0 \NC {\TT \hash 73606D} \NC \SPP{sppantibase0} \NC\NR
 \NC Antibase1 \NC {\TT \hash 897781} \NC \SPP{sppantibase1} \NC\NR
@@ -906,12 +930,27 @@ Markup is focused more on meaning, i.e., \emph{semantics}, and less on grammar, 
 \startfootnote
 For detailed discussion of the distinction between syntax and semantic highlighting, see 
 
-\url[semantic1]; and
+% \url[semantic1]; and
 
-\url[semantic2].
+% \url[semantic2].
+\setupinteraction[state=start,color=walayahred,style=bold]
+\from[semantic1] (\url[semantic1]|=|accessed \date); and
+
+\from[semantic2] (\url[semantic2]|=|accessed \date).
 \stopfootnote{}
 Because the interpreting of structural and stylistic markup pertains much more to matters of meaning than to grammar, highlighting of \Context{} code is best contextualized in terms of semantic highlighting. Of course, there is syntax to \Context{} as well: The different mechanisms between the earlier \type{Table} and the now standard \type{TABLE} environments (for typesetting of tabular data) exhibit stark differences in syntax. Considering possible models and implementations of code highlighting specific to the clarification of \Context{} syntax is a matter for future research.
-\stopsubsection
+\startfootnote
+Technical note: ConTeXt shares also some properties with SGML, in the sense that it can used to define new semantics. For example one can create a verbatim environment, which simulates typing or editing. The lexer should be then coded to manage a user-defined semantic, defined itself at runtime. But this is not enough, because the semantics of a macro can also temporarily change. For example: 
+
+% % \startbuffer[oldvbox]
+% % \begingroup \let\oldvbox\vbox \let\vbox\relax .\vbox{..} \endgroup 
+% % \stopbuffer
+
+\typebuffer[oldvbox]
+
+Here \type{\vbox} means nothing inside the group so semantics are context sensitive.
+\stopfootnote{}
+% \stopsubsection
 
 \startsubsection[title={Highlighting and the \CONTEXT{} Lexer},reference={lexerhighlighting}]
 Settings for semantic highlighting of \Context{} keywords in \NPP{} are saved in the configuration file \type{ConTeXt.xml}, mentioned earlier. In particular, there are 14 classes of keywords; members of each class are given a specific color; these may be viewed (and edited) in Style Configurator, under \type{Language:ConTeXt}.
@@ -1110,7 +1149,7 @@ The default font for Silver Twilight is Arabic-Latin Modern Fixed, a derivation 
 \startplacefigure[title={\NPPEXEC{} and \Context-related Scripts},reference={nppexec1},location=here,number=yes]
 \externalfigure[nppexec1][scale=1000]
 \stopplacefigure
-The \NPPEXEC{} console is an integral part of the \NPP{} for \Context{} system. 
+The \NPPEXEC{} console emulator is an integral part of the \NPP{} for \Context{} system. 
 \startfootnote
 Of course, a user can choose to configure an external console for use with \NPP{} via the {\TT Run\textellipsis} menu.
 \stopfootnote{}
@@ -1125,7 +1164,7 @@ One can install multiple copies of \NPPEXEC; just copy \type{NppExec.dll} to, e.
 {\TT Plugins \endash{} NppExec \endash{} Help/Manual}. 
 \stoplines
 
-For help using common DOS commands such as \type{copy}, \type{move}, and \type{mkdir}|<|these are actually part of the system interpreter \type{cmd.exe}|>|see Section~4.4. For an example, see \in{Heading}[head:listing] in \in{Section}[nppexeccontext].
+For help using common DOS commands such as \type{copy}, \type{move}, and \type{mkdir}|<|these are actually part of the system interpreter \type{cmd.exe}|>|see Section~4.4. For an example, see \in{Heading}[head:purgefileskeepsynctex] in \in{Section}[nppexeccontext].
 
 Let's take a look at 
 
@@ -1136,6 +1175,12 @@ Let's take a look at
 \stopplacefigure
 
 See \in{Figure}[nppexec2]. At the top right you will notice that a script can be executed when \NPP{} starts or exits. By default, the {\TT Scratch TeX File} script is executed when \NPP{} starts: The user will have to edit that script and point it to the directory where one's scratch file is located; see \in{Heading}[head:scratchtexfile] in \in{Section}[nppexeccontext]. The {\TT Purge Files Keep Sync\TeX{}} script is executed when \NPP{} exits; see \in{Heading}[head:purgefileskeepsynctex] in \in{Section}[nppexeccontext]. Of course one can disable the execution of any start or exit script.
+
+The \NPPEXEC{} console emulator is configured to use a \SOLARIZED++ color scheme that closely resembles Silver Twilight Lo; see \in{Section}[console]. This is also set in Advanced Options. The authors find the combination of Silver Twilight Lo for the console and Silver Twilight Hi for the main editing area to be quite pleasing.
+
+\startplacefigure[title={\NPPEXEC{} Console},reference={console},location=here,number=yes]
+\externalfigure[console][scale=630]
+\stopplacefigure 
 \stopsubsection
 \startsubsection[title={\NPPEXEC{} and \CONTEXT},reference={nppexeccontext}]
 A brief description of each console script that ships with \NPP{} for \Context{} follows. For each command, mention is made of whether it appears in the {Macro} submenu (see \in{Section}[macrosubmenu]). If it has a default shortcut, that is also mentioned. Note that the last script executed by \NPPEXEC{} can be invoked by a shortcut, \type{F7} by default.
@@ -1311,13 +1356,22 @@ noepad++.exe  "$(CURRENT_DIRECTORY)\$(NAME_PART).log"
 
 This script prints a pdf copy of the source file. In order to not override the normal pdf output, the script copies the source to a temporary \TEX{} file with the suffix \type{-listing}; this file is deleted after the pdf is created.
 
-Note the the use of \type{cmd /c copy} and \type{cmd /c del} instead of the usual \type{copy.exe} and \type{del.exe}. Again, see Section~4.4 of the \NPPEXEC{} manual.
+% Note the the use of \type{cmd /c copy} and \type{cmd /c del} instead of the usual \type{copy.exe} and \type{del.exe}. Again, see Section~4.4 of the \NPPEXEC{} manual.
+
+% \starttyping
+% cmd /c copy "$(NAME_PART).tex" "$(NAME_PART)-listing.tex"
+% mtxrun --autogenerate --script context --extra=listing --pretty 
+       % --result="$(NAME_PART)-listing" "$(NAME_PART)-listing.tex" 
+% sumatra.bat "$(CURRENT_DIRECTORY)\$(NAME_PART)-listing.pdf"
+% cmd /c del "$(NAME_PART)-listing.tex"
+% \stoptyping
+
+% \starttyping
+% mtxrun --autogenerate --script context --autopdf --extra=listing --scite --compact --pretty --result="$(NAME_PART)-listing" "$(NAME_PART).tex"
+% \stoptyping
+
 \starttyping
-cmd /c copy "$(NAME_PART).tex" "$(NAME_PART)-listing.tex"
-mtxrun --autogenerate --script context --extra=listing --pretty 
-       --result="$(NAME_PART)-listing" "$(NAME_PART)-listing.tex" 
-sumatra.bat "$(CURRENT_DIRECTORY)\$(NAME_PART)-listing.pdf"
-cmd /c del "$(NAME_PART)-listing.tex"
+mtxrun --autogenerate --script context --autopdf --extra=listing --compact --pretty --result="$(NAME_PART)-listing" "$(NAME_PART).tex"
 \stoptyping
 \stophead 
 
@@ -1576,7 +1630,10 @@ startFunc3="(" stopFunc="" stopFunc1="]" stopFunc2="}" stopFunc3=")"
 thresholdNrOfRows="20" toplines="1" widthColumnSep="2"/>
 \stoptyping
 
-The current selection of available reflects the limitations of the sources: As detail is added to the \Context{} sources for autocompletion, more calltip information will become available to the user in future versions of \type{context.xml}.
+The current selection of available command information reflects the limitations of the sources: As detail is added to the \Context{} sources for autocompletion, more calltip information will become available to the user in future versions of \type{context.xml}.
+\startfootnote
+One of the next planned improvements is the ability to select the paramenters for a command.
+\stopfootnote{}
 
 \stopsubsection
 \startsubsection[title={Configuring Markup Tags, Template Tags, and Keys: \type{ConTeXt.ini}},reference={}]
@@ -1759,7 +1816,7 @@ The \type{User} attribute (empty in the above snippet) allows the user to give a
 \startsubsubsection[title={Keys},reference={commands}]
 The default submenu configuration that ships with \NPP{} for \Context{} features over 80 markup tags, and many more could be added. Some tags will be used frequently; it would be convenient to have shortcuts for them. Unfortunately, Shortcut Mapper is not designed to handle Level-3 submenus. Misfortune in this case gave way to the opportunity to do something better: Second author Luigi Scarso has implemented a \emph{key-based} shortcut system for our \Context{} plugin.
 \startfootnote
-This is inspired, in part, by the \quotation{mnemonics} system of Spacemacs (an ambitious hybrid of Vim and Emacs built on top of the latter); see
+This is inspired, by the \quotation{mnemonics} system used by Spacemacs (an ambitious hybrid of Emacs and Vim built on top of the former); see
 
 \url[spacemacs].
 \stopfootnote{}
@@ -1900,7 +1957,7 @@ Moving along: As long as one works with some script whose directionality matches
 \stopalignment
 \stopplacefigure
 
-But this is not the whole story. An oddity that one finds, not only in \NPP{} but in \SCITE{} as well, is that not all lexers behave exactly the same. There are actually two \emph{modes} of Scintilla bidirectional behavior. The first (and apparently the most common) is the one described just above: Visually, mixed-direction text looks correct with either global RTL or LTR reading order activated, but the only text that can be edited naturally is that whose local directionality matches the global direction of \NPP. But if one switches the language to, e.g., \LUA, things look significantly different. See \in{Figure}[bidi09_10]: In global LTR, each individual continuous RTL string (such as a word) looks and reads RTL, but a concatenation of continuous RTL strings reads LTR. Similarly: In global RTL, each individual continuous LTR string looks and reads LTR, but a concatenation of continuous RTL strings reads RTL.
+But this is not the whole story. An oddity that one finds, not only in \NPP{} but in \SCITE{} as well, is that not all lexers behave exactly the same. There are actually two \emph{modes} of Scintilla bidirectional behavior. The first (and apparently the most common among \NPP{} lexers) is the one described just above: Visually, mixed-direction text looks correct with either global RTL or LTR reading order activated, but the only text that can be edited naturally is that whose local directionality matches the global direction of \NPP. But if one switches the language to, e.g., \LUA, things look significantly different. See \in{Figure}[bidi09_10]: In global LTR, each individual continuous RTL string (such as a word) looks and reads RTL, but a concatenation of continuous RTL strings reads LTR. Similarly: In global RTL, each individual continuous LTR string looks and reads LTR, but a concatenation of continuous RTL strings reads RTL.
 
 \startplacefigure[title={Appearance of Bidi in the \LUA{} Lexer: Global LTR (left) Global RTL (right)},reference={bidi09_10},location=here,number=yes]
 \startalignment[middle]
