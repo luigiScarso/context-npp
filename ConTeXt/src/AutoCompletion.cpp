@@ -9,9 +9,7 @@
 #include <deque>
 #include <cmath>
 #include <sstream>
-
-
-//Debug defau
+//
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -269,7 +267,6 @@ bool AutoCompletion::showApiAndWordComplete()
 	// set the text into beginChars
 	vector<generic_string> wordArray;
 	getGenericText(beginChars, bufSize, startPos, curPos);
-
 	// only one macro:
 	// in streams like \foo\boo
 	// only \boo is selected
@@ -283,8 +280,8 @@ bool AutoCompletion::showApiAndWordComplete()
 	}
 
 	getWordArray(wordArray, beginChars);
-		
-	if (beginChars[0] = startMacro)
+
+	if (beginChars[0] == startMacro)
 	{
 		len = std::wcslen(beginChars);
 	}
@@ -306,12 +303,12 @@ bool AutoCompletion::showApiAndWordComplete()
 		}
 	}
 	std::sort(wordArray.begin(), wordArray.end());
-
 	// Get word list
 	generic_string words;
 
 	for (size_t i = 0, wordArrayLen = wordArray.size(); i < wordArrayLen; ++i)
 	{
+
 		words += wordArray[i];
 		if (i != wordArrayLen - 1)
 			words += TEXT(" ");

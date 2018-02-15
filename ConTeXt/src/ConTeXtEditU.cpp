@@ -377,7 +377,7 @@ void ConTeXtEditU::LineToToolbar(char* line, DWORD &maxFnameLen)
 	//	&& isdigit(line[0]) && ((i = 1) || (isdigit(line[1])))) //(*2 digits maximum *)
 	//{
 	//	num = line[0] - '0';
-	//	if (i = 2)
+	//	if (i == 2)
 	//		num = num * 10 + line[1] - '0';
 
 	//	TCHAR bar_img_dir[MAX_PATH];

@@ -459,7 +459,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 		default:
 			break;
 		}
-		break;
+		//break;
 	}
 	return 0;
 
@@ -638,8 +638,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 		{
 		case CDDS_PREPAINT:
 			return CDRF_NOTIFYITEMDRAW;
-
-
 		case CDDS_ITEMPREPAINT:
 		{
 			int row = lplvcd->nmcd.dwItemSpec;

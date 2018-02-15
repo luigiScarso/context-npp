@@ -65,7 +65,7 @@ private:
 	std::string CommandsEndSection = "[CommandsEnd]";
 	std::string ToolbarIniSection = "[Toolbar]";
 	std::string TagsIniSection = "[Tags]";
-	std::string AboutMsg = "By Jason Yu";
+	std::string AboutMsg = "Originally Made by Jason Yu. Current developer Luigi Scarso.";
 	
 	Tag tag_ins; ///< Tag instance
 	std::map< std::string, std::string > setup_ins;
