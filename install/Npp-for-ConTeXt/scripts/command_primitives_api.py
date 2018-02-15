@@ -253,7 +253,7 @@ Keywords_2 = ET.SubElement(Language,'Keywords',{'name': "2"})
 Language.append(ET.Comment(' style '));
 Keywords_3 = ET.SubElement(Language,'Keywords',{'name': "3"})
 
-Language.append(ET.Comment(' other '));
+Language.append(ET.Comment(' chardef '));
 Keywords_4 = ET.SubElement(Language,'Keywords',{'name': "4"})
 
 Language.append(ET.Comment(' construct '));
