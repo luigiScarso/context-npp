@@ -186,8 +186,8 @@ if not( os.path.isfile('prm-tex.txt')):
     print("! error: prm-tex.txt not found" )
     sys.exit(1)        
 
-if not( os.path.isfile('prm-tex.txt')):
-    print("! error: prm-tex.txt not found" )
+if not( os.path.isfile('prm-etex.txt')):
+    print("! error: prm-etex.txt not found" )
     sys.exit(1)        
     
 if not( os.path.isfile('prm-luatex.txt')):
