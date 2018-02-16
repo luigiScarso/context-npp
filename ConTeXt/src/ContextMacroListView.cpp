@@ -31,12 +31,10 @@ ContextMacroListView::ContextMacroListView(ContextMacro* ctxmacro)
 	LoadMacro(ctxmacro);
 }
 
-
 ContextMacroListView::~ContextMacroListView()
 {
 	UserMacro.clear();
 }
-
 
 BOOL ContextMacroListView::LoadMacro(ContextMacro* ctxmacro)
 {
@@ -55,7 +53,6 @@ BOOL ContextMacroListView::LoadMacro(ContextMacro* ctxmacro)
 	makeshortcutprefix();
 	return TRUE;
 }
-
 
 BOOL ContextMacroListView::SetSetupValue(std::string Key, std::string Value)
 {
@@ -103,12 +100,12 @@ BOOL ContextMacroListView::SetSetupValue(std::string Key, std::string Value)
 
 	return res;
 }
+
 BOOL ContextMacroListView::SetBackgroundColor(COLORREF bgcolor)
 {
 	backgdText = bgcolor;
 	return TRUE;
 }
-
 
 void ContextMacroListView::Register()
 {
@@ -131,12 +128,10 @@ void ContextMacroListView::Register()
 	InitCommonControlsEx(&icex);
 }
 
-
 void ContextMacroListView::UnRegister()
 {
 	UnregisterClass(cClassName, HMod1);
 }
-
 
 ContextMacroListView* ContextMacroListView::CreateStaticInstance()
 {
@@ -152,7 +147,6 @@ ContextMacroListView* ContextMacroListView::CreateStaticInstance()
 	CMLVW->hCurrentInstance = HMod1;
 	return CMLVW;
 }
-
 
 bool ContextMacroListView::DestroyStaticInstance()
 {
@@ -231,10 +225,8 @@ HWND ContextMacroListView::ComposeAndShowWindow(const TCHAR* header, HWND hSci)
 	}
 	ShowWindow(_hWnd, SW_SHOWNORMAL);
 	UpdateWindow(_hWnd);
-
 	return _hWnd;
 }
-
 
 HWND ContextMacroListView::CreateListView(HINSTANCE hInstance, HWND hwndParent)
 {
@@ -289,7 +281,6 @@ HWND ContextMacroListView::CreateListView(HINSTANCE hInstance, HWND hwndParent)
    changed or a WM_SYSPARAMETERCHANGE message is received
 
 ******************************************************************************/
-
 void ContextMacroListView::PositionHeader(HWND hwndListView)
 {
 	HWND  hwndHeader = GetWindow(hwndListView, GW_CHILD);
@@ -325,7 +316,6 @@ void ContextMacroListView::PositionHeader(HWND hwndListView)
 	}
 }
 
-
 BOOL ContextMacroListView::InitListView(HWND hwndListView)
 {
 	LVCOLUMN   lvColumn;
@@ -357,7 +347,6 @@ BOOL ContextMacroListView::InitListView(HWND hwndListView)
 
 }
 
-
 BOOL ContextMacroListView::InsertListViewItems(HWND hwndListView)
 {
 	//empty the list
@@ -367,7 +356,6 @@ BOOL ContextMacroListView::InsertListViewItems(HWND hwndListView)
 	return TRUE;
 
 }
-
 
 void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 {
@@ -417,9 +405,6 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 		SWP_DRAWFRAME | SWP_SHOWWINDOW | SWP_NOMOVE);
 
 }
-
-
-
 
 LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 {
@@ -485,8 +470,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 		{
 			UserMacroIndexSelected = (size_t)-1;
 			SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
-			//DestroyWindow(hwndListView);
-			//DestroyWindow(hwndCurrentParent);
 			return 0;
 		}
 
@@ -525,9 +508,9 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 				}
 				i++;
 			}
+			
 			bool is_proper_prefix = (ShortcutPrefixCnt.count(shortcut_currentstring) > 0);
 			bool is_improper_prefix = (!is_proper_prefix) && found_shortcut;
-
 
 			if (shortcut_currentState == 0 && is_improper_prefix)
 			{
@@ -535,8 +518,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 				//	copy the macro
 				getUserMacroSelected();
 				SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
-				//DestroyWindow(hwndListView);
-				//DestroyWindow(hwndCurrentParent);
 				return 0;
 			}
 			else
@@ -563,11 +544,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 					KillTimer(hWnd, CTXMACRO_TIMER_ID);
 					SetTimer(hWnd, CTXMACRO_TIMER_ID, Elapse, NULL);
 					shortcut_currentState++;
-					/*
-					getUserMacroSelected();
-					DestroyWindow(hwndListView);
-					DestroyWindow(hwndCurrentParent);
-					*/
 				}
 				else if (shortcut_currentState > 0 && !found_shortcut && is_proper_prefix)
 				{// possible part of a shortcut, go on
@@ -583,8 +559,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 					shortcut_currentState = 0;
 					getUserMacroSelected();
 					SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
-					//DestroyWindow(hwndListView);
-					//DestroyWindow(hwndCurrentParent);
 					return 0;
 				}
 				else if (!found_shortcut)
@@ -595,8 +569,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 					shortcut_currentstring.clear();
 					UserMacroIndexSelected = (size_t)-1;
 					SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
-					//DestroyWindow(hwndListView);
-					//DestroyWindow(hwndCurrentParent);
 					return 0;
 				}
 			}
@@ -706,10 +678,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 	return 0;
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////////////
-
 // Private
 
 LRESULT APIENTRY
@@ -777,7 +746,6 @@ ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
-
 int
 ContextMacroListView::getItemSelectedandFocused(HWND hwndListView)
 {
@@ -794,7 +762,6 @@ ContextMacroListView::getItemSelectedandFocused(HWND hwndListView)
 	}
 	return res;
 }
-
 
 unsigned int
 ContextMacroListView::getHeight(HWND hwndListView, const TCHAR* st = nullptr)
@@ -845,7 +812,6 @@ ContextMacroListView::getMaxWidth(HWND hwndListView)
 	return width;
 }
 
-
 unsigned int
 ContextMacroListView::getMaxItemWidth(HWND hwndListView, unsigned int column = 0)
 {
@@ -859,7 +825,6 @@ ContextMacroListView::getMaxItemWidth(HWND hwndListView, unsigned int column = 0
 	}
 	return width;
 }
-
 
 generic_string
 ContextMacroListView::getUserMacroSelected()
@@ -878,7 +843,6 @@ ContextMacroListView::getUserMacroSelected()
 	{
 		KillTimer(hwndCurrentListView, CTXMACRO_TIMER_ID);
 	}
-
 	if (CMLVW && CMLVW->hwndCurrentParentParent && (!s.empty()))
 	{
 		HWND hSci = CMLVW->hwndCurrentParentParent;
@@ -908,6 +872,7 @@ ContextMacroListView::getUserMacroSelected()
 				int pad = lenMbcs;
 				char* _ss = new char[lenMbcs + e_lenMbcs + s_size + 1];
 				char* _sstart = _ss;
+				char* _ss1 = _ss;
 				_ss[lenMbcs + e_lenMbcs + s_size] = '\0';
 				WideCharToMultiByte(cp, 0, UserMacro[UserMacroIndexSelected][2].c_str(), -1, _ss, lenMbcs, NULL, NULL);
 				_ss += lenMbcs;
@@ -915,17 +880,16 @@ ContextMacroListView::getUserMacroSelected()
 				_ss += (s_size);
 				WideCharToMultiByte(cp, 0, UserMacro[UserMacroIndexSelected][3].c_str(), -1, _ss, e_lenMbcs, NULL, NULL);
 				SendMessage(hSci, SCI_REPLACESEL, NULL, reinterpret_cast<LPARAM>(_sstart));
+				_ss = _sstart;
 				delete[] _ss;
 				_sstart = NULL;
 			}
 			delete[] _s;
 		}
 	}
-
 	UserMacroIndexSelected = (size_t)-1;
 	return s;
 }
-
 
 BOOL
 ContextMacroListView::loademptymacro()
@@ -976,7 +940,6 @@ ContextMacroListView::getFirstSelected(HWND hwndListView)
 	return selected;
 }
 
-
 void ContextMacroListView::setItemClass(int itemclass, int itemnr)
 {
 	auto itemcl = ItemClass.find(itemclass);
@@ -993,7 +956,6 @@ void ContextMacroListView::setItemClass(int itemclass, int itemnr)
 		ItemClass[itemclass] = newitemcl;
 	}
 }
-
 
 std::vector<int>* ContextMacroListView::getItemClass(int itemnr)
 {
