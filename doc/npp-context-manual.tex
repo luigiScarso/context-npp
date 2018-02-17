@@ -127,9 +127,9 @@
   [section]
   [alternative=inmargin]
   
-% \setuphead
-  % [subsubsection]
-  % [alternative=intext]
+\setuphead
+  [subsubsection]
+  [before={\blank[medium]},after={\blank[medium]}]
 
 \setuphead[subject]
   [incrementnumber=yes,  % keep track of the number
@@ -272,6 +272,10 @@
 \begingroup \let\oldvbox\vbox \let\vbox\relax .\vbox{..} \endgroup 
 \stopbuffer
 
+\startbuffer[udl]
+Language – Define your language…
+\stopbuffer
+
 \usebtxdefinitions [apa]
 \setupbtxrendering [apa] [pagestate=start] % index cite pages in bibliography
 
@@ -301,13 +305,18 @@
 \startsubsection[title={Motivation},reference={}]
 A continuing desideratum for \Context{} is a user-friendly writing and editing environment, where the range of application of the category \quotation{user-friendly} includes especially non-experts in programming or software development. The lack of such an environment is one factor that inhibits the wider use of \Context. Despite its immense power, precision, and flexibility: At present it is not generally feasible for instructors and researchers in, e.g., the humanities to assign the use of \Context{} to students, or to use it to collaborate on projects. 
 
-The first author of this manual, Idris Samawi Hamid, is a professor who has felt the acuteness of this lacuna. In the course of an ongoing effort to address it, in 2017 a project to develop a set of utilities for the Windows editor \NPP, including a dedicated \Context{} lexer plugin, was launched. The software development plan was developed and supervised by Hamid, who also wrote the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are being written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}.
+The first author of this manual, Idris Samawi Hamid, is a professor who has felt the acuteness of this lacuna. In the course of an ongoing effort to address it, in 2017 a project to develop a set of utilities for the Windows editor \NPP, including a dedicated \Context{} \emph{lexer} plugin, was launched. 
+\startfootnote
+For explanation of what a lexer is, see \in{Section}[lexers].
+% See \in{Section}[lexersplugins] and \in{Footnote}[note:lexersplugins].
+\stopfootnote{}
+The software development plan was developed and supervised by Hamid, who also wrote the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are being written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}: A Lexer and Commands Utility for editing ConTeXt Documents.
 \stopsubsection
 % \startsubsection[title={Needs},reference={}]
 
 % \stopsubsection
 \startsubsection[title={History},reference={history}]
-Prior to his move to \Context, Hamid was using the shareware editor \WINEDT. At that time  \WINEDT{} was (and probably still is) a very polished environment for writing and processing documents written in \TEX. However, configuring \WINEDT{} for \Context{} was critically impeded, due in major part to the fact that much of its graphical user interface was hardcoded for a certain famous document preparation system. Around the same time, lexers and tools were being developed for \SCITE, which eventually became the semi-official text-editor for \Context. Despite its \Context-friendly tools, Hamid continued to miss many of the configuration and interface options of \WINEDT{} that made editing and processing \TEX{} documents so efficient and user-friendly for non-programmers. After trying virtually every available option|<|explicitly \TEX-friendly or other|>|he finally settled upon \NPP. 
+Prior to his move to \Context, Hamid was using the shareware editor \WINEDT. At that time  \WINEDT{} was (and surely still is) a very polished environment for writing and processing documents written in \TEX. However, configuring \WINEDT{} for \Context{} was critically impeded, due in major part to the fact that much of its graphical user interface was hardcoded for a certain famous document preparation system. Around the same time, lexers and tools were being developed for \SCITE, which eventually became the semi-official text-editor for \Context. Despite its \Context-friendly tools, Hamid continued to miss many of the configuration and interface options of \WINEDT{} that made editing and processing \TEX{} documents so efficient and user-friendly for non-programmers. After trying virtually every available option|<|explicitly \TEX-friendly or other|>|he finally settled upon \NPP. 
 \startfootnote
 First author Hamid was introduced to \NPP{} by Hans Hagen, the founder and primary developer of \Context. Hagen also developed the \TEX{} and \METAPOST{} interface used by \important{\SCITE{} in \Context{} \MKIV}: \crlf 
 \url[scitecontextmkiv].
@@ -318,7 +327,7 @@ Apparently \WINEDT{} finally implemented support for bidirectional text editing 
 
 \url[emacsbidi].
 
-On the other hand, editors such as Emacs{} (or Vim) are far too esoteric for the target audience of this project. It should also be mentioned that, in the Spring of 2017, the first author once again made an inventory of the available options and paradigms for writing and editing content, including new editors such as Atom and Sublime; none could replace \NPP{} for the target purposes and audience. 
+On the other hand, editors such as Emacs{} (or Vim) are far too esoteric for the target audience of this project. It should also be mentioned that, in the Spring of 2017, the first author once again made an inventory of the available options and paradigms for writing and editing content, including new editors such as Atom and Sublime Text; none could replace \NPP{} for the target purposes and audience. 
 % So Emacs 24.1, Sun, 10 Jun 2012.
 \stopfootnote{}
 
@@ -376,7 +385,7 @@ the toolset TextFX, which provides a plethora of useful functions that would nor
 a plugin system and a vast catalogue of over 100 available plugins which immensely extend the capabilities of \NPP{} in a user-friendly manner; and
 \stopitem  
 \startitem[]
-the User-Defined Language system, which allows the user to easily define folding rules and syntax highlighting for a coding language that does not already come with \NPP. It is especially useful for simple scripting languages or text-file formats.
+the User-Defined Language (UDL) system, which allows the user to easily define folding rules and syntax highlighting for a coding language that does not already come with \NPP. It is especially useful for simple scripting languages or text-file formats.
 \startfootnote
 For example, one may edit tables in an \OPENTYPE{} font editor, then save those tables to a text file with an associated syntax. One may then choose to work with the text file instead of the Graphical User Interface (GUI). \NPP{} for \Context{} \MKIV{} also includes a basic UDL for \BIBTEX.
 \stopfootnote{}
@@ -408,9 +417,21 @@ The use of \quote{may} and \quote{generally} are meant to indicate that there ma
 The core of \NPP{} is explicitly designed for speed. On Windows, \NPP{} generally starts up fast, even faster than \SCITE. A few plugins will slow \NPP{} down, however.
 % \stopfootnote{}
 \stopsubsection
-\startsubsection[title={Lexers and Plugins},reference={}]
-\NPP{} ships with highlighting and theme support for over 50 code languages (via \emph{internal lexers}), and the UDL system allows the user to comfortably configure and add more. For maximum flexibility and control, \NPP{} also supports \emph{external lexers}, development of which requires some C++ programming skill: Each external lexer will appear under the Language menu and in the associated dialogs. An external lexer can add support for a previously unsupported language, or it can be used to provide an alternative to a currently supported language. For example, one can use the Lua lexer and highlighting that comes with \NPP, or one can download the external lexer Gmod Lua, then configure that to be the default lexer for the Lua language. An external lexer can also be augmented by other features, which will then appear under the Plugins Menu.
+\startsubsection[title={Lexers and \NPP},reference={lexersplugins}]
+\startsubsubsection[title={Lexers: Internal, External, and User-Defined},reference={lexers}]
+% \startfootnote[note:lexersplugins]
+A lexer is a program (or subroutine of a program) that performs \emph{lexical analysis} of a stream of text (such as a \TEX{} or \LUA{} file). Loosely, this means that it analyzes the entire text stream into discrete strings, each of which belongs to some class with a specific meaning. For example: In our \Context{} lexer \type{\emph} is a 5-character string that belongs to the class STYLE. Given a lexer class, each of its members is assigned a particular highlighting convention, such as a specific color, typographical appearance, or font.
+% \stopfootnote{}
+\NPP{} ships with highlighting and theme support for over 50 code languages (via native \emph{internal lexers}); the UDL system allows a user (even with little-to-no coding experience) to comfortably configure and add more. 
+\startfootnote
+From the \NPP{} menu, go to 
 
+\typebuffer[udl]
+\stopfootnote{}
+For maximum flexibility and control, \NPP{} also supports \emph{external lexers}, development of which requires some C++ programming skill: Each external lexer will appear under the Language menu and in the associated dialogs. An external lexer can add support for a previously unsupported language, or it can be used to provide an alternative to a currently supported language. For example, one can use the Lua lexer and highlighting that comes with \NPP, or one can download the external lexer Gmod Lua, then configure that to be the default lexer for the Lua language. An external lexer can also be augmented by other features, which will then appear under the Plugins submenu.
+\stopsubsubsection
+
+\startsubsubsection[title={Recommended Plugins},reference={plugins}]
 For use as a complete environment for writing and editing documents, a number of plugins complement the \NPP{} for \Context{} system. The following are highly recommended:
 
 \startitemize
@@ -445,7 +466,8 @@ This plugin maintains a list of i) all registered plugins, ii) installed plugins
 \stophead 
 \stopitemize 
 
-In addition to the recommended set above, there are many other plugins available, e.g., NppDocShare for collaborative editing, MarkdownViewer++ for previewing markdown output, and XMLTools. With a little research and some tweaking, it is not hard to turn \NPP{} into a development environment to suit most of one's needs.
+In addition to the recommended set above, there are many other plugins available, e.g., NppDocShare for collaborative editing, MarkdownViewer++ for previewing markdown output, and XMLTools. With a little research and some tweaking, it is not hard to turn \NPP{} into a writing, editing, and development environment that will suit most of one's needs.
+\stopsubsubsection
 \stopsubsection
 \startsubsection[title={Installing \NPP},reference={nppinstallation}]
 \startsubsubsection[title={Basic Installation},reference={}]
@@ -484,13 +506,13 @@ This is analogous to the standalone directory for \SCITE:
 \startitemize
 
 \startitem
-\NPP{} does not support automatic \emph{hard wrap} of lines that surpass a certain length (as does \WINEDT). That is, \NPP{} doesn't insert new-line breaks when a line reaches the maximum width of the editing window (or some user-specified width). \NPP{} does supports \emph{soft wrap} of lines: This means that a line longer than the editing-window length will appear as though it is split into multiple lines, but is treated by \NPP{} as a single line. Soft wrap can be toggled on and off:
+\NPP{} does not support automatic \emph{hard wrap} of lines that surpass a certain length (as does \WINEDT). That is, \NPP{} doesn't insert new-line breaks when a line reaches the maximum width of the editing window (or some user-specified width). \NPP{} does support \emph{soft wrap} of lines: This means that a line longer than the editing-window length will appear as though it is split into multiple lines, but is treated by \NPP{} as a single line. Soft wrap can be toggled on and off:
 
 \starttyping
 View – Word wrap (Ctrl+Alt+W)
 \stoptyping
 
-Except for special cases such as the editing of tables, it is recommended to keep Word Wrap on.
+Except for special cases such as the editing of wide tables, it is recommended to keep Word Wrap on.
 
 One may manually break a long editor line into a paragraph of multiple lines, each with a select maximum width of characters by choosing
 
@@ -674,7 +696,7 @@ Virtually all menu commands can be assigned a keyboard shortcut, and each shortc
 \stophead 
 
 \starthead[head:pythonscripts] {\PYTHON{} Scripts} 
-New versions of \Context{} are released often; the addition of new control sequences (= commands) or an update of the parameters of some existing ones is not uncommon. For those who update often: The lists of official commands in \type{ConTeXt.xml} and \type{context.xml} are generated from the sources via the \PYTHON{} script \type{command_primitives_api_new.py}; \type{update-ConTeXt.py} makes sure that local changes to the \type{ConTeXt.xml} configuration are saved and not overridden.
+New versions of \Context{} are released often; the addition of new control sequences (= commands) or an update of the parameters of some already existing command is not uncommon. For those who update often: The lists of official commands in \type{ConTeXt.xml} and \type{context.xml} are generated from the sources via the \PYTHON{} script \type{command_primitives_api_new.py}; \type{update-ConTeXt.py} makes sure that local changes to the \type{ConTeXt.xml} configuration are saved and not overridden.
 
 \starttyping
 /Npp-for-ConTeXt/scripts/command_primitives_api_new.py
@@ -940,7 +962,7 @@ For detailed discussion of the distinction between syntax and semantic highlight
 \stopfootnote{}
 Because the interpreting of structural and stylistic markup pertains much more to matters of meaning than to grammar, highlighting of \Context{} code is best contextualized in terms of semantic highlighting. Of course, there is syntax to \Context{} as well: The different mechanisms between the earlier \type{Table} and the now standard \type{TABLE} environments (for typesetting of tabular data) exhibit stark differences in syntax. Considering possible models and implementations of code highlighting specific to the clarification of \Context{} syntax is a matter for future research.
 \startfootnote
-Technical note: ConTeXt shares also some properties with SGML, in the sense that it can used to define new semantics. For example one can create a verbatim environment, which simulates typing or editing. The lexer should be then coded to manage a user-defined semantic, defined itself at runtime. But this is not enough, because the semantics of a macro can also temporarily change. For example: 
+Technical note: ConTeXt resembles SGML|<|derivatives include XML and HTML|>| in that it can used to define new semantics. For example one can create a verbatim environment, which simulates typing or editing. Ideally, then, the lexer should be coded to manage a user-defined semantics, defined itself at runtime. But this is not enough because, furthermore, the semantics of a macro can temporarily change. For example: 
 
 % % \startbuffer[oldvbox]
 % % \begingroup \let\oldvbox\vbox \let\vbox\relax .\vbox{..} \endgroup 
@@ -1630,9 +1652,9 @@ startFunc3="(" stopFunc="" stopFunc1="]" stopFunc2="}" stopFunc3=")"
 thresholdNrOfRows="20" toplines="1" widthColumnSep="2"/>
 \stoptyping
 
-The current selection of available command information reflects the limitations of the sources: As detail is added to the \Context{} sources for autocompletion, more calltip information will become available to the user in future versions of \type{context.xml}.
+The current selection of available information about any given command reflects the limitations of the sources: As detail is added to the \Context{} sources for autocompletion, more calltip information will become available to the user in future versions of \type{context.xml}.
 \startfootnote
-One of the next planned improvements is the ability to select the paramenters for a command.
+In a future version we intend to add the ability to select parameters for each supported command.
 \stopfootnote{}
 
 \stopsubsection
@@ -1816,9 +1838,10 @@ The \type{User} attribute (empty in the above snippet) allows the user to give a
 \startsubsubsection[title={Keys},reference={commands}]
 The default submenu configuration that ships with \NPP{} for \Context{} features over 80 markup tags, and many more could be added. Some tags will be used frequently; it would be convenient to have shortcuts for them. Unfortunately, Shortcut Mapper is not designed to handle Level-3 submenus. Misfortune in this case gave way to the opportunity to do something better: Second author Luigi Scarso has implemented a \emph{key-based} shortcut system for our \Context{} plugin.
 \startfootnote
-This is inspired, by the \quotation{mnemonics} system used by Spacemacs (an ambitious hybrid of Emacs and Vim built on top of the former); see
+This is inspired, in part, by the \quotation{mnemonics} system used by Emacs.
+% This is inspired, by the \quotation{mnemonics} system used by Spacemacs (an ambitious hybrid of Emacs and Vim built on top of the former); see
 
-\url[spacemacs].
+% \url[spacemacs].
 \stopfootnote{}
 
 In \type{ConTeXt.ini} one sets a one-, two-, or three-character key within a pair of parenthesis and immediately prior to the name of the markup tag of interest, for example:
@@ -1853,7 +1876,7 @@ um:elapse_shift=500
 um:display_rows=40
 \stoptyping
 
-The two elapse variables are in milliseconds. The second variable, \type{um:elapse_shift} gives the time lapse for keys that require a \type{Shift}, e.g., capital letters. One can fine tune the values of the elapse variables until they are in sync with one'e typing speed. The third variable controls the number of rows displayed in the popup: The current maximum value is 100.
+The two elapse variables are in milliseconds. The second variable, \type{um:elapse_shift} gives the time lapse for keys that require a \type{Shift}, e.g., capital letters. One can fine tune the values of the elapse variables until they are in sync with one's typing speed. The third variable controls the number of rows displayed in the popup: The current maximum value is 100.
 
 Finally, one can invoke a macro directly from the popup window: Just double click on any row that corresponds to a markup tag and it will wrap the selected text with that tag.
 
