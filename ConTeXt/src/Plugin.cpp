@@ -26,8 +26,9 @@ void About()
 {
 	MessageBox(
 		g_NppWindow,
-		L"By Idris.\n"
-		L"your email",
+		L"This plugin aims to support the editing of ConTeXt documents by integrating the files"
+		L"included in the standalone distribution. For more information on ConTeXt see\n"
+		L"http ://wiki.contextgarden.net/Main_Page\nand\nhttp://www.pragma-ade.nl/index.htm",
 		ConTeXt_TITLE,
 		MB_OK);
 }
@@ -91,7 +92,7 @@ void editContextXML()
 // TODO:Attributes of Environment element of APIs/context.xml
 void editEnvAttributes()
 {
-	MessageBox(nppData._nppHandle, L"To do: get/set attributes of Env. in APIs/context.xml", L"ConTeXt", MB_OK);
+	//MessageBox(nppData._nppHandle, L"To do: get/set attributes of Env. in APIs/context.xml", L"ConTeXt", MB_OK);
 }
 
 
@@ -106,7 +107,7 @@ static FuncItem* getGeneratedFuncItemArray(int *nbF)
 
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
 	index++;
-	items.push_back(pair<tstring, void(*)()>(_T("Replace tags"), replace));
+	items.push_back(pair<tstring, void(*)()>(_T("Replace template"), replace));
 	Replace_tags_index = index++;
 
 	items.push_back(pair<tstring, void(*)()>(_T("Insert ConTeXt macro"), insert_ctx_macro));
@@ -118,10 +119,11 @@ static FuncItem* getGeneratedFuncItemArray(int *nbF)
 	items.push_back(pair<tstring, void(*)()>(_T("Load config"), loadConfig));
 
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
-	items.push_back(pair<tstring, void(*)()>(_T("Update Context Menu"), updateContextMenu));
-	items.push_back(pair<tstring, void(*)()>(_T("Remove Context Menu"), removeContextMenu));
-	items.push_back(pair<tstring, void(*)()>(_T("Edit Context XML"), editContextXML));
-	items.push_back(pair<tstring, void(*)()>(_T("Edit Env. attributes"), editEnvAttributes));
+	items.push_back(pair<tstring, void(*)()>(_T("Update right-click Menu"), updateContextMenu));
+	items.push_back(pair<tstring, void(*)()>(_T("Remove right-click Menu"), removeContextMenu));
+	items.push_back(pair<tstring, void(*)()>(_T("Edit right-click Menu"), editContextXML));
+	// TODO
+	//items.push_back(pair<tstring, void(*)()>(_T("Edit Env. attributes"), editEnvAttributes));
 
 
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));

@@ -512,13 +512,11 @@ void ConTeXtEditU::ReadConfig()
 	//Start parsing the ini file
 	while (section)
 	{
-		//if (strcmp(line, "[Commands]") == 0)
 		if (CommandsIniSection == line)
 		{
-			// Under [Commands], each section is a subsection
+			// Under CommandsIniSection each section is a subsection
 			while (section)
 			{
-				//if (strcmp(line, "[Commands]") != 0)
 				if (CommandsIniSection != line)
 				{
 					groupNames.push_back(string(line));
@@ -537,10 +535,8 @@ void ConTeXtEditU::ReadConfig()
 					}
 
 				}
-				// Pairs end when [CommandsEnd] is reached  
-
-				if (strcmp(line, "[CommandsEnd]") == 0)
-					//if (CommandsEndSection ==  "[CommandsEnd]")
+				// Pairs end when CommandsEndSection is reached  
+				if (CommandsEndSection == line) 
 				{
 					groupStarts.push_back(numRead);
 					break;
@@ -564,8 +560,8 @@ void ConTeXtEditU::ReadConfig()
 				hFile, buff, read, commentChar, section))
 				LineToToolbar(line, maxFnameLen);
 		}
-		else if (strcmp(line, "[Tags]") == 0)
-			//else if (TagsIniSection == "[Tags]")
+		//else if (strcmp(line, "[Tags]") == 0)
+		else if (TagsIniSection == line)
 		{
 			//(*read tags *)
 			while (ReadLine(line, buffPos, buffLen, eof,

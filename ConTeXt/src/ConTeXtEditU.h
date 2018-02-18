@@ -61,10 +61,10 @@ private:
 	bool initToolbar;
 
 	std::string CommandsSetupIniSection = "[CommandsSetup]";
-	std::string CommandsIniSection = "[Commands]";
-	std::string CommandsEndSection = "[CommandsEnd]";
+	std::string CommandsIniSection = "[Markup]";
+	std::string CommandsEndSection = "[MarkupEnd]";
 	std::string ToolbarIniSection = "[Toolbar]";
-	std::string TagsIniSection = "[Tags]";
+	std::string TagsIniSection = "[Templates]";
 	std::string AboutMsg = "Originally Made by Jason Yu. Current developer Luigi Scarso.";
 	
 	Tag tag_ins; ///< Tag instance
@@ -72,7 +72,6 @@ private:
 
 	TCHAR configDir[MAX_PATH];
 	TCHAR IniFileDir[MAX_PATH];
-	//TCHAR IniFileName[100] = TEXT("ConTeXtEdit.ini");
 	TCHAR IniFileName[100] = TEXT("ConTeXt.ini");
 
 	bool isCommandSession;
