@@ -163,13 +163,17 @@ void ConTeXtEditU::SurroundSelection(const char* leftText, const char* rightText
 {
 	::SendMessage(hSci, SCI_BEGINUNDOACTION, 0, 0);
 	int numSel = static_cast<int32_t>(::SendMessage(hSci, SCI_GETSELECTIONS, 0, 0));
+	size_t stpos = 0;
+	size_t endpos;
 	for (int i = 0; i < numSel; ++i)
 	{
-		size_t stpos = ::SendMessage(hSci, SCI_GETSELECTIONNSTART, i, 0);
-		size_t endpos = ::SendMessage(hSci, SCI_GETSELECTIONNEND, i, 0);
+		stpos = ::SendMessage(hSci, SCI_GETSELECTIONNSTART, i, 0);
+		endpos = ::SendMessage(hSci, SCI_GETSELECTIONNEND, i, 0);
 		::SendMessage(hSci, SCI_INSERTTEXT, endpos, reinterpret_cast<LPARAM>(rightText));
 		::SendMessage(hSci, SCI_INSERTTEXT, stpos, reinterpret_cast<LPARAM>(leftText));
 	}
+	int pos = SendMessage(hSci, SCI_GETCURRENTPOS, 0, 0);
+	::SendMessage(hSci, SCI_GOTOPOS, std::strlen(rightText)+pos, 0);
 	::SendMessage(hSci, SCI_ENDUNDOACTION, 0, 0);
 }
 
