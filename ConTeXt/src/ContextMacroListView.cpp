@@ -267,7 +267,7 @@ HWND ContextMacroListView::CreateListView(HINSTANCE hInstance, HWND hwndParent)
 	ListView_SetExtendedListViewStyleEx(hwndListView, dwStyleEx, dwStyleEx);
 	ListView_SetBkColor(hwndListView, backgdText);
 	ListView_SetTextBkColor(hwndListView, backgdText);
-	ResizeListView(hwndListView, hwndParent);
+	//ResizeListView(hwndListView, hwndParent);
 	UserMacroIndexSelected = 0;
 	return hwndListView;
 
@@ -403,7 +403,6 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 		0, 0, //ignored due SWP_NOMOVE
 		static_cast<int>(W), 25 + static_cast<int>(H), // still not ok, not a multiple of a row height
 		SWP_DRAWFRAME | SWP_SHOWWINDOW | SWP_NOMOVE);
-
 }
 
 LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
@@ -438,13 +437,13 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 				_tcsncpy_s(plvdi->item.pszText, MAX_PATH,//plvdi->item.cchTextMax,
 					s.c_str(), _TRUNCATE);
 			}
-			break;
 		}
+		break;
 
 		default:
 			break;
 		}
-		//break;
+		break;
 	}
 	return 0;
 
@@ -577,7 +576,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 
 	}
 	return 0;
-
+	
 	case LVN_ODCACHEHINT:
 	{
 		/*LPNMLVCACHEHINT   lpCacheHint = (LPNMLVCACHEHINT)lParam;*/
@@ -627,7 +626,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 			return CDRF_DODEFAULT;
 		}
 		/* This can be useful to manage a subitem*/
-		//	case CDDS_SUBITEM | CDDS_ITEMPREPAINT:
+		//case CDDS_SUBITEM | CDDS_ITEMPREPAINT:
 		//		//SelectObject(lplvcd->nmcd.hdc, GetFontForSubItem(lplvcd->nmcd.dwItemSpec, lplvcd->nmcd.lItemlParam, lplvcd->iSubItem));
 		//		//lplvcd->clrText = GetColorForSubItem(lplvcd->nmcd.dwItemSpec, lplvcd->nmcd.lItemlParam, lplvcd->iSubItem));
 		//		//lplvcd->clrTextBk = GetBkColorForSubItem(lplvcd->nmcd.dwItemSpec, lplvcd->nmcd.lItemlParam, lplvcd->iSubItem));
@@ -638,8 +637,8 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 		//		//subitem and return CDRF_NEWFONT.
 		//		
 		//		//return CDRF_NEWFONT;
-		default:
-			break;
+		//default:
+			//break;
 		}
 	}
 	return 0;
@@ -674,7 +673,6 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 	}
 	return 0;
 	}
-
 	return 0;
 }
 
@@ -693,7 +691,6 @@ ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		{
 			if (CMLVW->hwndCurrentListView)
 			{
-				//DestroyWindow(CMLVW->hwndCurrentListView);
 				SendMessage(CMLVW->hwndCurrentListView, WM_CLOSE, NULL, NULL);
 			}
 			HWND hwndListView = CMLVW->CreateListView(HMod1, hWnd);
@@ -721,8 +718,8 @@ ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			return 0;
 
 		case WM_NOTIFY:
-			CMLVW->ListViewNotify(hWnd, lParam);
-			return 0;
+			return CMLVW->ListViewNotify(hWnd, lParam);
+
 
 		case WM_CLOSE:
 			DestroyWindow(CMLVW->hwndCurrentParent);

@@ -76,7 +76,7 @@ private:
 	static LRESULT APIENTRY wndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 	static HINSTANCE    HMod1;
 
-	COLORREF backgdText = 0x00fafafa;
+	COLORREF backgdText = 0x00fafafa; 
 	TCHAR  ColumnLabels[COLUMNNR][20] = { TEXT("Key"),TEXT("User Macro") };
 
 #define ID_LISTVIEW 2001
