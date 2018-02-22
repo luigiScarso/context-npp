@@ -185,7 +185,7 @@ HWND ContextMacroListView::ComposeAndShowWindow(const TCHAR* header, HWND hSci)
 
 	HWND _hWnd = CreateWindow(cClassName,
 		TEXT("User's Macros"),
-		WS_POPUPWINDOW | WS_CAPTION, // | WS_SIZEBOX , //| WS_HSCROLL | WS_VSCROLL,
+		WS_POPUPWINDOW | WS_CAPTION | WS_SIZEBOX , //| WS_HSCROLL | WS_VSCROLL,
 		0, 0, //xpos, ypos, later
 		0, 0,
 		hSci, NULL, HMod1, NULL);
@@ -320,8 +320,10 @@ BOOL ContextMacroListView::InitListView(HWND hwndListView)
 {
 	LVCOLUMN   lvColumn;
 	int         i;
-	std::vector<int> wc = { ListView_GetStringWidth(hwndListView,ColumnLabels[0]),
-			  ListView_GetStringWidth(hwndListView,ColumnLabels[1]) };
+	std::vector<int> wc = { 
+			ListView_GetStringWidth(hwndListView,ColumnLabels[0]),
+			ListView_GetStringWidth(hwndListView,ColumnLabels[1]) 
+	};
 	unsigned int pad = 0;
 
 	//empty the list
@@ -365,44 +367,56 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 	RECT  rc;
 	BOOL res;
 	RECT  rclw;
-	for (size_t i = 0; i < UserMacro.size(); i++)
+	if (!parent_resizing)
 	{
-		res = ListView_GetItemRect(hwndListView, i, &rclw, LVIR_BOUNDS);
-		if (res)
+		for (size_t i = 0; i < UserMacro.size(); i++)
 		{
-			H += ((rclw.bottom - rclw.top)*1.3);
-			W = (W < (rclw.right - rclw.left)) ? (rclw.right - rclw.left) : W;
+			res = ListView_GetItemRect(hwndListView, i, &rclw, LVIR_BOUNDS);
+			if (res)
+			{
+				H += ((rclw.bottom - rclw.top)*1.3);
+				W = (W < (rclw.right - rclw.left)) ? (rclw.right - rclw.left) : W;
+			}
 		}
+		pad = ListView_GetStringWidth(hwndListView, L"M");
+		if (W == 0)
+		{
+			W = getMaxWidth(hwndListView);
+			H = UserMacro.size() * 2 * pad;
+		}
+		H = (H > (DisplayMaxRows*pad)) ? (DisplayMaxRows*pad) : H;
+		H += (2 * pad);
+		W += (4 * pad);
+		H = std::ceil(H);
+		GetClientRect(hwndParent, &rc);
+		MoveWindow(hwndListView,
+			rc.left,
+			rc.top,
+			static_cast<int>(W), static_cast<int>(H),
+			TRUE);
+		//only call this if we want the LVS_NOSCROLL style
+		//PositionHeader(hwndListView);
+		//UpdateWindow(hwndListView);
+
+		//ListView_EnsureVisible(hwndListView, UserMacro.size() / 2, FALSE);
+		SetWindowPos(hwndParent, NULL,
+			0, 0, //ignored due SWP_NOMOVE
+			static_cast<int>(W), 25 + static_cast<int>(H), // still not ok, not a multiple of a row height
+			SWP_DRAWFRAME | SWP_SHOWWINDOW | SWP_NOMOVE);
 	}
-	pad = ListView_GetStringWidth(hwndListView, L"M");
-	if (W == 0)
+	else
 	{
-		W = getMaxWidth(hwndListView);
-		H = UserMacro.size() * 2 * pad;
+		GetClientRect(hwndParent, &rc);
+		MoveWindow(hwndListView,
+			rc.left,
+			rc.top,
+			static_cast<int>(rc.right-rc.left), static_cast<int>(rc.bottom-rc.top),
+			TRUE);
+		//int c0 = ListView_GetColumnWidth(hwndListView, 0);
+		unsigned int pad = ListView_GetStringWidth(hwndListView, L"MMMMM");
+		ListView_SetColumnWidth(hwndListView, 0, pad);
+		ListView_SetColumnWidth(hwndListView, 1, static_cast<int>(rc.right - rc.left - pad) );
 	}
-
-	H = (H > (DisplayMaxRows*pad)) ? (DisplayMaxRows*pad) : H;
-
-	H += (2 * pad);
-	W += (4 * pad);
-
-	H = std::ceil(H);
-
-	GetClientRect(hwndParent, &rc);
-	MoveWindow(hwndListView,
-		rc.left,
-		rc.top,
-		static_cast<int>(W), static_cast<int>(H),
-		TRUE);
-	//only call this if we want the LVS_NOSCROLL style
-	//PositionHeader(hwndListView);
-	//UpdateWindow(hwndListView);
-
-	//ListView_EnsureVisible(hwndListView, UserMacro.size() / 2, FALSE);
-	SetWindowPos(hwndParent, NULL,
-		0, 0, //ignored due SWP_NOMOVE
-		static_cast<int>(W), 25 + static_cast<int>(H), // still not ok, not a multiple of a row height
-		SWP_DRAWFRAME | SWP_SHOWWINDOW | SWP_NOMOVE);
 }
 
 LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
@@ -411,8 +425,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 	//HWND     hwndListView = GetDlgItem(hWnd, ID_LISTVIEW);
 	HWND hwndListView = hwndCurrentListView;
 	NMLVDISPINFO* plvdi;
-
-
+	
 	switch (lpnmh->code)
 	{
 
@@ -507,7 +520,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 				}
 				i++;
 			}
-			
+
 			bool is_proper_prefix = (ShortcutPrefixCnt.count(shortcut_currentstring) > 0);
 			bool is_improper_prefix = (!is_proper_prefix) && found_shortcut;
 
@@ -576,7 +589,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 
 	}
 	return 0;
-	
+
 	case LVN_ODCACHEHINT:
 	{
 		/*LPNMLVCACHEHINT   lpCacheHint = (LPNMLVCACHEHINT)lParam;*/
@@ -619,7 +632,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 				{
 					//The row is in "First level labels" class 
 					lplvcd->clrText = RGB(255, 255, 255);
-					lplvcd->clrTextBk = RGB(0, 0, 0);
+					lplvcd->clrTextBk = RGB(0x0f, 0x0f, 0x0f);
 					return CDRF_NEWFONT;
 				}
 			}
@@ -649,16 +662,11 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 		UserMacroIndexSelected = pnmitem->iItem;
 		getUserMacroSelected();
 		SendMessage(hwndCurrentParent, WM_CLOSE, NULL, NULL);
-		//DestroyWindow(hwndListView);
-		//DestroyWindow(hwndCurrentParent);
 	}
 	return 0;
 
 	case NM_SETFOCUS:
-	{
-
-	}
-	return 0;
+		return 0;
 
 	case NM_RETURN:
 	{
@@ -673,6 +681,7 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 	}
 	return 0;
 	}
+	
 	return 0;
 }
 
@@ -682,9 +691,10 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 LRESULT APIENTRY
 ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
+	
 	if (CMLVW)
 	{
+		//DBG_WINMSG
 		switch (message)
 		{
 		case WM_CREATE:
@@ -702,6 +712,18 @@ ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			}
 		}
 		return 0;
+
+		case WM_SIZING:
+			CMLVW->parent_resizing = true;
+			CMLVW->ResizeListView(CMLVW->hwndCurrentListView, hWnd);
+			CMLVW->parent_resizing = false;
+			break;
+
+		case WM_SIZE:
+			CMLVW->parent_resizing = true;
+			CMLVW->ResizeListView(CMLVW->hwndCurrentListView, hWnd);
+			CMLVW->parent_resizing = false;
+			break;
 
 		case WM_TIMER:
 		{
