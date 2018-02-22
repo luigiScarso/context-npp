@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<NotepadPlus>
+    <AutoComplete language="ConTeXt">
+      <Environment additionalWordChar="\" ignoreCase="no" startFunc=""
+		   startFunc1="[" startFunc2="{" startFunc3="(" stopFunc="" stopFunc1="]" stopFunc2="}" stopFunc3=")"
+		   calltipFontName="consolas" calltipFontSize="9"
+		   calltipForeColor="0x101010" calltipBackColor="0xF0F0F0"
+		   sortMacroValues="no" maxLineLength="80"
+		   toplines="1" macroValueOnSingleLine="yes"
+		   columns="2" 
+                   widthColumnSep="2" thresholdNrOfRows="20"
+		               />
+        <KeyWord ctxname="\PRIVATEMACROa"/>
+	<KeyWord ctxname="\PRIVATEMACROb" func="yes">
+            <Overload paramsets="2" retVal="">
+                <Param ctxname="NAME" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="corner= rectangular|round|NUMBER" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="framecorner= rectangular|round|NUMBER" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="backgroundcorner= rectangular|round|NUMBER" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="radius= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="frameradius= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="backgroundradius= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="depth= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="framedepth= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="backgrounddepth= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="framecolor= COLOR" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="topframe= on|off|NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="bottomframe= on|off|NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="leftframe= on|off|NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="rightframe= on|off|NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="region= yes|no" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="rulethickness= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="frameoffset= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="frame= on|off|overlay|none" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="background= foreground|color|NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="backgroundoffset= frame|DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="component= NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="extras= COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="foregroundstyle= STYLE|COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="foregroundcolor= COLOR" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="setups= NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="offset= default|overlay|none|DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="width= local|fit|max|broad|fixed|DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="height= fit|max|broad|DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="align= INHERIT:\setupalign" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="strut= yes|no|none|local|global" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="autostrut= yes|no" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="location= height|depth|high|low|top|middle|bottom|line|lohi|hanging|keep|formula|mathematics|normal" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="autowidth= yes|no|force" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="lines= NUMBER" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="top= COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="bottom= COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="blank= yes|no" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="profile= NAME" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="empty= yes|no" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="loffset= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="roffset= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="toffset= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="boffset= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="orientation= NUMBER" delimiters="" lists="yes" optional="" paramset="2"/>
+            </Overload>
+        </KeyWord>
+      </AutoComplete>
+</NotepadPlus>

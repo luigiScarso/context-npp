@@ -70,6 +70,7 @@ private:
 	bool _funcCompletionActive = false; //< indicator whether reading keywords from ConTeXt.xml succeeds
 	TiXmlDocument *_pXmlFile = nullptr; //< pointer to ConTeXt.xml
 	TiXmlElement *_pXmlKeyword = nullptr;
+	TiXmlDocument *_pXmlUserFile = nullptr; //< pointer to ConTeXt-User.xml
 
 	std::vector<generic_string> _keyWordArray;
 	generic_string _keyWords; //< Keywords read from ConTeXt.xml in plugins/API
@@ -82,6 +83,7 @@ private:
 	generic_string getlastmacro(const TCHAR* t);
 	// calltip management
 	bool findParam(const TCHAR* key);
+	bool findParamXmlFile(const TCHAR* keyTarget, TiXmlNode *pXmlFile);
 	LRESULT execute(UINT Msg, WPARAM wParam = 0, LPARAM lParam = 0) const;
 	unsigned int ctTextSize = 2048;
 	char *ctText; // = new char[ctTextSize];
