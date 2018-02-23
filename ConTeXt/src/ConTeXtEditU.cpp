@@ -34,7 +34,7 @@ ConTeXtEditU::ConTeXtEditU(HWND hNotepad, HWND hSCI) : tag_ins(hSCI, hNotepad)
 	ReadConfig();
 }
 
-/// Select user defined macro from ConTeXtEdit.ini
+/// Select user defined macro from ConTeXt.ini
 HWND ConTeXtEditU::InsertCtxMacro()
 {
 	HINSTANCE	    hMod;
@@ -173,7 +173,15 @@ void ConTeXtEditU::SurroundSelection(const char* leftText, const char* rightText
 		::SendMessage(hSci, SCI_INSERTTEXT, stpos, reinterpret_cast<LPARAM>(leftText));
 	}
 	int pos = SendMessage(hSci, SCI_GETCURRENTPOS, 0, 0);
-	::SendMessage(hSci, SCI_GOTOPOS, std::strlen(rightText)+pos, 0);
+	if(stpos!=endpos)
+	{
+		::SendMessage(hSci, SCI_GOTOPOS, std::strlen(rightText) + pos, 0);
+	}
+	else
+	{
+		::SendMessage(hSci, SCI_GOTOPOS, std::strlen(leftText) + pos, 0);
+	}
+	
 	::SendMessage(hSci, SCI_ENDUNDOACTION, 0, 0);
 }
 
