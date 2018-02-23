@@ -136,13 +136,13 @@ bool AutoCompletion::findParam(const TCHAR* keyTarget)
 	// and APIs/context-user.xml files 
 	// for Overload/Param elements 
 	bool res = false;
-	
+
 	std::array<TiXmlDocument *, 2> arrXmlFile = { _pXmlFile,_pXmlUserFile };
 	for (std::array<TiXmlDocument *, 2>::size_type i = 0; i < 2; i++) {
 		TiXmlDocument *f = arrXmlFile[i];
-		if (f) 
+		if (f)
 		{
-			res = ( res || findParamXmlFile(keyTarget, f) );
+			res = (res || findParamXmlFile(keyTarget, f));
 		}
 	}
 	return res;
@@ -853,7 +853,6 @@ bool AutoCompletion::readApi()
 
 	_keyWords.clear();
 	_keyWordArray.clear();
-
 	if (_funcCompletionActive)
 	{
 		//Cache the keywords
@@ -875,8 +874,9 @@ bool AutoCompletion::readApi()
 		}
 		std::sort(_keyWordArray.begin(), _keyWordArray.end());
 	}
-	
+
 	// Reading Context-User.xml
+	_userkeyWordArray.clear();
 	if (_pXmlUserFile)
 		delete _pXmlUserFile;
 	_pXmlUserFile = new TiXmlDocument(userpath);
@@ -889,7 +889,7 @@ bool AutoCompletion::readApi()
 			pUserAutoNode = pNode = pNode->FirstChildElement(TEXT("AutoComplete"));
 			if (pNode)
 			{
-				pNode = pNode->FirstChildElement(TEXT("KeyWord"));	
+				pNode = pNode->FirstChildElement(TEXT("KeyWord"));
 				if (pNode) {
 					_pXmlKeyword = reinterpret_cast<TiXmlElement *>(pNode);
 					TiXmlElement *funcNode = _pXmlKeyword;
@@ -901,9 +901,10 @@ bool AutoCompletion::readApi()
 							size_t len = lstrlen(name);
 							// Insert a user macro only if it is not
 							// already a standard context macro
-							if (len && (std::find(std::begin(_keyWordArray),std::end(_keyWordArray),name)==std::end(_keyWordArray)))
+							if (len && (std::find(std::begin(_keyWordArray), std::end(_keyWordArray), name) == std::end(_keyWordArray)))
 							{
 								_keyWordArray.push_back(name);
+								_userkeyWordArray.push_back(name);
 								if (len > _keyWordMaxLen)
 									_keyWordMaxLen = len;
 							}
@@ -916,9 +917,9 @@ bool AutoCompletion::readApi()
 	}
 
 	// attributes startFunc[i] and stopFunc[i]
-	
+
 	std::array<TiXmlNode *, 2> arrAutoNode = { pAutoNode, pUserAutoNode };
-	for (std::array<TiXmlNode *,2>::size_type i = 0; i < 2; i++) {
+	for (std::array<TiXmlNode *, 2>::size_type i = 0; i < 2; i++) {
 		TiXmlNode * pAutoNode = arrAutoNode[i];
 		if (pAutoNode)
 		{
@@ -1065,7 +1066,7 @@ bool AutoCompletion::readApi()
 		calltipBackColor = execute(SCI_STYLEGETBACK, STYLE_DEFAULT);
 	//
 	ctText = new char[ctTextSize];
-	
+
 	for (size_t i = 0, len = _keyWordArray.size(); i < len; ++i)
 	{
 		_keyWords.append(_keyWordArray[i]);
@@ -1142,6 +1143,239 @@ bool AutoCompletion::readConfig()
 		}
 	}
 	return false;
+}
+
+
+/// Read (again)  ConTeXt-User.xml,
+/// the file that contains the user's macros.
+bool AutoCompletion::readUserMacro()
+{
+	TCHAR userpath[MAX_PATH];
+	::GetModuleFileName(NULL, userpath, MAX_PATH);
+	PathRemoveFileSpec(userpath);
+	lstrcat(userpath, TEXT("\\plugins\\APIs\\ConTeXt-User.xml"));
+
+
+	// Re-reading Context-User.xml
+	std::vector<generic_string> _temp_userkeyWordArray;
+	_temp_userkeyWordArray.clear();
+	
+	TiXmlDocument *_temp_pXmlUserFile = new TiXmlDocument(userpath); 
+	TiXmlNode * pUserAutoNode = NULL;
+	if (_temp_pXmlUserFile->LoadFile())
+	{
+		// TODO: clean up
+		if (_pXmlUserFile)
+		{
+			delete _pXmlUserFile;
+		}
+		_pXmlUserFile = new TiXmlDocument(userpath);
+		_pXmlUserFile->LoadFile();
+		TiXmlNode * pNode = _temp_pXmlUserFile->FirstChild(TEXT("NotepadPlus"));
+		if (pNode)
+		{
+			pUserAutoNode = pNode = pNode->FirstChildElement(TEXT("AutoComplete"));
+			if (pNode)
+			{
+				pNode = pNode->FirstChildElement(TEXT("KeyWord"));
+				if (pNode) {
+					_pXmlKeyword = reinterpret_cast<TiXmlElement *>(pNode);
+					TiXmlElement *funcNode = _pXmlKeyword;
+					for (; funcNode; funcNode = funcNode->NextSiblingElement(TEXT("KeyWord")))
+					{
+						const TCHAR *name = funcNode->Attribute(TEXT("ctxname"));
+						if (name)
+						{
+							size_t len = lstrlen(name);
+							_temp_userkeyWordArray.push_back(name);
+							//if (len > _keyWordMaxLen)
+							//_keyWordMaxLen = len;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if (!_temp_userkeyWordArray.empty())
+	{
+		
+		// Delete old user's macros
+		for (auto v : _userkeyWordArray)
+		{
+			auto res = std::find(std::begin(_keyWordArray), std::end(_keyWordArray), v);
+			if (res != std::end(_keyWordArray))
+			{
+				_keyWordArray.erase(res);
+			}
+
+		}
+		// Insert new user's macros
+		_userkeyWordArray.clear();
+		for (auto v : _temp_userkeyWordArray)
+		{
+			_keyWordArray.push_back(v);
+			_userkeyWordArray.push_back(v);
+		}
+		std::sort(_keyWordArray.begin(), _keyWordArray.end());
+	}
+			
+	TiXmlNode * pAutoNode = pUserAutoNode;
+	if (pAutoNode)
+	{
+		TiXmlElement *envNode = pAutoNode->FirstChildElement(TEXT("Environment"));
+		if (envNode) {
+			const TCHAR *paramValue;
+			paramValue = envNode->Attribute(TEXT("startFunc1"));
+			if (paramValue) startFuncs[0] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("startFunc2"));
+			if (paramValue) startFuncs[1] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("startFunc3"));
+			if (paramValue) startFuncs[3] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("startFunc4"));
+			if (paramValue) startFuncs[4] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("stopFunc1"));
+			if (paramValue) stopFuncs[0] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("stopFunc2"));
+			if (paramValue) stopFuncs[1] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("stopFunc3"));
+			if (paramValue) stopFuncs[3] = static_cast<int>(paramValue[0]);
+			paramValue = envNode->Attribute(TEXT("stopFunc4"));
+			if (paramValue) stopFuncs[4] = static_cast<int>(paramValue[0]);
+			// calltip Style
+			//calltipFontName = envNode->Attribute(TEXT("calltipFontname"));
+			paramValue = envNode->Attribute(TEXT("calltipFontName"));
+			if (paramValue)
+			{
+				UINT codepage = static_cast<UINT>(execute(SCI_GETCODEPAGE));
+				int lenMbcs = WideCharToMultiByte(codepage, 0, paramValue, -1, NULL, 0, NULL, NULL);
+				calltipFontName = new char[lenMbcs];
+				WideCharToMultiByte(codepage, 0, paramValue, -1, calltipFontName, lenMbcs, NULL, NULL);
+			}
+			paramValue = envNode->Attribute(TEXT("calltipFontSize"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val != 0) && (val < LONG_MAX) && (val > LONG_MIN))
+					calltipSizeInPoint = static_cast<int>(val);
+			}
+			paramValue = envNode->Attribute(TEXT("calltipForeColor"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					calltipForeColor = static_cast<int>(val);
+			}
+			paramValue = envNode->Attribute(TEXT("calltipBackColor"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					calltipBackColor = static_cast<int>(val);
+			}
+			paramValue = envNode->Attribute(TEXT("sortMacroValues"));
+			if (paramValue)
+			{
+				generic_string v(paramValue);
+				bool res = false;
+				std::transform(v.begin(), v.end(), v.begin(), ::tolower);
+				if (v.compare(L"yes") == 0)
+					res = true;
+				sortMacroValues = res;
+			}
+			paramValue = envNode->Attribute(TEXT("maxLineLength"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					maxLineLength = static_cast<int>(val);
+				if (maxLineLength < 0)
+					maxLineLength = 80;
+			}
+			paramValue = envNode->Attribute(TEXT("toplines"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					toplines = static_cast<int>(val);
+				if (toplines < 0)
+					toplines = 0;
+			}
+			paramValue = envNode->Attribute(TEXT("macroValueOnSingleLine"));
+			if (paramValue)
+			{
+				generic_string v(paramValue);
+				bool res = false;
+				std::transform(v.begin(), v.end(), v.begin(), ::tolower);
+				if (v.compare(L"yes") == 0)
+					res = true;
+				macroValueOnSingleLine = res;
+			}
+			paramValue = envNode->Attribute(TEXT("columns"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					columns = static_cast<unsigned int>(val);;
+				if ((columns < 0) || (columns > 2))
+					columns = 1;
+			}
+			paramValue = envNode->Attribute(TEXT("widthColumnSep"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					widthColumnSep = static_cast<unsigned int>(val);;
+				if (widthColumnSep < 0)
+					widthColumnSep = 2;
+			}
+			paramValue = envNode->Attribute(TEXT("thresholdNrOfRows"));
+			if (paramValue)
+			{
+				long val = std::wcstol(paramValue, NULL, 0);
+				if ((val < LONG_MAX) && (val > LONG_MIN))
+					thresholdNrOfRows = static_cast<unsigned int>(val);;
+				if (thresholdNrOfRows < 0)
+					thresholdNrOfRows = 20;
+			}
+		}
+	}
+	
+	if (!calltipFontName)
+	{
+		char *tmp = nullptr;
+		std::size_t len;
+		execute(SCI_STYLEGETFONT, STYLE_DEFAULT, reinterpret_cast<LPARAM>(tmp));
+		if (tmp)
+		{
+			len = std::strlen(tmp);
+			if (len)
+			{
+				calltipFontName = new char[len + 1];
+				std::strcpy(calltipFontName, tmp);
+				calltipFontName[len] = '\000';
+			}
+		}
+	}
+	calltipSizeInPoint = calltipSizeInPoint < 1 ? 8 : calltipSizeInPoint;
+	if (calltipForeColor < 0)
+		calltipForeColor = execute(SCI_STYLEGETFORE, STYLE_DEFAULT);
+	if (calltipBackColor < 0)
+		calltipBackColor = execute(SCI_STYLEGETBACK, STYLE_DEFAULT);
+		
+	_keyWords.clear();
+	for (size_t i = 0, len = _keyWordArray.size(); i < len; ++i)
+	{
+		auto l = _keyWordArray[i].length();
+		if (l > _keyWordMaxLen)
+		{
+			_keyWordMaxLen = l;
+		}
+		_keyWords.append(_keyWordArray[i]);
+		_keyWords.append(TEXT(" "));
+	}
+
+	return true;
 }
 
 

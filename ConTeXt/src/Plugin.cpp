@@ -26,7 +26,7 @@ void About()
 {
 	MessageBox(
 		g_NppWindow,
-		L"This plugin aims to support the editing of ConTeXt documents by integrating the files"
+		L"This plugin aims to support the editing of ConTeXt documents by integrating the files "
 		L"included in the standalone distribution. For more information on ConTeXt see\n"
 		L"http ://wiki.contextgarden.net/Main_Page\nand\nhttp://www.pragma-ade.nl/index.htm",
 		ConTeXt_TITLE,
@@ -70,6 +70,18 @@ void loadConfig()
 {
 	MenuManager::getInstance()->loadConfig();
 }
+
+void editConTeXtUserMacro()
+{
+	ConTeXtEditU::getInstance()->EditConTeXtUserMacro();
+}
+
+void loadConTeXtUserMacro()
+{
+	AutoCompletion::getinstance()->readUserMacro();
+}
+
+
 
 void updateContextMenu()
 {
@@ -117,8 +129,11 @@ static FuncItem* getGeneratedFuncItemArray(int *nbF)
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
 	items.push_back(pair<tstring, void(*)()>(_T("Edit config"), editConfig));
 	items.push_back(pair<tstring, void(*)()>(_T("Load config"), loadConfig));
-
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
+	items.push_back(pair<tstring, void(*)()>(_T("Edit ConTeXt user macro"), editConTeXtUserMacro));
+	items.push_back(pair<tstring, void(*)()>(_T("Load ConTeXt user macro"), loadConTeXtUserMacro));
+	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
+
 	items.push_back(pair<tstring, void(*)()>(_T("Update right-click Menu"), updateContextMenu));
 	items.push_back(pair<tstring, void(*)()>(_T("Remove right-click Menu"), removeContextMenu));
 	items.push_back(pair<tstring, void(*)()>(_T("Edit right-click Menu"), editContextXML));

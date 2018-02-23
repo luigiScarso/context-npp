@@ -35,6 +35,8 @@ public:
 	}
 	void EditConfig();
 	void ReadConfig();//VAR numRead : INTEGER; initToolbar: BOOLEAN);
+	void EditConTeXtUserMacro();
+	//void ReadConTeXtUserMacro();
 	char ReadChar(DWORD &buffPos, DWORD &buffLen, bool &eof, HANDLE &hFile, char* buff, LPDWORD read);
 	bool ReadLine(char* line, DWORD &buffPos, DWORD &buffLen, bool &eof,
 		HANDLE &hFile, char* buff, LPDWORD read, const char &commentChar, bool &section);
@@ -73,6 +75,5 @@ private:
 	TCHAR configDir[MAX_PATH];
 	TCHAR IniFileDir[MAX_PATH];
 	TCHAR IniFileName[100] = TEXT("ConTeXt.ini");
-
 	bool isCommandSession;
 };

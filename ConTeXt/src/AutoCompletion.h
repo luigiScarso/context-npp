@@ -30,7 +30,9 @@ public:
 	void showAutoComletion(size_t lenEntered, const TCHAR* list);
 	int AutoCompletion::searchInTarget(const TCHAR * text2Find, size_t lenOfText2Find, size_t fromPos, size_t toPos);
 	bool readApi();
-	bool readConfig();
+	bool readConfig(); //Not used now
+	// re-read ConTeXt-User.xml
+	bool readUserMacro();
 
 	///AutoComplete from the list
 	bool showApiComplete();
@@ -73,6 +75,7 @@ private:
 	TiXmlDocument *_pXmlUserFile = nullptr; //< pointer to ConTeXt-User.xml
 
 	std::vector<generic_string> _keyWordArray;
+	std::vector<generic_string> _userkeyWordArray;
 	generic_string _keyWords; //< Keywords read from ConTeXt.xml in plugins/API
 	size_t _keyWordMaxLen = 0;
 	generic_string latestKeyWord; // latest keyword found

@@ -588,3 +588,13 @@ void ConTeXtEditU::EditConfig()
 	_tcscat_s(IniFileDir, MAX_PATH, IniFileName);
 	::SendMessage(hNpp, NPPM_DOOPEN, 0, reinterpret_cast<LPARAM>(IniFileDir));
 }
+
+/// Open ConTeXt-User.xml file for editing in Notepad++. 
+void ConTeXtEditU::EditConTeXtUserMacro()
+{
+	TCHAR userpath[MAX_PATH];
+	::GetModuleFileName(NULL, userpath, MAX_PATH);
+	PathRemoveFileSpec(userpath);
+	lstrcat(userpath, TEXT("\\plugins\\APIs\\ConTeXt-User.xml"));
+	::SendMessage(hNpp, NPPM_DOOPEN, 0, reinterpret_cast<LPARAM>(userpath));
+}
