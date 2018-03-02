@@ -34,6 +34,17 @@ ConTeXtEditU::ConTeXtEditU(HWND hNotepad, HWND hSCI) : tag_ins(hSCI, hNotepad)
 	ReadConfig();
 }
 
+
+///
+void ConTeXtEditU::SetWindowDimenCtxMacro(int w, int h)
+{
+	ContextMacroListView* ctxmacro = ContextMacroListView::getInstance();
+	if (ctxmacro)
+	{
+		ctxmacro->setWindowDimensions(w, h);
+	}
+}
+
 /// Select user defined macro from ConTeXt.ini
 HWND ConTeXtEditU::InsertCtxMacro()
 {
@@ -42,6 +53,7 @@ HWND ConTeXtEditU::InsertCtxMacro()
 	UINT cp = static_cast<UINT>(::SendMessage(hSci, SCI_GETCODEPAGE, 0, 0));
 	ContextMacroListView* ctxmacro = ContextMacroListView::CreateStaticInstance();
 
+			
 	if (!ctxmacro)
 	{
 		return NULL;
@@ -55,6 +67,7 @@ HWND ConTeXtEditU::InsertCtxMacro()
 			ctxmacro->SetSetupValue(it->first, it->second);
 		}
 	}
+	ctxmacro->NotifyListViewChangeTo(hNpp);
 
 	ContextMacro usermacro;
 	//int NrOfCols = ctxmacro->getNrOfColumns();
@@ -70,7 +83,6 @@ HWND ConTeXtEditU::InsertCtxMacro()
 	for (auto v1 : groupStarts)
 	{
 		groupmap[v1] = true;
-
 	}
 
 	// Fill the usermacro
@@ -157,6 +169,9 @@ void ConTeXtEditU::DeleteCtxMacro()
 {
 	ContextMacroListView::DestroyStaticInstance();
 }
+
+
+
 
 /// Insert pairs around all selections
 void ConTeXtEditU::SurroundSelection(const char* leftText, const char* rightText)
@@ -245,6 +260,19 @@ bool ConTeXtEditU::ReadLine(char* line, DWORD &buffPos, DWORD &buffLen, bool &eo
 		}
 		else if (i > 0)
 		{
+			if (line[0] == (char)(0xEF) && line[1] == (char)(0xBB) && line[2] == (char)(0xBF))
+			{
+				std::string t(line, 3,i-3 );
+				for (int j = 0; j <= t.length(); j++)
+				{
+					line[j] = t[j];
+				}
+				for (int j = 1+t.length(); j<i; j++)
+				{
+					line[j] = '\0';
+				}
+				i = i - 3;
+			}
 			if (line[0] == commentChar) //(*comment *)
 				i = 0;
 			else if ((line[0] == '[') & (line[i - 1] == ']')) //(* found a new section *)
@@ -524,6 +552,7 @@ void ConTeXtEditU::ReadConfig()
 	//Start parsing the ini file
 	while (section)
 	{
+		
 		if (CommandsIniSection == line)
 		{
 			// Under CommandsIniSection each section is a subsection
@@ -557,7 +586,7 @@ void ConTeXtEditU::ReadConfig()
 		}
 		else if (CommandsSetupIniSection == line)
 		{
-			// flat list key = value,
+			// flat list "key=value",
 			// one item per line
 			//(*read setups *)
 			while (ReadLine(line, buffPos, buffLen, eof,

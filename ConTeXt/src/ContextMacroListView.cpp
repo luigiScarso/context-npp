@@ -6,8 +6,12 @@
 #include <iostream>
 #include <string>
 
+
+
 #pragma comment (lib, "comctl32")
 #include "ContextMacroListView.h"
+
+
 
 const TCHAR ContextMacroListView::cClassName[] = TEXT("ContextMacroListView");
 ContextMacroListView* ContextMacroListView::CMLVW = NULL;
@@ -61,7 +65,7 @@ BOOL ContextMacroListView::SetSetupValue(std::string Key, std::string Value)
 	if ((Key == "um:elapse") || (Key == "usermacro:elapse"))
 	{
 		int v = std::atoi(Value.c_str());
-		if ((v < 0) || (v > elapse_limit))
+		if ((v <= 0) || (v > elapse_limit))
 		{
 			res = false;
 		}
@@ -74,7 +78,7 @@ BOOL ContextMacroListView::SetSetupValue(std::string Key, std::string Value)
 	else if ((Key == "um:elapse_shift") || (Key == "usermacro:elapse_shift"))
 	{
 		int v = std::atoi(Value.c_str());
-		if ((v < 0) || (v > elapse_limit))
+		if ((v <= 0) || (v > elapse_limit))
 		{
 			res = false;
 		}
@@ -87,7 +91,7 @@ BOOL ContextMacroListView::SetSetupValue(std::string Key, std::string Value)
 	else if ((Key == "um:display_rows") || (Key == "usermacro:display_rows"))
 	{
 		int v = std::atoi(Value.c_str());
-		if ((v < 0) || (v > DisplayMaxRowsLimit))
+		if ((v <= 0) || (v > DisplayMaxRowsLimit))
 		{
 			res = false;
 		}
@@ -97,7 +101,30 @@ BOOL ContextMacroListView::SetSetupValue(std::string Key, std::string Value)
 			DisplayMaxRows = v;
 		}
 	}
-
+	else if ((Key == "um:window_width") || (Key == "usermacro:window_width"))
+	{
+		int v = std::atoi(Value.c_str());
+		if (v <= 0)
+		{
+			res = false;
+		}
+		else 
+		{
+			window_width_ini = v;
+		}
+	}
+	else if ((Key == "um:window_height") || (Key == "usermacro:window_height"))
+	{
+		int v = std::atoi(Value.c_str());
+		if (v <= 0)
+		{
+			res = false;
+		}
+		else
+		{
+			window_height_ini = v;
+		}
+	}
 	return res;
 }
 
@@ -148,6 +175,13 @@ ContextMacroListView* ContextMacroListView::CreateStaticInstance()
 	return CMLVW;
 }
 
+ContextMacroListView* ContextMacroListView::getInstance()
+{
+	return CMLVW;
+}
+
+
+
 bool ContextMacroListView::DestroyStaticInstance()
 {
 	if (CMLVW)
@@ -170,8 +204,8 @@ HWND ContextMacroListView::ComposeAndShowWindow(const TCHAR* header, HWND hSci)
 		return NULL;
 	RECT win;
 	GetWindowRect(hSci, &win);
-	int X = 100;
-	int Y = 100;
+	int X ;
+	int Y ;
 	// Point Size for style 0 , usually default
 	int pad = SendMessage(hSci, SCI_STYLEGETSIZE, 0, 0);
 	long currPos = SendMessage(hSci, SCI_GETCURRENTPOS, 0, 0);
@@ -196,6 +230,7 @@ HWND ContextMacroListView::ComposeAndShowWindow(const TCHAR* header, HWND hSci)
 	if (CMLVW)
 	{
 		CMLVW->hwndCurrentParentParent = hSci;
+		
 		if (CMLVW->hwndCurrentListView)
 		{
 			RECT lv;
@@ -257,10 +292,12 @@ HWND ContextMacroListView::CreateListView(HINSTANCE hInstance, HWND hwndParent)
 	hwndCurrentParent = hwndParent;
 	hwndCurrentListView = hwndListView;
 	hCurrentInstance = hInstance;
-
+	
+	
 	if (!hwndListView)
 		return NULL;
-
+	
+	controlID = ::GetDlgCtrlID(hwndListView);
 	dwStyleEx = LVS_EX_AUTOSIZECOLUMNS |
 		LVS_EX_FULLROWSELECT |
 		LVS_EX_GRIDLINES;
@@ -367,27 +404,46 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 	RECT  rc;
 	BOOL res;
 	RECT  rclw;
+	
 	if (!parent_resizing)
 	{
-		for (size_t i = 0; i < UserMacro.size(); i++)
+	
+		SCNotification scn = {};
+		scn.message = CTX_USRMACRO_GETRESIZE;
+		sendNotification(scn);
+		
+		if (window_width > 0 && window_height > 0)
 		{
-			res = ListView_GetItemRect(hwndListView, i, &rclw, LVIR_BOUNDS);
-			if (res)
+			W = window_width;
+			H = window_height;
+		} 
+		else if (window_width_ini > 0 && window_height_ini > 0)
+		{
+			W = window_width_ini;
+			H = window_height_ini;
+		}
+		else
+		{
+			for (size_t i = 0; i < UserMacro.size(); i++)
 			{
-				H += ((rclw.bottom - rclw.top)*1.3);
-				W = (W < (rclw.right - rclw.left)) ? (rclw.right - rclw.left) : W;
+				res = ListView_GetItemRect(hwndListView, i, &rclw, LVIR_BOUNDS);
+				if (res)
+				{
+					H += ((rclw.bottom - rclw.top)*1.3);
+					W = (W < (rclw.right - rclw.left)) ? (rclw.right - rclw.left) : W;
+				}
 			}
+			pad = ListView_GetStringWidth(hwndListView, L"M");
+			if (W == 0)
+			{
+				W = getMaxWidth(hwndListView);
+				H = UserMacro.size() * 2 * pad;
+			}
+			H = (H > (DisplayMaxRows*pad)) ? (DisplayMaxRows*pad) : H;
+			H += (2 * pad);
+			W += (4 * pad);
+			H = std::ceil(H);
 		}
-		pad = ListView_GetStringWidth(hwndListView, L"M");
-		if (W == 0)
-		{
-			W = getMaxWidth(hwndListView);
-			H = UserMacro.size() * 2 * pad;
-		}
-		H = (H > (DisplayMaxRows*pad)) ? (DisplayMaxRows*pad) : H;
-		H += (2 * pad);
-		W += (4 * pad);
-		H = std::ceil(H);
 		GetClientRect(hwndParent, &rc);
 		MoveWindow(hwndListView,
 			rc.left,
@@ -401,22 +457,40 @@ void ContextMacroListView::ResizeListView(HWND hwndListView, HWND hwndParent)
 		//ListView_EnsureVisible(hwndListView, UserMacro.size() / 2, FALSE);
 		SetWindowPos(hwndParent, NULL,
 			0, 0, //ignored due SWP_NOMOVE
-			static_cast<int>(W), 25 + static_cast<int>(H), // still not ok, not a multiple of a row height
+			static_cast<int>(W)+GetSystemMetrics(SM_CXVSCROLL), 25 + static_cast<int>(H), // still not ok, not a multiple of a row height
 			SWP_DRAWFRAME | SWP_SHOWWINDOW | SWP_NOMOVE);
+
+		ListView_SetColumnWidth(hwndListView, 1, static_cast<int>(W - ListView_GetColumnWidth(hwndListView, 0) - GetSystemMetrics(SM_CXVSCROLL)));
+		UpdateWindow(hwndParent);
 	}
 	else
 	{
 		GetClientRect(hwndParent, &rc);
+		window_width = static_cast<int>(rc.right - rc.left);
+		window_height = static_cast<int>(rc.bottom - rc.top);
 		MoveWindow(hwndListView,
 			rc.left,
 			rc.top,
-			static_cast<int>(rc.right-rc.left), static_cast<int>(rc.bottom-rc.top),
+			window_width, window_height,
 			TRUE);
-		//int c0 = ListView_GetColumnWidth(hwndListView, 0);
-		unsigned int pad = ListView_GetStringWidth(hwndListView, L"MMMMM");
-		ListView_SetColumnWidth(hwndListView, 0, pad);
-		ListView_SetColumnWidth(hwndListView, 1, static_cast<int>(rc.right - rc.left - pad) );
+		//Notify the resize, to be read later eventually
+		SCNotification scn = {};
+		scn.message = CTX_USRMACRO_SETRESIZE;
+		scn.wParam = static_cast<uptr_t>(window_width);
+		scn.lParam = static_cast<sptr_t>(window_height);
+		sendNotification(scn);
+		
+		int cxScroll = GetSystemMetrics(SM_CXVSCROLL);
+		int pad = ListView_GetColumnWidth(hwndListView, 0); 
+		ListView_SetColumnWidth(hwndListView, 1, static_cast<int>(rc.right - rc.left - pad - 2*cxScroll) );
+		UpdateWindow(hwndListView);
 	}
+}
+
+
+void ContextMacroListView::NotifyListViewChangeTo(HWND notifier)
+{
+	hwndNotifier = notifier;
 }
 
 LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
@@ -431,6 +505,8 @@ LRESULT ContextMacroListView::ListViewNotify(HWND hWnd, LPARAM lParam)
 
 	case LVN_GETDISPINFO:
 	{
+		
+		
 		plvdi = (NMLVDISPINFO*)lParam;
 		switch (plvdi->item.iSubItem)
 		{
@@ -717,13 +793,13 @@ ContextMacroListView::wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 			CMLVW->parent_resizing = true;
 			CMLVW->ResizeListView(CMLVW->hwndCurrentListView, hWnd);
 			CMLVW->parent_resizing = false;
-			break;
+			return 0;
 
-		case WM_SIZE:
+		/*case WM_SIZE:
 			CMLVW->parent_resizing = true;
 			CMLVW->ResizeListView(CMLVW->hwndCurrentListView, hWnd);
 			CMLVW->parent_resizing = false;
-			break;
+			break;*/
 
 		case WM_TIMER:
 		{
@@ -1001,5 +1077,15 @@ void ContextMacroListView::makeshortcutprefix()
 				ShortcutPrefixCnt[s.substr(0, l)] = 1;
 			}
 		}
+	}
+}
+
+void ContextMacroListView::sendNotification(SCNotification scn)
+{
+	if (hwndNotifier)
+	{
+		scn.nmhdr.code = CTX_USRMACRO;
+		scn.nmhdr.idFrom = controlID;
+		::SendMessage(hwndNotifier, WM_NOTIFY, scn.nmhdr.idFrom, reinterpret_cast<LPARAM>(&scn));
 	}
 }

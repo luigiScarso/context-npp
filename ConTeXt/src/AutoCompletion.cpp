@@ -1214,10 +1214,15 @@ bool AutoCompletion::readUserMacro()
 		_userkeyWordArray.clear();
 		for (auto v : _temp_userkeyWordArray)
 		{
-			_keyWordArray.push_back(v);
-			_userkeyWordArray.push_back(v);
+			auto res = std::find(std::begin(_keyWordArray), std::end(_keyWordArray), v);
+			if (res == std::end(_keyWordArray))
+			{
+				_keyWordArray.push_back(v);
+				_userkeyWordArray.push_back(v);
+			}
 		}
 		std::sort(_keyWordArray.begin(), _keyWordArray.end());
+
 	}
 			
 	TiXmlNode * pAutoNode = pUserAutoNode;

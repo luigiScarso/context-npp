@@ -1,3 +1,7 @@
+#ifndef HEADER_ContextMacroListView
+#define HEADER_ContextMacroListView
+
+
 #include <array>
 #include <ctime>
 #include <iostream>
@@ -13,10 +17,12 @@
 
 
 #include "Scintilla.h"
+#include "ConTeXtEditU.h"
 
 enum enum_COLUMNNR { COLUMNNR = 2, MAXCOLUMNNR = 5 };
 typedef std::basic_string<TCHAR> generic_string;
 typedef std::vector<std::array<generic_string, MAXCOLUMNNR>> ContextMacro;
+
 
 
 class ContextMacroListView
@@ -27,6 +33,7 @@ public:
 	~ContextMacroListView();
 
 	static ContextMacroListView* CreateStaticInstance();
+	static ContextMacroListView* getInstance();
 	static void Register();
 	static void UnRegister();
 	static HWND ComposeAndShowWindow(const TCHAR* header, HWND hOwner);
@@ -36,12 +43,16 @@ public:
 	BOOL SetSetupValue(std::string Key, std::string Value);
 	BOOL SetBackgroundColor(COLORREF bgcolor);
 
+
+
 	HWND CreateListView(HINSTANCE hInstance, HWND hwndParent);
 	void ResizeListView(HWND hwndListView, HWND hwndParent);
+	void NotifyListViewChangeTo(HWND notifier);
 	void PositionHeader(HWND hwndListView);
 	BOOL InitListView(HWND hwndListView);
 	BOOL InsertListViewItems(HWND hwndListView);
 	LRESULT ListViewNotify(HWND hWnd, LPARAM lParam);
+
 
 	generic_string getUserMacroSelected();
 
@@ -49,6 +60,8 @@ public:
 	std::vector<int>* getItemClass(int itemnr);
 	void setDisplayMaxRows(int r) { DisplayMaxRows = std::abs(r); }
 	int getDisplayMaxRows() { return DisplayMaxRows; }
+	void setWindowDimensions(int w, int h) { window_width = w; window_height = h; }
+	void getWindowDimensions(int *w, int *h) { *w = window_width; *h = window_height; }
 	int getNrOfColumns()  { return NrOfColumns; }
 	UINT getTimerElapse() { return elapse; }
 	UINT setTimerElapse(UINT newval) { UINT oldval = elapse;  elapse = newval;  return oldval; }
@@ -60,6 +73,11 @@ private:
 	int shortcut_currentState = 0;
 	generic_string shortcut_currentstring;
 	bool parent_resizing = false;
+	int  window_width = -1;
+	int  window_height = -1;
+	int  window_width_ini = -1;
+	int  window_height_ini = -1;
+
 #define CTXMACRO_TIMER_ID 10001
 	UINT elapse=250;
 	UINT elapse_shift = 300;
@@ -70,7 +88,7 @@ private:
 		TEXT("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 	size_t UserMacroIndexSelected = -1;
 	int DisplayMaxRows = 40;
-	int DisplayMaxRowsLimit = 100;
+	int DisplayMaxRowsLimit = 400;
 
 	static const TCHAR  cClassName[];
 	static ContextMacroListView* CMLVW;
@@ -84,18 +102,22 @@ private:
 	HWND hwndCurrentParentParent;
 	HWND hwndCurrentParent;
 	HWND hwndCurrentListView;
+	HWND hwndNotifier;
 	HINSTANCE hCurrentInstance;
+	int controlID;
 
 	int getItemSelectedandFocused(HWND hwndListView);
 	unsigned int getHeight(HWND hwndListView, const TCHAR* st);
 	unsigned int getMaxWidth(HWND hwndListView);
 	unsigned int getMaxItemWidth(HWND hwndListView, unsigned int column);
 	
+	void sendNotification(SCNotification scn);
 	void makeshortcutprefix();
 	BOOL loademptymacro();
 	int	getFirstSelected(HWND hwndLV);
 
 
+/*
 #define WM_CAP_START WM_USER
 #define WM_CAP_UNICODE_START WM_USER+100
 #define WM_CAP_PAL_SAVEW WM_CAP_UNICODE_START+81
@@ -484,6 +506,7 @@ private:
 	{ WM_USER, "WM_CAP_START" },
 	{ WM_WININICHANGE, "WM_SETTINGCHANGE" }
 	};
-
+	*/
 
 };
+#endif // !HEADER_ContextMacroListView

@@ -22,6 +22,9 @@ HWND g_NppWindow = nullptr;
 HWND g_SCI = nullptr;
 TCHAR lexer_name[MaxLexerNameLen];
 
+int usrmacro_window_width = -1;
+int usrmacro_window_height = -1;
+
 void About()
 {
 	MessageBox(
@@ -68,6 +71,11 @@ void editConfig()
 
 void loadConfig()
 {
+	// Reset stored configuration
+	// ContextMacroListView:
+	usrmacro_window_width = -1;
+	usrmacro_window_height = -1;
+
 	MenuManager::getInstance()->loadConfig();
 }
 
@@ -130,13 +138,13 @@ static FuncItem* getGeneratedFuncItemArray(int *nbF)
 	items.push_back(pair<tstring, void(*)()>(_T("Edit config"), editConfig));
 	items.push_back(pair<tstring, void(*)()>(_T("Load config"), loadConfig));
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
-	items.push_back(pair<tstring, void(*)()>(_T("Edit ConTeXt user macro"), editConTeXtUserMacro));
-	items.push_back(pair<tstring, void(*)()>(_T("Load ConTeXt user macro"), loadConTeXtUserMacro));
+	items.push_back(pair<tstring, void(*)()>(_T("Edit ConTeXt user macros"), editConTeXtUserMacro));
+	items.push_back(pair<tstring, void(*)()>(_T("Load ConTeXt user macros"), loadConTeXtUserMacro));
 	items.push_back(pair<tstring, void(*)()>(_T("--"), reinterpret_cast<void(*)()>(NULL)));
 
-	items.push_back(pair<tstring, void(*)()>(_T("Update right-click Menu"), updateContextMenu));
-	items.push_back(pair<tstring, void(*)()>(_T("Remove right-click Menu"), removeContextMenu));
-	items.push_back(pair<tstring, void(*)()>(_T("Edit right-click Menu"), editContextXML));
+	items.push_back(pair<tstring, void(*)()>(_T("Update right-click menu"), updateContextMenu));
+	items.push_back(pair<tstring, void(*)()>(_T("Remove right-click menu"), removeContextMenu));
+	items.push_back(pair<tstring, void(*)()>(_T("Edit right-click menu"), editContextXML));
 	// TODO
 	//items.push_back(pair<tstring, void(*)()>(_T("Edit Env. attributes"), editEnvAttributes));
 
@@ -215,12 +223,38 @@ void setWordChar()
 	delete[] defaultCharList;
 }
 
-
+//#define CTX_USRMACRO 0xff000000
 /// Notepad++ exports, initializes menu when NPP is ready; handles auto-completion
 void beNotified(SCNotification *scn) 
 {
 	switch (scn->nmhdr.code)
 	{
+		case CTX_USRMACRO:
+		{
+			HWND ctxusrmacroListView = ::FindWindow(TEXT("ContextMacroListView"), NULL);
+			HWND w = ::GetWindow(ctxusrmacroListView, GW_CHILD);
+			int ListViewID= ::GetDlgCtrlID(w);
+			switch (scn->message)
+			{
+				case CTX_USRMACRO_SETRESIZE:
+				{	
+					usrmacro_window_width = static_cast<int>(scn->wParam);
+					usrmacro_window_height = static_cast<int>(scn->lParam);
+				}
+				break;
+				case CTX_USRMACRO_GETRESIZE:
+				{
+					ConTeXtEditU::getInstance()->SetWindowDimenCtxMacro(usrmacro_window_width, usrmacro_window_height);
+				}
+				break;
+
+				default:
+					break;
+
+			}
+		}
+		break; 
+		
 		case NPPN_READY:
 		{
 			MenuManager* menuManager = MenuManager::getInstance();
@@ -264,6 +298,7 @@ void beNotified(SCNotification *scn)
 			}
 		}
 		break;
+				
 		case NPPN_LANGCHANGED:
 			getLexerName();
 			break;

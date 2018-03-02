@@ -1,3 +1,5 @@
+#ifndef HEADER_ContextEditU
+#define HEADER_ContextEditU
 #include "StdAfx.h"
 #include "PluginInterface.h"
 #include "Scintilla.h"
@@ -49,6 +51,7 @@ public:
 		tag_ins.replace(); }
 	HWND InsertCtxMacro();
 	void DeleteCtxMacro();
+	void SetWindowDimenCtxMacro(int w, int h);
 	std::string GetSetupValue(const char *key);
 	static vector<Pair> pairs; ///< Store pair array
 	size_t numRead; ///< Number of read pairs, equals pairs.size()
@@ -77,3 +80,4 @@ private:
 	TCHAR IniFileName[100] = TEXT("ConTeXt.ini");
 	bool isCommandSession;
 };
+#endif //  !HEADER_ContextEditU
