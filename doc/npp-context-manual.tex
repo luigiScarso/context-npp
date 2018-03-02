@@ -126,6 +126,10 @@
 \setuphead
   [section]
   [alternative=inmargin]
+
+\setuphead
+  [subsection]
+  [before={\blank[medium]},after={\blank[medium]}]
   
 \setuphead
   [subsubsection]
@@ -276,6 +280,10 @@
 Language – Define your language…
 \stopbuffer
 
+\startbuffer[texmfhighlights]
+/ConTeXt/tex/texmf-project/tex/aliases
+\stopbuffer
+
 \usebtxdefinitions [apa]
 \setupbtxrendering [apa] [pagestate=start] % index cite pages in bibliography
 
@@ -310,7 +318,7 @@ The first author of this manual, Idris Samawi Hamid, is a professor who has felt
 For explanation of what a lexer is, see \in{Section}[lexers].
 % See \in{Section}[lexersplugins] and \in{Footnote}[note:lexersplugins].
 \stopfootnote{}
-The software development plan was developed and supervised by Hamid, who also wrote the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are being written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}: A Lexer and Commands Utility for editing ConTeXt Documents.
+The software development plan was developed and supervised by Hamid, who also wrote the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are being written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}: Lexer and Command Utilities for Editing ConTeXt Documents.
 \stopsubsection
 % \startsubsection[title={Needs},reference={}]
 
@@ -343,7 +351,7 @@ an autocompletion \quotation{API} file; and
 \startitem
 some console scripts, many of which appear under the submenu item \type{Macros}. These provided, among other things, a functionality largely identical to that provided by the corresponding \SCITE{} scripts for \Context{}|=|found under the submenmenu item \type{Tools}.
 \startfootnote
-That package, now obsolete, is remains available here: 
+That package, now obsolete, remains available here: 
 \url[nppcontextuni].
 \stopfootnote{}
 \stopitem
@@ -358,7 +366,7 @@ become considerably more verbose; and
 demanded a mechanism for easy tagging of text with, e.g., braces or a set of \type{\start|\stop<command>} sequences.
 \stopitem
 \stopitemize
-Mere autocompletion of commands was no longer sufficient for efficient content writing and editing. Fortunately \WEBEDIT, a \NPP{} plugin designed for XML-type tagging and related function completion, came to the rescue. Unfortunately it also had certain limitations which inhibited a fully satisfactory solution (such as a limit to the number of markup tags and no way to organize them by submenus).
+Mere autocompletion of commands was no longer sufficient for efficient content writing and editing. Fortunately \WEBEDIT, a \NPP{} plugin designed for XML-type tagging and related function completion, came to the rescue. Unfortunately it also had certain limitations which inhibited a satisfactory solution (such as a limit to the number of markup tags and no way to organize them by submenus).
 
 In the wake of these and other limitations: What we needed was a dedicated \Context{} lexer and plugin to assist content writing and editing. In combination with other mechanisms and plugins, the result would be a complete \NPP{} system for writing, editing, and processing \Context{} documents. Hence \important{\NPP{} for \Context{} \MKIV}.
 \stopsubsection
@@ -418,13 +426,13 @@ The core of \NPP{} is explicitly designed for speed. On Windows, \NPP{} generall
 % \stopfootnote{}
 \stopsubsection
 \startsubsection[title={Lexers and \NPP},reference={lexersplugins}]
-\startsubsubsection[title={Lexers: Internal, External, and User-Defined},reference={lexers}]
+\startsubsubsection[title={Lexers: Internal, User-Defined, and External},reference={lexers}]
 % \startfootnote[note:lexersplugins]
-A lexer is a program (or subroutine of a program) that performs \emph{lexical analysis} of a stream of text (such as a \TEX{} or \LUA{} file). Loosely, this means that it analyzes the entire text stream into discrete strings, each of which belongs to some class with a specific meaning. For example: In our \Context{} lexer \type{\emph} is a 5-character string that belongs to the class STYLE. Given a lexer class, each of its members is assigned a particular highlighting convention, such as a specific color, typographical appearance, or font.
+A lexer is a program (or subroutine of a program) that performs \emph{lexical analysis} of a stream of text (such as a \TEX{} or \LUA{} file). This means that it analyzes the entire text stream into discrete strings, each of which belongs to some class with a specific meaning. For example: In our \Context{} lexer \type{\emph} is a 5-character string that belongs to the class STYLE. Given a lexer class, each of its members is assigned a particular highlighting convention, such as a specific color, typographical appearance, or font.
 % \stopfootnote{}
 \NPP{} ships with highlighting and theme support for over 50 code languages (via native \emph{internal lexers}); the UDL system allows a user (even with little-to-no coding experience) to comfortably configure and add more. 
 \startfootnote
-From the \NPP{} menu, go to 
+To configure a private UDL: From the \NPP{} menu, go to 
 
 \typebuffer[udl]
 \stopfootnote{}
@@ -504,7 +512,6 @@ This is analogous to the standalone directory for \SCITE:
 \startsubsubsection[title={Recommended Settings},reference={recommended}]
 
 \startitemize
-
 \startitem
 \NPP{} does not support automatic \emph{hard wrap} of lines that surpass a certain length (as does \WINEDT). That is, \NPP{} doesn't insert new-line breaks when a line reaches the maximum width of the editing window (or some user-specified width). \NPP{} does support \emph{soft wrap} of lines: This means that a line longer than the editing-window length will appear as though it is split into multiple lines, but is treated by \NPP{} as a single line. Soft wrap can be toggled on and off:
 
@@ -514,7 +521,7 @@ View – Word wrap (Ctrl+Alt+W)
 
 Except for special cases such as the editing of wide tables, it is recommended to keep Word Wrap on.
 
-One may manually break a long editor line into a paragraph of multiple lines, each with a select maximum width of characters by choosing
+One may manually break long-editor or soft-wrap lines into distinct paragraphs of multiple editor lines, each with a select maximum width of characters, by selecting the text and choosing
 
 \starttyping
 TextFX – Edit – ReWrap Text to (Clipboard or 72) width (Ctrl+Alt+Shift+INS)
@@ -541,6 +548,7 @@ Settings – Preferences – General – Toolbar – Hide
 
 % On the other hand, there are ways to configure the toolbar if one decides to turn it on, including the Customize Toolbar Plugin.
 \stopitem
+\stopitemize
 \stopsubsubsection
 \stopsubsection
 \stopsection
@@ -564,6 +572,7 @@ Settings – Preferences – General – Toolbar – Hide
 
 /Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/APIs
 /Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/APIs/context.xml
+/Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/APIs/context-user.xml
 
 /Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/Config
 /Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/Config/ConTeXt.xml
@@ -585,6 +594,7 @@ Settings – Preferences – General – Toolbar – Hide
 /Npp-for-ConTeXt/doc
 /Npp-for-ConTeXt/doc/npp-context-manual.pdf
 /Npp-for-ConTeXt/doc/npp-context-manual.tex
+/Npp-for-ConTeXt/doc/README.md
 
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins/themes/Silver Twilight Hi.xml
@@ -629,8 +639,11 @@ The list of \Context{} commands is currently generated from the \Context{} sourc
 \stopfootnote{}
 For a subset of this list, each is also tagged with information about usage; when typed and followed by a left bracket \quote{\type{[}}, this information will appear as a \emph{calltip} (also called a \emph{tooltip}).
 
+If autocompletion is desired for user-defined macros, then they should be placed in \type{context-user.xml}. Its structure follows that of \type{context.xml}, and and one may configure calltips for user macros as well. See \in{Section}[autocompletion].
+
 \starttyping
-/Npp-for-ConTeXt/Program Files/Notepad++/plugins/APIs/context.xml
+/Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/APIs/context.xml
+/Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/APIs/context-user.xml
 \stoptyping
 \stophead 
 
@@ -701,6 +714,12 @@ New versions of \Context{} are released often; the addition of new control seque
 \starttyping
 /Npp-for-ConTeXt/scripts/command_primitives_api_new.py
 /Npp-for-ConTeXt/scripts/update-ConTeXt.py
+\stoptyping
+
+For more detail about these scripts and their usage, see 
+
+\starttyping
+/Npp-for-ConTeXt/doc/README.md
 \stoptyping
 \stophead 
 
@@ -962,7 +981,7 @@ For detailed discussion of the distinction between syntax and semantic highlight
 \stopfootnote{}
 Because the interpreting of structural and stylistic markup pertains much more to matters of meaning than to grammar, highlighting of \Context{} code is best contextualized in terms of semantic highlighting. Of course, there is syntax to \Context{} as well: The different mechanisms between the earlier \type{Table} and the now standard \type{TABLE} environments (for typesetting of tabular data) exhibit stark differences in syntax. Considering possible models and implementations of code highlighting specific to the clarification of \Context{} syntax is a matter for future research.
 \startfootnote
-Technical note: ConTeXt resembles SGML|<|derivatives include XML and HTML|>| in that it can used to define new semantics. For example one can create a verbatim environment, which simulates typing or editing. Ideally, then, the lexer should be coded to manage a user-defined semantics, defined itself at runtime. But this is not enough because, furthermore, the semantics of a macro can temporarily change. For example: 
+Technical note: ConTeXt resembles SGML|<|derivatives include XML and HTML|>| in that it can used to define new semantics. For example, one can create a verbatim environment, which simulates typing or editing. Ideally, then, the lexer should be coded to manage a user-defined semantics, defined itself at runtime. But this is not enough because, furthermore, the semantics of a macro can temporarily change. For example: 
 
 % % \startbuffer[oldvbox]
 % % \begingroup \let\oldvbox\vbox \let\vbox\relax .\vbox{..} \endgroup 
@@ -1368,7 +1387,7 @@ sumatra.bat "<your project>.pdf"
 
 {\it Appears in {Macro} submenu:} {\bf Yes}
 \starttyping
-noepad++.exe  "$(CURRENT_DIRECTORY)\$(NAME_PART).log"
+notepad++.exe  "$(CURRENT_DIRECTORY)\$(NAME_PART).log"
 \stoptyping
 \stophead 
 
@@ -1575,7 +1594,20 @@ We have tried to make the order of classes as useful as possible. Note that the 
 \STARTTEST \STOPTEST
 \stoptyping
 
-If used often or in multiple documents, one should place these into the PRIVATE keyword class: either by directly editing \type{ConTeXt.xml}|<|in which case they will appear as \type{Default Keywords}|>|or by using the \type{User-defined keywords} field in Style Configurator. Then one can place \type{\STARTTEST} in the \type{START OPEN} class, and \type{\STOPTEST} in the \type{STOP CLOSE} class. The result is that, because PRIVATE is prior to the two folding classes, you will get keyword folding with the semantic highlighting of PRIVATE.
+If used often or in multiple documents, one should place these into the \type{PRIVATE} keyword class: either by directly editing \type{ConTeXt.xml}|<|in which case they will appear as \type{Default Keywords}|>|or by using the \type{User-defined keywords} field in Style Configurator. Then one can place \type{\STARTTEST} in the \type{START OPEN} class, and \type{\STOPTEST} in the \type{STOP CLOSE} class. The result is that, because \type{PRIVATE} is prior to the two folding classes, you will get keyword folding with the semantic highlighting of \type{PRIVATE}.
+
+In the default \type{ConTeXt.xml} that ships with \NPP{} for \Context, the commands listed for the class \type{PRIVATE} are \emph{highlights} that the first author has found useful for defining style elements: Given some text tagged with such an element, its style will be converted to an \XML{} tag.
+\startfootnote
+Note that normal styling options in \Context{} are ignored when \Context{} output is set to \XML. For example: \type{\emph{text}} will not be tagged and will show no emphasis in \XHTML{} output. Using \type{\emphasis{text}}, on the other hand, will generate a tag for emphasis, which may then be configured for, e.g., \CSS.
+\stopfootnote{} 
+The macro definitions of these highlights are included in \type{ConTeXt.xml} for illustration purposes and have been commented.
+\startfootnote
+A good practice is to make a file such as \type{highlights.tex} and place it in the private branch of your \Context{} tree, e.g.,
+
+\typebuffer[texmfhighlights]
+
+or wherever else you choose. (Always remember to refresh the filename database!)
+\stopfootnote{}
 
 All lexer keywords and styles are specified in 
 
@@ -1607,7 +1639,7 @@ When one is done with development, it \emph{may} be convenient (but is by no mea
 \stopsubsubsection
 
 \stopsubsection
-\startsubsection[title={Configuring Autocompletion and Calltips: \type{context.xml}},reference={}]
+\startsubsection[title={Configuring Autocompletion and Calltips: \type{context.xml}},reference={autocompletion}]
 \NPP{} has native autocompletion capabilities. However, it was not designed with \TEX-style languages in mind; working with the backslash \type{\} has limitations. Therefore a decision was made to reimplement autocompletion for the \Context{} plugin. Both function and word completion are supported. Native \NPP{} offers a choice of function completion, word completion, or both; however, the plugin currently supports only both. Since functions in \Context{} all begin with a backslash, and normal words generally do not, there is little-to-no ambiguity between words and functions.
 \startfootnote
 That said, a final decision as to whether or not to provide the ability to turn off function or word autocompletion has yet to be made.
@@ -1657,9 +1689,15 @@ The current selection of available information about any given command reflects 
 In a future version we intend to add the ability to select parameters for each supported command.
 \stopfootnote{}
 
+Private commands and macros are not included \type{context.xml}; hence there is no function completion available for them. They may, however, be included in \type{context-user.xml}. Here, advanced users may also configure calltip information for private macros. This will be useful for, e.g., writers of add-on modules for \Context.
+
+%% \starttyping
+%% Update ConTeXt user macros
+%% \stoptyping
+
 \stopsubsection
 \startsubsection[title={Configuring Markup Tags, Template Tags, and Keys: \type{ConTeXt.ini}},reference={}]
-As mentioned in \in{Section}[history], \Context{} \MKIV{} has developed considerably in the direction of pure markup syntax, which demands the tagging of text with either two commands: This may take the form of a pair of \type{\start|\stop<command>} sequences, or a pair of braces. Autocompletion of one command at a time for purposes of tagging is still tedious. The \Context{} plugin features a user-configurable markup, template, and key system to make the handling of markup more accessible and efficient.
+As mentioned in \in{Section}[history], the \Context{} \MKIV{} interface has developed considerably in the direction of a pure markup syntax, which demands the tagging of text with either two commands|<|these usually take the form of a pair of \type{\start|\stop<command>} sequences|>|or a pair of braces. Autocompletion of one command at a time for purposes of tagging is still tedious. The \Context{} plugin features a user-configurable markup, template, and key system to make the handling of markup more accessible and efficient.
 \startfootnote
 The authors again acknowledge the developer of WebEdit: His plugin was a major inspiration for the approach taken by the \Context{} plugin; see \in{Section}[history].
 \stopfootnote{}
@@ -1672,7 +1710,7 @@ Roaming/Notepad++/plugins/config/ConTeXt.ini
 
 Let us now look at how each of these three subsystems is configured.
 
-\startsubsubsection[title={Markup (formerly Commands)},reference={markuptags}]
+\startsubsubsection[title={Markup},reference={markuptags}]
 The \Context{} plugin displays the organization of markup tags in \type{ConTeXt.ini} as a system of submenus with support for two levels before \type{ConTeXt} (Level~1). For example:
 
 \starttyping
@@ -1686,14 +1724,14 @@ Plugins – ConTeXt – <Level 2 Name 1> – <Level 3 Name 1>
 In \type{ConTeXt.ini} we have the following default structure:
 
 \starttyping
-[Commands] %% Change this to [Markup]!
+[Markup]
 [Project]
 [Document]
 [Style]
 [Highlights]
 [Private]
 [XML/HTML]
-[CommandsEnd] %% Change this to [MarkupEnd]!
+[MarkupEnd] 
 \stoptyping
 
 This specifies six \type{Level-2} menus (of course you can add, subtract, or reconfigure). The markup tags will be specified at Level-3. For example:
@@ -1791,6 +1829,8 @@ one above \type{Text Braces} and below \type{Align Left}.
 \externalfigure[dividingline][scale=1000]
 \stopalignment
 \stopplacefigure 
+
+In the default \type{ConTeXt.ini} that ships with \NPP{} for \Context, the commands listed under \type{[Private]} are private macros by the first author; the definitions for these are double commented. These macros are included for illustration purposes only; the user should replace them with one's own private commands.
 \stopsubsubsection
 \startsubsubsection[title={Configuring the Right-Click Menu},reference={}]
 Although one may go to \type{Plugins – ConTeXt} each time a markup tag is desired, it is often convenient to skip this step and to instead use the \NPP{} right-click menu mechanism. Settings for this mechanism are configured in a file entitled, unhappily for \Context{} users, \type{contextMenu.xml}. In most cases a user will manually add the names of menu items to the configuration file, for example:
@@ -1818,7 +1858,7 @@ However, for the \Context{} plugin things are not so simple; this is, in part, b
 To copy the Level-2 and Level-3 submenus to the right-click menu, go to 
 
 \starttyping
-Plugins – ConTeXt – Update Context Menu %% Change to 'Update Right-click Menu'!
+Plugins – ConTeXt – Update right-click menu
 \stoptyping
 
 Unlike the case with the loading of \type{ConTeXt.ini} after it is edited (\type{Load config}), one has to restart \NPP{} in order to complete update of the right-click menu. Once updated, the submenu subsystem will appear upon any right click (\type{Shift+F10} is the usual system shortcut); see \in{Figure}[rightclickmenu].
@@ -1882,11 +1922,11 @@ Finally, one can invoke a macro directly from the popup window: Just double clic
 
 \stopsubsubsection
 \stopsubsection
-\startsubsubsection[title={Templates (formerly Tags)},reference={templates}]
-The \Context{} plugin supports one more way to enter markup or other code: \emph{templates}. In \type{ConTeXt.ini} these are configured after \type{[Tags]}. For example:
+\startsubsubsection[title={Templates},reference={templates}]
+The \Context{} plugin supports one more way to enter markup or other code: \emph{templates}. In \type{ConTeXt.ini} these are configured after \type{[Templates]}. For example:
 
 \starttyping
-[Tags] %% Change this to [Templates]!
+[Templates]
 item2=\startitemize%n\startitem[]%n|%n\stopitem %n
       \startitem[]%n%n\stopitem %n\stopitemize
 \stoptyping 
