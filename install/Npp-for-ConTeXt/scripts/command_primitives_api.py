@@ -260,6 +260,10 @@ Language.append(ET.Comment(' construct '));
 Keywords_5 = ET.SubElement(Language,'Keywords',{'name': "5"})
 
 Language.append(ET.Comment(' private '));
+Language.append(ET.Comment(' \definehighlight[emphasis][style=\em] '))
+Language.append(ET.Comment(' \definehighlight[important][style=bold] '))
+Language.append(ET.Comment(' \definehighlight[booktitle][style=italic] '))
+Language.append(ET.Comment(' \definehighlight[quran][style=bolditalic] '))
 Keywords_6 = ET.SubElement(Language,'Keywords',{'name': "6"})
 
 Language.append(ET.Comment(' start open '))
