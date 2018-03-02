@@ -662,7 +662,7 @@ Keywords_2.text  = "\\" + str.join(" \\",kwordl_Document)
 Keywords_3.text  = "\\" + str.join(" \\",kwordl_Style)
 Keywords_4.text = "\\" + str.join(" \\",kwordl_Other)
 Keywords_5.text = '^\place ^\set ^\load'
-Keywords_6.text = r'\abbreviation \regular \emphasis \important \quran \booktitle \translationraw \transliterationraw \SURAHAYAH \AYAHSURAH \DateHC \Reign \CircaHC \WafatHC \WafatAH \WafatCE \SLMraw \SLWraw \AJ \SLM \SLW \CE \HS \AH \OR \Or \OR \Or \OR\ \Or\ \Wafat \Ol \OL \Sl \SL \IE \TRANSLATE \TRANSLITERATE \Oll \Sll \BC \CircaBC \FullDate \addresser \lettersubject \letteropening \IeS \OLl \transliteration \translation'
+Keywords_6.text = r'\emphasis \important \booktitle \quran'
 Keywords_7.text  = "\\" + str.join(" \\",kwordl_Begin)
 Keywords_8.text  = "\\" + str.join(" \\",kwordl_End)
 
@@ -671,24 +671,24 @@ Keywords_8.text  = "\\" + str.join(" \\",kwordl_End)
 ## Lexer
 ##
 LexerStyles = ET.XML("".join([
-     r'<LexerStyles>',
-      r'<LexerType desc="ConTeXt" excluded="no" ext="" name="ConTeXt">',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="1E2D2E" fontName="ALM Fixed" fontSize="14" fontStyle="0" name="DEFAULT" nesting="0" styleID="0" />',
+    r'<LexerStyles>',
+        r'<LexerType desc="ConTeXt" excluded="no" ext="" name="ConTeXt">',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="324140" fontName="ALM Fixed" fontSize="14" fontStyle="0" name="DEFAULT" nesting="0" styleID="0" />',
             r'<WordsStyle bgColor="D3D5C5" fgColor="718076" fontName="ALM Fixed" fontSize="14" fontStyle="2" name="LINE COMMENTS" nesting="0" styleID="1" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="D33682" fontName="ALM Fixed" fontSize="14" fontStyle="1" name="TEX" nesting="0" styleID="2" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="6C71C4" fontName="ALM Fixed" fontSize="14" fontStyle="1" name="ETEX" nesting="0" styleID="3" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="CB4B16" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="0" name="LUATEX" nesting="0" styleID="4" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="1" name="SYSTEM" nesting="0" styleID="5" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="268BD2" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="2" name="DOCUMENT" nesting="0" styleID="6" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="DC322F" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="3" name="STYLE" nesting="0" styleID="7" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="4" name="CHARDEF" nesting="0" styleID="8" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="5" name="CONSTRUCT" nesting="0" styleID="9" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="FF0080" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="6" name="PRIVATE" nesting="0" styleID="10"/>',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="2AA198" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="7" name="START OPEN" nesting="0" styleID="11"/>',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="2AA198" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="8" name="STOP CLOSE" nesting="0" styleID="12"/>',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="A12A3D" fontName="Courier New" fontSize="14" fontStyle="1" name="OPERATORS" nesting="0" styleID="13" />',
-            r'<WordsStyle bgColor="D3D5C5" fgColor="A12A33" fontName="ALM Fixed" fontSize="14" fontStyle="1" name="NUMBERS" nesting="0" styleID="14" />',
-            r'</LexerType>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="A12A33" fontName="ALM Fixed" fontSize="14" fontStyle="0" name="TEX" nesting="0" styleID="2" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="A12A33" fontName="ALM Fixed" fontSize="14" fontStyle="0" name="ETEX" nesting="0" styleID="3" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="CB4B16" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="0" name="LUATEX" nesting="0" styleID="4" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="859900" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="1" name="SYSTEM" nesting="0" styleID="5" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="399900" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="2" name="DOCUMENT" nesting="0" styleID="6">\crlf \endgraf, \paperwidth \SCITE</WordsStyle>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="B58900" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="3" name="STYLE" nesting="0" styleID="7">\emph</WordsStyle>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="D33682" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="4" name="CHARDEF" nesting="0" styleID="8" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="6C71C4" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="5" name="CONSTRUCT" nesting="0" styleID="9">^\hbox \bTD</WordsStyle>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="268BD2" fontName="ALM Fixed" fontSize="14" fontStyle="0" keywordClass="6" name="PRIVATE" nesting="0" styleID="10">\eTD</WordsStyle>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="2AA198" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="7" name="START OPEN" nesting="0" styleID="11">\start \startline</WordsStyle>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="2AA198" fontName="ALM Fixed" fontSize="14" fontStyle="1" keywordClass="8" name="STOP CLOSE" nesting="0" styleID="12">\stop \stopline</WordsStyle>',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="A12A33" fontName="ALM Fixed" fontSize="14" fontStyle="0" name="OPERATORS" nesting="0" styleID="13" />',
+            r'<WordsStyle bgColor="D3D5C5" fgColor="2A97A2" fontName="ALM Fixed" fontSize="14" fontStyle="0" name="NUMBERS" nesting="0" styleID="14" />',
+        r'</LexerType>',
     r'</LexerStyles>'])
 )
 

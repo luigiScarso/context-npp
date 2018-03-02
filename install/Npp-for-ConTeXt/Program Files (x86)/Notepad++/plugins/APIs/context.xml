@@ -1085,6 +1085,7 @@
         <KeyWord ctxname="\aeacute"/>
         <KeyWord ctxname="\aeligature"/>
         <KeyWord ctxname="\aemacron"/>
+        <KeyWord ctxname="\afghanicurrency"/>
         <KeyWord ctxname="\afterassignment"/>
         <KeyWord ctxname="\aftergroup"/>
         <KeyWord ctxname="\aftersplitstring" func="yes">
@@ -1405,21 +1406,98 @@
                 <Param ctxname="TEXT" delimiters="braces" lists="" optional="" paramset="2"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\arabicakbar"/>
+        <KeyWord ctxname="\arabicalayhe"/>
+        <KeyWord ctxname="\arabicallah"/>
+        <KeyWord ctxname="\arabicallallahou"/>
+        <KeyWord ctxname="\arabicasterisk"/>
+        <KeyWord ctxname="\arabicbasmalah"/>
+        <KeyWord ctxname="\arabiccomma"/>
+        <KeyWord ctxname="\arabiccuberoot"/>
+        <KeyWord ctxname="\arabicdateseparator"/>
         <KeyWord ctxname="\arabicdecimals" func="yes">
             <Overload paramsets="1" retVal="">
                 <Param ctxname="NUMBER" delimiters="braces" lists="" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\arabicdisputedendofayah"/>
+        <KeyWord ctxname="\arabicendofayah"/>
         <KeyWord ctxname="\arabicexnumerals" func="yes">
             <Overload paramsets="1" retVal="">
                 <Param ctxname="NUMBER" delimiters="braces" lists="" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\arabicfootnotemarker"/>
+        <KeyWord ctxname="\arabicfourthroot"/>
+        <KeyWord ctxname="\arabichighain"/>
+        <KeyWord ctxname="\arabichighalayheassallam"/>
+        <KeyWord ctxname="\arabichigheqala"/>
+        <KeyWord ctxname="\arabichighesala"/>
+        <KeyWord ctxname="\arabichighfootnotemarker"/>
+        <KeyWord ctxname="\arabichighjeem"/>
+        <KeyWord ctxname="\arabichighlamalef"/>
+        <KeyWord ctxname="\arabichighmadda"/>
+        <KeyWord ctxname="\arabichighmeemlong"/>
+        <KeyWord ctxname="\arabichighmeemshort"/>
+        <KeyWord ctxname="\arabichighnisf"/>
+        <KeyWord ctxname="\arabichighnoon"/>
+        <KeyWord ctxname="\arabichighnoonkasra"/>
+        <KeyWord ctxname="\arabichighqaf"/>
+        <KeyWord ctxname="\arabichighqif"/>
+        <KeyWord ctxname="\arabichighradiallahouanhu"/>
+        <KeyWord ctxname="\arabichighrahmatullahalayhe"/>
+        <KeyWord ctxname="\arabichighrubc"/>
+        <KeyWord ctxname="\arabichighsad"/>
+        <KeyWord ctxname="\arabichighsajda"/>
+        <KeyWord ctxname="\arabichighsakta"/>
+        <KeyWord ctxname="\arabichighsallallahou"/>
+        <KeyWord ctxname="\arabichighseen"/>
+        <KeyWord ctxname="\arabichighsmallsafha"/>
+        <KeyWord ctxname="\arabichightah"/>
+        <KeyWord ctxname="\arabichightakhallus"/>
+        <KeyWord ctxname="\arabichighthalatha"/>
+        <KeyWord ctxname="\arabichighwaqf"/>
+        <KeyWord ctxname="\arabichighyeh"/>
+        <KeyWord ctxname="\arabichighzain"/>
+        <KeyWord ctxname="\arabicjallajalalouhou"/>
+        <KeyWord ctxname="\arabiclettermark"/>
+        <KeyWord ctxname="\arabiclowmeemlong"/>
+        <KeyWord ctxname="\arabiclownoonkasra"/>
+        <KeyWord ctxname="\arabiclowseen"/>
+        <KeyWord ctxname="\arabicmisra"/>
+        <KeyWord ctxname="\arabicmuhammad"/>
+        <KeyWord ctxname="\arabicnumber"/>
+        <KeyWord ctxname="\arabicnumberabove"/>
         <KeyWord ctxname="\arabicnumerals" func="yes">
             <Overload paramsets="1" retVal="">
                 <Param ctxname="NUMBER" delimiters="braces" lists="" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\arabicparenleft"/>
+        <KeyWord ctxname="\arabicparenright"/>
+        <KeyWord ctxname="\arabicpercent"/>
+        <KeyWord ctxname="\arabicperiod"/>
+        <KeyWord ctxname="\arabicpermille"/>
+        <KeyWord ctxname="\arabicpertenthousand"/>
+        <KeyWord ctxname="\arabicpoeticverse"/>
+        <KeyWord ctxname="\arabicqala"/>
+        <KeyWord ctxname="\arabicquestion"/>
+        <KeyWord ctxname="\arabicrasoul"/>
+        <KeyWord ctxname="\arabicray"/>
+        <KeyWord ctxname="\arabicrialsign"/>
+        <KeyWord ctxname="\arabicsafha"/>
+        <KeyWord ctxname="\arabicsajdah"/>
+        <KeyWord ctxname="\arabicsalla"/>
+        <KeyWord ctxname="\arabicsamvat"/>
+        <KeyWord ctxname="\arabicsanah"/>
+        <KeyWord ctxname="\arabicsemicolon"/>
+        <KeyWord ctxname="\arabicshighthreedots"/>
+        <KeyWord ctxname="\arabicslcm"/>
+        <KeyWord ctxname="\arabicstartofrubc"/>
+        <KeyWord ctxname="\arabictripledot"/>
+        <KeyWord ctxname="\arabicvowelwaw"/>
+        <KeyWord ctxname="\arabicvowelyeh"/>
+        <KeyWord ctxname="\arabicwasallam"/>
         <KeyWord ctxname="\arg" func="yes">
             <Overload paramsets="1" retVal="">
                 <!-- CONTENT delimiters:-->
@@ -2021,6 +2099,7 @@
             </Overload>
         </KeyWord>
         <KeyWord ctxname="\bodydir"/>
+        <KeyWord ctxname="\bodydirection"/>
         <KeyWord ctxname="\bodyfontenvironmentlist"/>
         <KeyWord ctxname="\bodyfontsize"/>
         <KeyWord ctxname="\bold"/>
@@ -2077,6 +2156,7 @@
         <KeyWord ctxname="\box"/>
         <KeyWord ctxname="\boxcursor"/>
         <KeyWord ctxname="\boxdir"/>
+        <KeyWord ctxname="\boxdirection"/>
         <KeyWord ctxname="\boxmarker" func="yes">
             <Overload paramsets="2" retVal="">
                 <Param ctxname="NAME" delimiters="braces" lists="" optional="" paramset="1"/>
@@ -3530,6 +3610,7 @@
                 <Param ctxname="NAME" delimiters="braces" lists="" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\compoundhyphenmode"/>
         <KeyWord ctxname="\compresult"/>
         <KeyWord ctxname="\constantdimen" func="yes">
             <Overload paramsets="1" retVal="">
@@ -4979,6 +5060,7 @@
                 <Param ctxname="check= yes|no" delimiters="" lists="yes" optional="yes" paramset="4"/>
                 <Param ctxname="offset= NUMBER|NAME" delimiters="" lists="yes" optional="yes" paramset="4"/>
                 <Param ctxname="features= NAME" delimiters="" lists="yes" optional="yes" paramset="4"/>
+                <Param ctxname="factor= NUMBER" delimiters="" lists="yes" optional="yes" paramset="4"/>
             </Overload>
         </KeyWord>
         <KeyWord ctxname="\definefontfamily" func="yes">
@@ -9639,6 +9721,7 @@
                 <Param ctxname="NUMBER" delimiters="" lists="" optional="yes" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\emquad"/>
         <KeyWord ctxname="\emspace"/>
         <KeyWord ctxname="\enabledirectives" func="yes">
             <Overload paramsets="1" retVal="">
@@ -9752,6 +9835,7 @@
         <KeyWord ctxname="\endstrut"/>
         <KeyWord ctxname="\endvbox"/>
         <KeyWord ctxname="\endvtop"/>
+        <KeyWord ctxname="\enquad"/>
         <KeyWord ctxname="\enskip"/>
         <KeyWord ctxname="\enspace"/>
         <KeyWord ctxname="\env" func="yes">
@@ -10727,6 +10811,7 @@
                 <Param ctxname="tight" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="middle" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="frame" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="depth" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="line" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="halfline" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="-line" delimiters="" lists="yes" optional="yes" paramset="1"/>
@@ -13924,6 +14009,7 @@
             </Overload>
         </KeyWord>
         <KeyWord ctxname="\linedir"/>
+        <KeyWord ctxname="\linedirection"/>
         <KeyWord ctxname="\linenote" func="yes">
             <Overload paramsets="1" retVal="">
                 <Param ctxname="TEXT" delimiters="braces" lists="" optional="" paramset="1"/>
@@ -14456,6 +14542,7 @@
         <KeyWord ctxname="\mathdefault"/>
         <KeyWord ctxname="\mathdelimitersmode"/>
         <KeyWord ctxname="\mathdir"/>
+        <KeyWord ctxname="\mathdirection"/>
         <KeyWord ctxname="\mathdisplayskipmode"/>
         <KeyWord ctxname="\mathdouble" func="yes">
             <Overload paramsets="4" retVal="">
@@ -15611,6 +15698,7 @@
         </KeyWord>
         <KeyWord ctxname="\pagedepth"/>
         <KeyWord ctxname="\pagedir"/>
+        <KeyWord ctxname="\pagedirection"/>
         <KeyWord ctxname="\pagediscards"/>
         <KeyWord ctxname="\pagefigure" func="yes">
             <Overload paramsets="2" retVal="">
@@ -15658,6 +15746,7 @@
         <KeyWord ctxname="\par"/>
         <KeyWord ctxname="\paragraphmark"/>
         <KeyWord ctxname="\pardir"/>
+        <KeyWord ctxname="\pardirection"/>
         <KeyWord ctxname="\parfillskip"/>
         <KeyWord ctxname="\parindent"/>
         <KeyWord ctxname="\parshape"/>
@@ -15790,11 +15879,13 @@
                 <Param ctxname="NUMBER" delimiters="braces" lists="" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\persiandecimalseparator"/>
         <KeyWord ctxname="\persiannumerals" func="yes">
             <Overload paramsets="1" retVal="">
                 <Param ctxname="NUMBER" delimiters="braces" lists="" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
+        <KeyWord ctxname="\persianthousandsseparator"/>
         <KeyWord ctxname="\perthousand"/>
         <KeyWord ctxname="\phantom" func="yes">
             <Overload paramsets="1" retVal="">
@@ -20455,7 +20546,7 @@
                 <Param ctxname="suffix= COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="suffixseparator= COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="suffixstopper= COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
-                <Param ctxname="location= left|right|middle|low|high|grid|overlay|inner|outer|innermargin|outermargin|leftmargin|rightmargin|lefthanging|righthanging|hang|top|bottom|stretch|none|default" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="location= left|right|middle|low|high|grid|overlay|inner|outer|innermargin|outermargin|leftmargin|rightmargin|lefthanging|righthanging|hang|top|bottom|stretch|tolerant|verytolerant|none|default" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="command= ONEARGUMENT" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="numbercommand= ONEARGUMENT" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="textcommand= ONEARGUMENT" delimiters="" lists="yes" optional="" paramset="2"/>
@@ -20589,7 +20680,7 @@
                 <Param ctxname="color= COLOR" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="numberstyle= STYLE|COMMAND" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="numbercolor= COLOR" delimiters="" lists="yes" optional="" paramset="2"/>
-                <Param ctxname="option= packed|tight|middle|frame|line|halfline|-noneline|-nonehalfline|INHERIT:\setupbodyfont" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="option= packed|tight|middle|frame|depth|line|halfline|-noneline|-nonehalfline|INHERIT:\setupbodyfont" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="margin= yes|no|standard|DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="leftmargin= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="rightmargin= DIMENSION" delimiters="" lists="yes" optional="" paramset="2"/>
@@ -21025,6 +21116,7 @@
                 <Param ctxname="topspace= DIMENSION" delimiters="" lists="yes" optional="" paramset="1"/>
                 <Param ctxname="option= fit|max|singlesided|doublesided|bookmark|auto|none|default|fixed|landscape|portrait|page|paper|attachment|layer" delimiters="" lists="yes" optional="" paramset="1"/>
                 <Param ctxname="copies= NUMBER" delimiters="" lists="yes" optional="" paramset="1"/>
+                <Param ctxname="print= LIST" delimiters="" lists="yes" optional="" paramset="1"/>
                 <Param ctxname="delay= none|NUMBER" delimiters="" lists="yes" optional="" paramset="1"/>
             </Overload>
         </KeyWord>
@@ -21190,6 +21282,7 @@
                 <Param ctxname="setups= NAME" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="spacing= broad|packed" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="font= auto" delimiters="" lists="yes" optional="" paramset="2"/>
+                <Param ctxname="bidi= left|right|l2r|r2l" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="text= TEXT" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="limittext= TEXT" delimiters="" lists="yes" optional="" paramset="2"/>
                 <Param ctxname="hyphen= TEXT" delimiters="" lists="yes" optional="" paramset="2"/>
@@ -24659,7 +24752,7 @@
         </KeyWord>
         <KeyWord ctxname="\startformula" func="yes">
             <Overload paramsets="1" retVal="">
-                <Param ctxname="option= packed|tight|middle|frame|line|halfline|-noneline|-nonehalfline|INHERIT:\setupbodyfont" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="option= packed|tight|middle|frame|depth|line|halfline|-noneline|-nonehalfline|INHERIT:\setupbodyfont" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="margin= yes|no|standard|DIMENSION" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="grid= INHERIT:\snaptogrid" delimiters="" lists="yes" optional="yes" paramset="1"/>
             </Overload>
@@ -25124,6 +25217,7 @@
                 <Param ctxname="tight" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="middle" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="frame" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="depth" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="line" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="halfline" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="-line" delimiters="" lists="yes" optional="yes" paramset="1"/>
@@ -25171,6 +25265,7 @@
                 <Param ctxname="tight" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="middle" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="frame" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="depth" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="line" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="halfline" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="-line" delimiters="" lists="yes" optional="yes" paramset="1"/>
@@ -25551,6 +25646,7 @@
                 <Param ctxname="tight" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="middle" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="frame" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="depth" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="line" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="halfline" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="-line" delimiters="" lists="yes" optional="yes" paramset="1"/>
@@ -25633,6 +25729,7 @@
                 <Param ctxname="tight" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="middle" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="frame" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="depth" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="line" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="halfline" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="-line" delimiters="" lists="yes" optional="yes" paramset="1"/>
@@ -27097,6 +27194,7 @@
         <KeyWord ctxname="\textdegree"/>
         <KeyWord ctxname="\textdiaeresis"/>
         <KeyWord ctxname="\textdir"/>
+        <KeyWord ctxname="\textdirection"/>
         <KeyWord ctxname="\textdiv"/>
         <KeyWord ctxname="\textdollar"/>
         <KeyWord ctxname="\textdong"/>

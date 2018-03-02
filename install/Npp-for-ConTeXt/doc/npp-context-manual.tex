@@ -1215,7 +1215,7 @@ Let's take a look at
 \externalfigure[nppexec2][scale=1000]
 \stopplacefigure
 
-See \in{Figure}[nppexec2]. At the top right you will notice that a script can be executed when \NPP{} starts or exits. By default, the {\TT Scratch TeX File} script is executed when \NPP{} starts: The user will have to edit that script and point it to the directory where one's scratch file is located; see \in{Heading}[head:scratchtexfile] in \in{Section}[nppexeccontext]. The {\TT Purge Files Keep Sync\TeX{}} script is executed when \NPP{} exits; see \in{Heading}[head:purgefileskeepsynctex] in \in{Section}[nppexeccontext]. Of course one can disable the execution of any start or exit script.
+See \in{Figure}[nppexec2]. At the top right you will notice that a script can be executed when \NPP{} starts or exits. By default, the {\TT Scratch TeX File} script is executed when \NPP{} starts: The user will have to edit that script and point it to the directory where one's scratch file is located; see \in{Heading}[head:scratchtexfile] in \in{Section}[nppexeccontext]. The {\TT Purge Files Keep \SYNCTEX{}} script is executed when \NPP{} exits; it then applies only to the temporary files associated with the leftmost tab (see also \in{Heading}[head:purgefileskeepsynctex] in \in{Section}[nppexeccontext]). Of course one can disable the execution of any start or exit script.
 
 The \NPPEXEC{} console emulator is configured to use a \SOLARIZED++ color scheme that closely resembles Silver Twilight Lo; see \in{Section}[console]. This is also set in Advanced Options. The authors find the combination of Silver Twilight Lo for the console and Silver Twilight Hi for the main editing area to be quite pleasing.
 
@@ -1282,7 +1282,7 @@ context --purge
 
 \starthead[head:purgefileskeepsynctex] {\CONTEXT: Purge Files Keep Sync\TeX} 
 
-This script purges all temporary files except the Sync\TeX{} file. This script is executed by default when Notepad++ exits. One may then open \NPP{} at a particular line via SumatraPDF and \SYNCTEX; see \in{Heading}[head:sumatrapdf] in \in{Section}[components].
+This script purges all temporary files except the Sync\TeX{} file. This script is executed by default when Notepad++ exits (in which case, it applies only to the temporary files associated with the leftmost tab). One may then open \NPP{} at a particular line via SumatraPDF and \SYNCTEX; see \in{Heading}[head:sumatrapdf] in \in{Section}[components].
 
 Note the the use of \type{cmd /c ren} instead of the usual \type{ren.exe}. As mentioned earlier, see Section~4.4 of the \NPPEXEC{} manual.
 
@@ -1645,7 +1645,7 @@ When one is done with development, it \emph{may} be convenient (but is by no mea
 That said, a final decision as to whether or not to provide the ability to turn off function or word autocompletion has yet to be made.
 \stopfootnote{}
 
-After typing the first three characters of a \Context{} command or a previously used word, a popup will appear that will give a list of possible completions, from a subset of the list of official control sequences (in the case of function completion), or from a list of previously used words that begin with those three characters (in the case of word completion). See \in{Figure}[autocompletion]. 
+After typing the first three characters of a \Context{} command or a previously used word, a popup will appear that will give a list of possible completions, from a subset of the list of official control sequences (in the case of function completion), or from a list of previously used words that begin with those thr characters (in the case of word completion). See \in{Figure}[autocompletion]. 
 
 \startplacefigure[title={Word and Function Autocompletion},reference={autocompletion},location=here,number=yes]
 \startalignment[middle]
