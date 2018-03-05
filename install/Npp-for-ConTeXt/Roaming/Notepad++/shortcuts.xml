@@ -32,10 +32,32 @@
             <Action type="2" message="0" wParam="42024" lParam="0" sParam="" />
             <Action type="2" message="0" wParam="41006" lParam="0" sParam="" />
         </Macro>
-        <Macro name="End TeX Control Sequence" Ctrl="yes" Alt="no" Shift="yes" Key="67">
+        <Macro name="Space After TeX Control Sequence" Ctrl="yes" Alt="no" Shift="yes" Key="67">
             <Action type="1" message="2170" wParam="0" lParam="0" sParam="{" />
             <Action type="1" message="2170" wParam="0" lParam="0" sParam="}" />
             <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+        </Macro>
+        <Macro name="Complete TeX Control Sequence" Ctrl="yes" Alt="no" Shift="yes" Key="68">
+            <Action type="0" message="2308" wParam="0" lParam="0" sParam="" />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam="\" />
+            <Action type="0" message="2310" wParam="0" lParam="0" sParam="" />
+        </Macro>
+        <Macro name="Conjunction Swap" Ctrl="yes" Alt="yes" Shift="yes" Key="87">
+            <Action type="0" message="2177" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2180" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2308" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2179" wParam="0" lParam="0" sParam="" />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+            <Action type="0" message="2310" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2442" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2177" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2326" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2308" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2308" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2179" wParam="0" lParam="0" sParam="" />
+            <Action type="1" message="2170" wParam="0" lParam="0" sParam=" " />
+            <Action type="0" message="2310" wParam="0" lParam="0" sParam="" />
+            <Action type="0" message="2310" wParam="0" lParam="0" sParam="" />
         </Macro>
     </Macros>
     <UserDefinedCommands>
@@ -52,40 +74,40 @@
     </UserDefinedCommands>
     <PluginCommands>
         <PluginCommand moduleName="NppExec.dll" internalID="1" Ctrl="no" Alt="no" Shift="no" Key="118" />
-        <PluginCommand moduleName="NppExec.dll" internalID="28" Ctrl="yes" Alt="yes" Shift="yes" Key="65" />
+        <PluginCommand moduleName="NppExec.dll" internalID="28" Ctrl="yes" Alt="no" Shift="no" Key="51" />
         <PluginCommand moduleName="NppExec.dll" internalID="16" Ctrl="no" Alt="no" Shift="no" Key="0" />
-        <PluginCommand moduleName="NppExec.dll" internalID="17" Ctrl="yes" Alt="yes" Shift="yes" Key="48" />
         <PluginCommand moduleName="NppExec.dll" internalID="18" Ctrl="no" Alt="no" Shift="no" Key="0" />
         <PluginCommand moduleName="NppExec.dll" internalID="19" Ctrl="no" Alt="no" Shift="no" Key="0" />
-        <PluginCommand moduleName="NppExec.dll" internalID="20" Ctrl="yes" Alt="no" Shift="yes" Key="48" />
-        <PluginCommand moduleName="NppExec.dll" internalID="21" Ctrl="yes" Alt="no" Shift="no" Key="49" />
-        <PluginCommand moduleName="NppExec.dll" internalID="22" Ctrl="no" Alt="no" Shift="no" Key="0" />
-        <PluginCommand moduleName="NppExec.dll" internalID="23" Ctrl="yes" Alt="no" Shift="no" Key="50" />
-        <PluginCommand moduleName="NppExec.dll" internalID="24" Ctrl="yes" Alt="no" Shift="no" Key="51" />
-        <PluginCommand moduleName="NppExec.dll" internalID="25" Ctrl="yes" Alt="no" Shift="no" Key="52" />
-        <PluginCommand moduleName="NppExec.dll" internalID="26" Ctrl="yes" Alt="yes" Shift="yes" Key="82" />
-        <PluginCommand moduleName="NppExec.dll" internalID="27" Ctrl="no" Alt="no" Shift="no" Key="0" />
-        <PluginCommand moduleName="NppExec.dll" internalID="29" Ctrl="no" Alt="no" Shift="no" Key="0" />
-        <PluginCommand moduleName="NppExec.dll" internalID="30" Ctrl="yes" Alt="yes" Shift="yes" Key="76" />
-        <PluginCommand moduleName="NppExec.dll" internalID="31" Ctrl="yes" Alt="yes" Shift="yes" Key="88" />
-        <PluginCommand moduleName="NppExec.dll" internalID="32" Ctrl="yes" Alt="no" Shift="no" Key="69" />
+        <PluginCommand moduleName="NppExec.dll" internalID="20" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="21" Ctrl="no" Alt="no" Shift="no" Key="0" />
+        <PluginCommand moduleName="NppExec.dll" internalID="22" Ctrl="yes" Alt="no" Shift="no" Key="57" />
+        <PluginCommand moduleName="NppExec.dll" internalID="23" Ctrl="yes" Alt="yes" Shift="no" Key="48" />
+        <PluginCommand moduleName="NppExec.dll" internalID="24" Ctrl="yes" Alt="no" Shift="no" Key="49" />
+        <PluginCommand moduleName="NppExec.dll" internalID="25" Ctrl="yes" Alt="no" Shift="yes" Key="49" />
+        <PluginCommand moduleName="NppExec.dll" internalID="26" Ctrl="yes" Alt="no" Shift="no" Key="50" />
+        <PluginCommand moduleName="NppExec.dll" internalID="27" Ctrl="yes" Alt="no" Shift="yes" Key="50" />
+        <PluginCommand moduleName="NppExec.dll" internalID="29" Ctrl="yes" Alt="no" Shift="no" Key="52" />
+        <PluginCommand moduleName="NppExec.dll" internalID="30" Ctrl="yes" Alt="no" Shift="no" Key="53" />
+        <PluginCommand moduleName="NppExec.dll" internalID="31" Ctrl="yes" Alt="no" Shift="no" Key="55" />
+        <PluginCommand moduleName="NppExec.dll" internalID="32" Ctrl="no" Alt="no" Shift="no" Key="0" />
         <PluginCommand moduleName="NppTextFX.dll" internalID="40" Ctrl="yes" Alt="yes" Shift="yes" Key="72" />
         <PluginCommand moduleName="NppTextFX.dll" internalID="52" Ctrl="yes" Alt="yes" Shift="yes" Key="67" />
         <PluginCommand moduleName="NppTextFX.dll" internalID="54" Ctrl="yes" Alt="yes" Shift="yes" Key="46" />
-        <PluginCommand moduleName="NppExec.dll" internalID="33" Ctrl="yes" Alt="yes" Shift="yes" Key="85" />
-        <PluginCommand moduleName="NppExec.dll" internalID="34" Ctrl="yes" Alt="no" Shift="yes" Key="51" />
-        <PluginCommand moduleName="NppExec.dll" internalID="35" Ctrl="yes" Alt="no" Shift="yes" Key="72" />
+        <PluginCommand moduleName="NppExec.dll" internalID="33" Ctrl="no" Alt="no" Shift="no" Key="0" />
         <PluginCommand moduleName="NppTextFX.dll" internalID="100" Ctrl="yes" Alt="yes" Shift="yes" Key="45" />
-        <PluginCommand moduleName="NppExec.dll" internalID="36" Ctrl="yes" Alt="no" Shift="yes" Key="49" />
         <PluginCommand moduleName="NppTextFX.dll" internalID="132" Ctrl="yes" Alt="yes" Shift="no" Key="76" />
         <PluginCommand moduleName="NppTextFX.dll" internalID="21" Ctrl="no" Alt="yes" Shift="yes" Key="85" />
         <PluginCommand moduleName="XMLTools.dll" internalID="17" Ctrl="yes" Alt="yes" Shift="yes" Key="80" />
         <PluginCommand moduleName="XMLTools.dll" internalID="11" Ctrl="no" Alt="no" Shift="no" Key="0" />
-        <PluginCommand moduleName="NppExec.dll" internalID="37" Ctrl="yes" Alt="no" Shift="yes" Key="50" />
         <PluginCommand moduleName="XMLTools.dll" internalID="4" Ctrl="yes" Alt="yes" Shift="yes" Key="90" />
         <PluginCommand moduleName="ConTeXt.dll" internalID="1" Ctrl="no" Alt="yes" Shift="no" Key="220" />
-        <PluginCommand moduleName="ConTeXt.dll" internalID="4" Ctrl="no" Alt="yes" Shift="no" Key="76" />
-        <PluginCommand moduleName="NppExec.dll" internalID="38" Ctrl="yes" Alt="no" Shift="yes" Key="79" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="4" Ctrl="no" Alt="yes" Shift="yes" Key="76" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="5" Ctrl="no" Alt="yes" Shift="no" Key="76" />
+        <PluginCommand moduleName="NppExec.dll" internalID="34" Ctrl="yes" Alt="no" Shift="yes" Key="51" />
+        <PluginCommand moduleName="NppExec.dll" internalID="35" Ctrl="yes" Alt="yes" Shift="yes" Key="49" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="7" Ctrl="no" Alt="yes" Shift="no" Key="77" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="8" Ctrl="no" Alt="yes" Shift="yes" Key="77" />
+        <PluginCommand moduleName="ConTeXt.dll" internalID="10" Ctrl="no" Alt="yes" Shift="no" Key="82" />
     </PluginCommands>
     <ScintillaKeys>
         <ScintKey ScintID="2011" menuCmdID="42004" Ctrl="yes" Alt="no" Shift="yes" Key="90" />

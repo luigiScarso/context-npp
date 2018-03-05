@@ -8,13 +8,14 @@ http://docs.notepad-plus-plus.org/index.php/Context_Menu
 -->
 <NotepadPlus>
     <ScintillaContextMenu>
-        <Item FolderName="Project" id="23000" ItemNameAs="Project" User="" />
-        <Item FolderName="Project" id="23001" ItemNameAs="Product" User="" />
-        <Item FolderName="Project" id="23002" ItemNameAs="Component" User="" />
-        <Item FolderName="Project" id="23003" ItemNameAs="Environment" User="" />
-        <Item FolderName="Project" id="23004" ItemNameAs="TeXpage" User="" />
-        <Item FolderName="Project" id="23005" ItemNameAs="Text(5)" User="" />
+        <Item FolderName="Project" id="23000" ItemNameAs="Text" User="" />
+        <Item FolderName="Project" id="23001" ItemNameAs="TeXpage" User="" />
+        <Item FolderName="Project" id="23002" ItemNameAs="Project" User="" />
+        <Item FolderName="Project" id="23003" ItemNameAs="Product" User="" />
+        <Item FolderName="Project" id="23004" ItemNameAs="Component" User="" />
+        <Item FolderName="Project" id="23005" ItemNameAs="Environment" User="" />
         <Item FolderName="Document" id="23006" ItemNameAs="Makeup" User="" />
+        <Item FolderName="Document" id="0" ItemNameAs="" User="" />
         <Item FolderName="Document" id="23007" ItemNameAs="Part" User="" />
         <Item FolderName="Document" id="0" ItemNameAs="" User="" />
         <Item FolderName="Document" id="23008" ItemNameAs="Chapter" User="" />
@@ -35,75 +36,86 @@ http://docs.notepad-plus-plus.org/index.php/Context_Menu
         <Item FolderName="Document" id="23023" ItemNameAs="Enumerate" User="" />
         <Item FolderName="Document" id="23024" ItemNameAs="Item" User="" />
         <Item FolderName="Document" id="23025" ItemNameAs="Head" User="" />
+        <Item FolderName="Document" id="0" ItemNameAs="" User="" />
         <Item FolderName="Document" id="23026" ItemNameAs="Footnote" User="" />
-        <Item FolderName="Document" id="23027" ItemNameAs="Outer Margin Note" User="" />
+        <Item FolderName="Document" id="23027" ItemNameAs="Margin Note (Outer)" User="" />
         <Item FolderName="Document" id="0" ItemNameAs="" User="" />
         <Item FolderName="Document" id="23028" ItemNameAs="Paragraph" User="" />
         <Item FolderName="Document" id="23029" ItemNameAs="Paragraph (RTL)" User="" />
         <Item FolderName="Document" id="23031" ItemNameAs="Paragraph (LTR)" User="" />
         <Item FolderName="Document" id="23032" ItemNameAs="Framed Text" User="" />
-        <Item FolderName="Document" id="23033" ItemNameAs="Framed Foototes" User="" />
+        <Item FolderName="Document" id="23033" ItemNameAs="Framed Foototes/Text" User="" />
         <Item FolderName="Document" id="23034" ItemNameAs="Typed Text" User="" />
-        <Item FolderName="Document" id="23035" ItemNameAs="Split Lines" User="" />
+        <Item FolderName="Document" id="23035" ItemNameAs="Buffer" User="" />
+        <Item FolderName="Document" id="23036" ItemNameAs="Split Lines" User="" />
         <Item FolderName="Document" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Document" id="23036" ItemNameAs="Framed" User="" />
-        <Item FolderName="Document" id="23037" ItemNameAs="Start Stop" User="" />
-        <Item FolderName="Document" id="23038" ItemNameAs="TeX Braces" User="" />
-        <Item FolderName="Document" id="23039" ItemNameAs="Horizontal Box" User="" />
-        <Item FolderName="Document" id="23041" ItemNameAs="Midaligned Box" User="" />
+        <Item FolderName="Document" id="23037" ItemNameAs="Framed" User="" />
+        <Item FolderName="Document" id="23038" ItemNameAs="Start Stop" User="" />
+        <Item FolderName="Document" id="23039" ItemNameAs="Braces (TeX)" User="" />
+        <Item FolderName="Document" id="23041" ItemNameAs="Horizontal Box" User="" />
+        <Item FolderName="Document" id="23042" ItemNameAs="Mid Aligned Box" User="" />
+        <Item FolderName="Document" id="23043" ItemNameAs="Right Aligned Box" User="" />
+        <Item FolderName="Document" id="23044" ItemNameAs="Left Aligned Box" User="" />
         <Item FolderName="Document" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Document" id="23042" ItemNameAs="TABLE " User="" />
-        <Item FolderName="Document" id="23043" ItemNameAs="TABLE row" User="" />
-        <Item FolderName="Document" id="23044" ItemNameAs="TABLE element" User="" />
+        <Item FolderName="Document" id="23045" ItemNameAs="TABLE " User="" />
+        <Item FolderName="Document" id="23046" ItemNameAs="TABLE row" User="" />
+        <Item FolderName="Document" id="23047" ItemNameAs="TABLE element" User="" />
         <Item FolderName="Document" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Document" id="23045" ItemNameAs="Figure" User="" />
-        <Item FolderName="Document" id="23046" ItemNameAs="Place Figure" User="" />
-        <Item FolderName="Document" id="23047" ItemNameAs="Metapost" User="" />
-        <Item FolderName="Document" id="23048" ItemNameAs="Metapost Graphic" User="" />
-        <Item FolderName="Document" id="23049" ItemNameAs="Metapost TeX Color" User="" />
+        <Item FolderName="Document" id="23048" ItemNameAs="Figure" User="" />
+        <Item FolderName="Document" id="23049" ItemNameAs="Place Figure" User="" />
         <Item FolderName="Document" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Document" id="23051" ItemNameAs="Citation" User="" />
-        <Item FolderName="Style" id="23052" ItemNameAs="Emphasize" User="" />
-        <Item FolderName="Style" id="23053" ItemNameAs="Type" User="" />
-        <Item FolderName="Style" id="23054" ItemNameAs="Abbreviation Caps" User="" />
+        <Item FolderName="Document" id="23051" ItemNameAs="Metapost" User="" />
+        <Item FolderName="Document" id="23052" ItemNameAs="Metapost Graphic" User="" />
+        <Item FolderName="Document" id="23053" ItemNameAs="Metapost TeX Color" User="" />
+        <Item FolderName="Document" id="0" ItemNameAs="" User="" />
+        <Item FolderName="Document" id="23054" ItemNameAs="Citation (Author/Years)" User="" />
+        <Item FolderName="Document" id="23055" ItemNameAs="In Chapter" User="" />
+        <Item FolderName="Document" id="23056" ItemNameAs="In Section" User="" />
+        <Item FolderName="Document" id="23057" ItemNameAs="In Figure" User="" />
+        <Item FolderName="Document" id="23058" ItemNameAs="In Footnote" User="" />
+        <Item FolderName="Style" id="23059" ItemNameAs="Emphasize" User="" />
+        <Item FolderName="Style" id="23061" ItemNameAs="Type" User="" />
+        <Item FolderName="Style" id="23062" ItemNameAs="Abbreviation Caps" User="" />
         <Item FolderName="Style" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Style" id="23055" ItemNameAs="Regular" User="" />
-        <Item FolderName="Style" id="23056" ItemNameAs="Italic" User="" />
-        <Item FolderName="Style" id="23057" ItemNameAs="Bold" User="" />
-        <Item FolderName="Style" id="23058" ItemNameAs="Bold Italic" User="" />
-        <Item FolderName="Style" id="23059" ItemNameAs="Small Caps" User="" />
-        <Item FolderName="Style" id="23061" ItemNameAs="Teletype" User="" />
+        <Item FolderName="Style" id="23063" ItemNameAs="Regular" User="" />
+        <Item FolderName="Style" id="23064" ItemNameAs="Italic" User="" />
+        <Item FolderName="Style" id="23065" ItemNameAs="Bold" User="" />
+        <Item FolderName="Style" id="23066" ItemNameAs="Bold Italic" User="" />
+        <Item FolderName="Style" id="23067" ItemNameAs="Small Caps" User="" />
+        <Item FolderName="Style" id="23068" ItemNameAs="Slanted" User="" />
+        <Item FolderName="Style" id="23069" ItemNameAs="Teletype" User="" />
         <Item FolderName="Style" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Style" id="23062" ItemNameAs="Roman" User="" />
-        <Item FolderName="Style" id="23063" ItemNameAs="Sans Serif" User="" />
+        <Item FolderName="Style" id="23071" ItemNameAs="Roman" User="" />
+        <Item FolderName="Style" id="23072" ItemNameAs="Sans Serif" User="" />
         <Item FolderName="Style" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Style" id="23064" ItemNameAs="Block Quote" User="" />
-        <Item FolderName="Style" id="23065" ItemNameAs="Narrowed Text" User="" />
-        <Item FolderName="Style" id="23066" ItemNameAs="Double Quotes" User="" />
-        <Item FolderName="Style" id="23067" ItemNameAs="Single Quotes" User="" />
+        <Item FolderName="Style" id="23073" ItemNameAs="Block Quote" User="" />
+        <Item FolderName="Style" id="23074" ItemNameAs="Narrowed Text" User="" />
+        <Item FolderName="Style" id="23075" ItemNameAs="Double Quotes" User="" />
+        <Item FolderName="Style" id="23076" ItemNameAs="Single Quotes" User="" />
         <Item FolderName="Style" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Style" id="23068" ItemNameAs="Align Middle" User="" />
-        <Item FolderName="Style" id="23069" ItemNameAs="Align Right" User="" />
-        <Item FolderName="Style" id="23071" ItemNameAs="Align Left" User="" />
+        <Item FolderName="Style" id="23077" ItemNameAs="Align Middle" User="" />
+        <Item FolderName="Style" id="23078" ItemNameAs="Align Right" User="" />
+        <Item FolderName="Style" id="23079" ItemNameAs="Align Left" User="" />
         <Item FolderName="Style" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Style" id="23072" ItemNameAs="Text Braces" User="" />
-        <Item FolderName="Style" id="23073" ItemNameAs="Angle Brackets" User="" />
-        <Item FolderName="Style" id="23074" ItemNameAs="Ornate Arabic Parens" User="" />
-        <Item FolderName="Style" id="23075" ItemNameAs="Guillemot Quotes" User="" />
-        <Item FolderName="Highlights" id="23076" ItemNameAs="Emphasis" User="" />
-        <Item FolderName="Highlights" id="23077" ItemNameAs="Important" User="" />
-        <Item FolderName="Highlights" id="23078" ItemNameAs="Regular" User="" />
-        <Item FolderName="Highlights" id="23079" ItemNameAs="Abbreviation" User="" />
-        <Item FolderName="Highlights" id="23081" ItemNameAs="Booktitle" User="" />
-        <Item FolderName="Highlights" id="23082" ItemNameAs="Quran" User="" />
-        <Item FolderName="Highlights" id="23083" ItemNameAs="Transliteration (raw)" User="" />
-        <Item FolderName="Highlights" id="23084" ItemNameAs="Translation (raw)" User="" />
-        <Item FolderName="Private" id="23085" ItemNameAs="Translate" User="" />
-        <Item FolderName="Private" id="23086" ItemNameAs="Transliterate" User="" />
-        <Item FolderName="Private" id="23087" ItemNameAs="Equals" User="" />
+        <Item FolderName="Style" id="23081" ItemNameAs="Parenthesis" User="" />
+        <Item FolderName="Style" id="23082" ItemNameAs="Braces (Text)" User="" />
+        <Item FolderName="Style" id="23083" ItemNameAs="Angle Brackets" User="" />
+        <Item FolderName="Style" id="23084" ItemNameAs="Ornate Arabic Parens" User="" />
+        <Item FolderName="Style" id="23085" ItemNameAs="Guillemot Quotes" User="" />
+        <Item FolderName="Highlights" id="23086" ItemNameAs="Emphasis" User="" />
+        <Item FolderName="Highlights" id="23087" ItemNameAs="Important" User="" />
+        <Item FolderName="Highlights" id="23088" ItemNameAs="Regular" User="" />
+        <Item FolderName="Highlights" id="23089" ItemNameAs="Abbreviation" User="" />
+        <Item FolderName="Highlights" id="23091" ItemNameAs="Booktitle" User="" />
+        <Item FolderName="Highlights" id="23092" ItemNameAs="Quran" User="" />
+        <Item FolderName="Highlights" id="23093" ItemNameAs="Transliteration (raw)" User="" />
+        <Item FolderName="Highlights" id="23094" ItemNameAs="Translation (raw)" User="" />
+        <Item FolderName="Private" id="23095" ItemNameAs="Translate" User="" />
+        <Item FolderName="Private" id="23096" ItemNameAs="Transliterate" User="" />
+        <Item FolderName="Private" id="23097" ItemNameAs="Equals" User="" />
         <Item FolderName="Private" id="0" ItemNameAs="" User="" />
-        <Item FolderName="Private" id="23088" ItemNameAs="Quran Ayah" User="" />
-        <Item FolderName="XML/HTML" id="23089" ItemNameAs="HTML Emphasis" User="" />
+        <Item FolderName="Private" id="23098" ItemNameAs="Quran Ayah" User="" />
+        <Item FolderName="XML/HTML" id="23099" ItemNameAs="HTML Emphasis" User="" />
         <Item id="0" />
         <!-- Use MenuEntryName and MenuItemName to localize your commands to add -->
         <Item MenuEntryName="Edit" MenuItemName="Cut" />
@@ -152,8 +164,8 @@ http://docs.notepad-plus-plus.org/index.php/Context_Menu
         <Item id="0" />
         <!-- <Item MenuEntryName="View" MenuItemName="Hide lines"/> -->
         <Item id="0" />
-        <Item MenuEntryName="View" MenuItemName="Text Direction RTL" ItemNameAs="Text Direction RTL (F10)" />
-        <Item MenuEntryName="View" MenuItemName="Text Direction LTR" ItemNameAs="Text Direction LTR (F9)" />
+        <Item MenuEntryName="View" MenuItemName="Text Direction RTL" ItemNameAs="Text Direction RTL (Alt+X)" />
+        <Item MenuEntryName="View" MenuItemName="Text Direction LTR" ItemNameAs="Text Direction LTR (Alt+Z)" />
         <Item PluginEntryName="TextFX Characters" PluginCommandItemName="E:Rewrap Text to (Clipboard or 72) width" ItemNameAs="Rewrap Par (Ctrl+Alt+Shift+W)" />
     </ScintillaContextMenu>
 </NotepadPlus>

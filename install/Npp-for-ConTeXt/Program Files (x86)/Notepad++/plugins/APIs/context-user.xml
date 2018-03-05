@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <NotepadPlus>
     <AutoComplete language="ConTeXt">
-      <Environment additionalWordChar="\" ignoreCase="no" startFunc=""
-		   startFunc1="[" startFunc2="{" startFunc3="(" stopFunc="" stopFunc1="]" stopFunc2="}" stopFunc3=")"
-		   calltipFontName="consolas" calltipFontSize="9"
-		   calltipForeColor="0x101010" calltipBackColor="0xF0F0F0"
-		   sortMacroValues="no" maxLineLength="80"
-		   toplines="1" macroValueOnSingleLine="yes"
-		   columns="2" 
-                   widthColumnSep="2" thresholdNrOfRows="20"
-		               />
+        <Environment additionalWordChar="\" calltipBackColor="0xF0F0F0" calltipFontName="consolas" calltipFontSize="9" calltipForeColor="0x101010" columns="2" ignoreCase="no" macroValueOnSingleLine="yes" maxLineLength="80" sortMacroValues="no" startFunc="" startFunc1="[" startFunc2="{" startFunc3="(" stopFunc="" stopFunc1="]" stopFunc2="}" stopFunc3=")" thresholdNrOfRows="20" toplines="1" widthColumnSep="2"/>
+        <KeyWord ctxname="\booktitle"/>
+        <KeyWord ctxname="\crlf"/>
+        <KeyWord ctxname="\emph"/>
+        <KeyWord ctxname="\emphasis"/>
+        <KeyWord ctxname="\endgraf"/>
+        <KeyWord ctxname="\important"/>
+        <KeyWord ctxname="\paperwidth"/>
+        <KeyWord ctxname="\quran"/>
+        <KeyWord ctxname="\SCITE"/>
+        <KeyWord ctxname="\start"/>
+        <KeyWord ctxname="\stop"/>
+        <!-- <KeyWord ctxname=""/> -->
         <KeyWord ctxname="\PRIVATEMACROa"/>
-	<KeyWord ctxname="\PRIVATEMACROb" func="yes">
+	       <KeyWord ctxname="\PRIVATEMACROb" func="yes">
             <Overload paramsets="2" retVal="">
                 <Param ctxname="NAME" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="corner= rectangular|round|NUMBER" delimiters="" lists="yes" optional="" paramset="2"/>
