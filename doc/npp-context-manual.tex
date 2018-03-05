@@ -13,9 +13,11 @@
  midsentence={{} \endash\nobreakspace}]
 
 \definecolor[walayahred][h=A8636E]
+\definecolor[walayahdeepred][h=702531]
 \definecolor[walayahgreen][h=0BA18C]
-\definecolor[walayahdeepblue][h=001C4C]	
+\definecolor[walayahdeepgreen][h=006759]
 \definecolor[walayahblue][h=0F2787]	
+\definecolor[walayahdeepblue][h=001C4C]	
 \definecolor[walayahsand][h=FFE3B3]
 
 \definecolor[gray][s=.2,t=.5,a=1]
@@ -297,15 +299,33 @@ Language – Define your language…
 \startTEXpage
   \tightlayer[TitlePage]
 \stopTEXpage
+  
+\setupinteraction
+  [state=start,
+   % color=walayahdeepgreen,
+   color=walayahgreen,
+   contrastcolor=walayahred,
+   style=bold]
 
 % main text
-\setupcombinedlist[content][list={section,subsection,subsubsection,subject}]
 \starttitle[title={Table of Contents},reference={}]
-\start
-\setupinterlinespace[line=2.1ex]
-\placecontent[alternative=c]
+\noheaderandfooterlines
+\start 
+\setuplist[subject,section,subsection,subsubsection]
+  [alternative=c,style=bold]
+\setupcombinedlist[content]
+  [list={subject,section,subsection,subsubsection}]
+\setupinterlinespace[line=2.4ex]
+\placecontent
 \stop
 \stoptitle
+
+% \starttitle[title={Table of Contents},reference={}]
+% \start
+% \setupinterlinespace[line=2.1ex]
+% \placecontent[alternative=c]
+% \stop
+% \stoptitle
 
 \page
 
@@ -318,7 +338,7 @@ The first author of this manual, Idris Samawi Hamid, is a professor who has felt
 For explanation of what a lexer is, see \in{Section}[lexers].
 % See \in{Section}[lexersplugins] and \in{Footnote}[note:lexersplugins].
 \stopfootnote{}
-The software development plan was developed and supervised by Hamid, who also wrote the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are being written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}: Lexer and Command Utilities for Editing ConTeXt Documents.
+The software development plan was developed and supervised by Hamid, who also wrote the color-scheme and themes. The initial C++ code and \PYTHON{} scripts were written by Jason Wu (a research assistant at Colorado State University); currently the code and scripts are being written by and maintained with coauthor Luigi Scarso. This manual documents a major release of that project: For the moment we call the project, simply, \important{\NPP{} for \Context{} \MKIV}: Lexer and Macro Utilities for Editing ConTeXt Documents.
 \stopsubsection
 % \startsubsection[title={Needs},reference={}]
 
@@ -329,7 +349,7 @@ Prior to his move to \Context, Hamid was using the shareware editor \WINEDT. At 
 First author Hamid was introduced to \NPP{} by Hans Hagen, the founder and primary developer of \Context. Hagen also developed the \TEX{} and \METAPOST{} interface used by \important{\SCITE{} in \Context{} \MKIV}: \crlf 
 \url[scitecontextmkiv].
 \stopfootnote{}
-Its look, feel, and extensive configuration options allowed Hamid to quickly achieve a setup analogous to \WINEDT. A few characteristics of \WINEDT{} were still missed; on the other hand, \NPP{} brought to the table other features missing in \WINEDT{}; these helped to make the transition worth it. For example, \NPP{} supports global bidirectional text editing essential for the Arabic script|=|\WINEDT{} had no such support.
+Its look, feel, and extensive configuration options allowed Hamid to quickly achieve a setup analogous to \WINEDT. A few characteristics of \WINEDT{} were still missed; on the other hand, \NPP{} brought to the table other features missing in \WINEDT{}; these helped to make the transition worth it. For example, \NPP{} supported global bidirectional text editing essential for the Arabic script|=|\WINEDT{} at the time had no such support.
 \startfootnote
 Apparently \WINEDT{} finally implemented support for bidirectional text editing in 2016. The first author also considered Emacs, which finally released a version with bidirectional support in 2012 (Version~24.1):
 
@@ -428,7 +448,7 @@ The core of \NPP{} is explicitly designed for speed. On Windows, \NPP{} generall
 \startsubsection[title={Lexers and \NPP},reference={lexersplugins}]
 \startsubsubsection[title={Lexers: Internal, User-Defined, and External},reference={lexers}]
 % \startfootnote[note:lexersplugins]
-A lexer is a program (or subroutine of a program) that performs \emph{lexical analysis} of a stream of text (such as a \TEX{} or \LUA{} file). This means that it analyzes the entire text stream into discrete strings, each of which belongs to some class with a specific meaning. For example: In our \Context{} lexer \type{\emph} is a 5-character string that belongs to the class STYLE. Given a lexer class, each of its members is assigned a particular highlighting convention, such as a specific color, typographical appearance, or font.
+A lexer is a program (or subroutine of a program) that performs \emph{lexical analysis} of a stream of text (such as a \TEX{} or \LUA{} file). This means that it analyzes the entire text stream into discrete strings, each of which belongs to some class with a specific meaning. For example: In our \Context{} lexer \type{\Caps} is a 5-character string that belongs to the class STYLE. Given a lexer class, each of its members is assigned a particular highlighting convention, such as a specific color, typographical appearance, or font.
 % \stopfootnote{}
 \NPP{} ships with highlighting and theme support for over 50 code languages (via native \emph{internal lexers}); the UDL system allows a user (even with little-to-no coding experience) to comfortably configure and add more. 
 \startfootnote
@@ -548,6 +568,15 @@ Settings – Preferences – General – Toolbar – Hide
 
 % On the other hand, there are ways to configure the toolbar if one decides to turn it on, including the Customize Toolbar Plugin.
 \stopitem
+
+\startitem[]
+Finally, one may toggle this setting for treatment of the backslash:
+
+\starttyping
+Settings – Preferences – Word character list – 
+Add your character as part of word – \
+\stoptyping
+\stopitem
 \stopitemize
 \stopsubsubsection
 \stopsubsection
@@ -578,6 +607,7 @@ Settings – Preferences – General – Toolbar – Hide
 /Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/Config/ConTeXt.xml
 
 /Npp-for-ConTeXt/Roaming/Notepad++
+/Npp-for-ConTeXt/Roaming/Notepad++/config.xml
 /Npp-for-ConTeXt/Roaming/Notepad++/contextMenu.xml
 /Npp-for-ConTeXt/Roaming/Notepad++/shortcuts.xml
 /Npp-for-ConTeXt/Roaming/Notepad++/userDefineLang.xml
@@ -586,7 +616,6 @@ Settings – Preferences – General – Toolbar – Hide
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins
 
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins/config
-/Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/config.xml
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/ConTeXt.ini
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/NppExec.ini
 /Npp-for-ConTeXt/Roaming/Notepad++/plugins/config/npes_saved.txt
@@ -639,7 +668,7 @@ The list of \Context{} commands is currently generated from the \Context{} sourc
 \stopfootnote{}
 For a subset of this list, each is also tagged with information about usage; when typed and followed by a left bracket \quote{\type{[}}, this information will appear as a \emph{calltip} (also called a \emph{tooltip}).
 
-If autocompletion is desired for user-defined macros, then they should be placed in \type{context-user.xml}. Its structure follows that of \type{context.xml}, and and one may configure calltips for user macros as well. See \in{Section}[autocompletion].
+If autocompletion is desired for user-defined macros, then they should be placed in \type{context-user.xml}. Its structure follows that of \type{context.xml}, and and one may configure calltips for user macros as well. See \in{Section}[residualcommands].
 
 \starttyping
 /Npp-for-ConTeXt/Program Files (x86)/Notepad++/plugins/APIs/context.xml
@@ -1480,14 +1509,22 @@ From the \NPPEXEC{} Advanced Options dialog, any console script can be made to a
 \externalfigure[nppexec3][scale=1000]
 \stopplacefigure
 
-There is one submenu command under \type{Macro} that doesn't come from a console script, but was made via the normal macro-recording mechanism:
+There are three submenu commands under \type{Macro} that don't come from a console script, but were \quotation{recorded} via the normal \NPP{} macro-recording mechanism:
 
 \startitemize
-\starthead {End \TEX{} Control Sequence (Ctrl+Shift+C)} 
+\starthead {Space after \TEX{} Control Sequence (Ctrl+Shift+C)} 
 
 When invoked at the end of a given \TEX{} control sequence, this macro adds the string \quote{\type{{}} \hbox{}}, including a single word space, to that sequence. At least for paragraph writing, to use a brace pair after a control sequence is generally better practice than to use a backslash.
 \stophead 
+\starthead {Complete \TEX{} Control Sequence (Ctrl+Shift+D)}
+This macro is discussed towards the end of \in{Section}[residualcommands]. It provides a method of \emph{word completion} for control sequences, to complement primary \emph{function completion}.
+\stophead
+\starthead {Conjunction Swap  (Ctrl+Alt+Shift+W)}
+In the course of editing a three-string expression whose middle string is a conjunction, sometimes one needs to swap the first and third string; e.g., edit \type{one and two} and convert it to \type{two and one}. Double-clicking the middle string and and executing the macro will produce the desired effect 
+\stophead
 \stopitemize 
+
+The user can easily record one's own \NPP{} macros as well!
 
 Note also that the shortcut for invoking the Command Prompt (default shortcut \type{Ctrl+6}) occurs under the \type{Run} submenu.
 \stopsubsection
@@ -1542,7 +1579,7 @@ The \Context{} plugin features the following three mechanisms:
 We now go over these in some detail.
 \stopsubsection
 \startsubsection[title={Configuring Keyword Classes: Style Configurator and \type{ConTeXt.xml}},
-                  reference={}]
+                  reference={styleconfiguratorxml}]
 In the course of \in{Section}[lexerhighlighting], we already discussed the keyword classes of the \Context{} lexer, as well as their role in semantic highlighting. There are 14 classes, each of whose entries are currently generated via a Python script. The highlighting settings for each class may be managed through Style Configurator; some classes also feature a field where one may add user-defined keywords to the desired class as needed.
 
 \type{ConTeXt.xml} is organized as follows:
@@ -1564,7 +1601,7 @@ This follows the structure of the standard \type{langs.xml} that comes with \NPP
 \stoptyping
 \stophead 
 
-\starthead {Style} 
+\starthead[head:style] {Style} 
 
 This follows the structure of the standard \type{stylers.xml} that comes with \NPP. A snippet:
 
@@ -1577,7 +1614,7 @@ This follows the structure of the standard \type{stylers.xml} that comes with \N
     </LexerStyles>
 \stoptyping
 
-User-defined keywords set in Style Configurator are saved within \type{<WordsStyle>}. Here is an example (much abbreviated):
+User-defined keywords set in Style Configurator (see \in{Figure}[styleconfigurator]) are saved within \type{<WordsStyle>}. Here is an example (much abbreviated):
 
 \starttyping
 <WordsStyle name="STYLE">\emph</WordsStyle>
@@ -1635,19 +1672,19 @@ Now a second presentation of the \type{ConTeXt} lexer will appear alphabetically
 Style Configurator – Default theme: (stylers.xml)
 \stoptyping
 
-When one is done with development, it \emph{may} be convenient (but is by no means necessary) to copy \type{<LexerType>} for \Context{} from \type{stylers.xml} back to \type{ConTeXt.xml}, then delete it from \type{stylers.xml}.
+When one is done with development, it \emph{may} be convenient (but is by no means necessary) to copy the \type{<LexerType>} for \Context{} from \type{stylers.xml} back to \type{ConTeXt.xml}, then delete it from \type{stylers.xml}.
 \stopsubsubsection
 
 \stopsubsection
 \startsubsection[title={Configuring Autocompletion and Calltips: \type{context.xml}},reference={autocompletion}]
-\NPP{} has native autocompletion capabilities. However, it was not designed with \TEX-style languages in mind; working with the backslash \type{\} has limitations. Therefore a decision was made to reimplement autocompletion for the \Context{} plugin. Both function and word completion are supported. Native \NPP{} offers a choice of function completion, word completion, or both; however, the plugin currently supports only both. Since functions in \Context{} all begin with a backslash, and normal words generally do not, there is little-to-no ambiguity between words and functions.
+\NPP{} has native autocompletion capabilities. However, it was not designed with \TEX-style languages in mind; working with the backslash \type{\} has limitations. Therefore a decision was made to reimplement autocompletion for the \Context{} plugin. Both \emph{function completion} and \emph{word completion} are supported. Native \NPP{} offers a choice of function completion only, word completion only, or both; currently the plugin supports only both. Since functions in \Context{} all begin with a backslash, and normal words generally do not, there is little-to-no ambiguity between words and functions.
 \startfootnote
 That said, a final decision as to whether or not to provide the ability to turn off function or word autocompletion has yet to be made.
 \stopfootnote{}
 
-After typing the first three characters of a \Context{} command or a previously used word, a popup will appear that will give a list of possible completions, from a subset of the list of official control sequences (in the case of function completion), or from a list of previously used words that begin with those thr characters (in the case of word completion). See \in{Figure}[autocompletion]. 
+After typing the first three characters of a \Context{} command (= function) or a previously used word, a popup will appear that will give a list of possible completions, from a subset of the list of official control sequences (in the case of function completion), or from a list of previously used words that begin with those three characters (in the case of word completion). See \in{Figure}[fig:autocompletion]. 
 
-\startplacefigure[title={Word and Function Autocompletion},reference={autocompletion},location=here,number=yes]
+\startplacefigure[title={Word and Function Autocompletion},reference={fig:autocompletion},location=here,number=yes]
 \startalignment[middle]
 \dontleavehmode
 \externalfigure[autocompletion-word][scale=1000]
@@ -1656,9 +1693,9 @@ After typing the first three characters of a \Context{} command or a previously 
 \stopalignment
 \stopplacefigure
 
-Many \Context{} control sequences come with options specified within a pair of brackets, e.g., \type{big} in \type{\blank[big]}, or \type{offset=none} in \type{\framed[offset=none]}. It is virtually impossible to remember the bewildering array of options that come with thousands of control sequences, and having to consult some online documentation or the commands manual \type{setup-en.pdf} takes time. Oftentimes a post-autocompletion indicator, a so-called \quotation{calltip}, is enough to give a hint or a reminder about the available options to a command. 
+Many \Context{} control sequences support optional arguments specified within a pair of brackets, e.g., \type{big} in \type{\blank[big]}, or \type{offset=none} in \type{\framed[offset=none]}. It is virtually impossible to remember the bewildering array of options that come with thousands of control sequences, and having to consult some online documentation or the commands manual \type{setup-en.pdf} takes time. Oftentimes a post-function-completion indicator, a so-called \quotation{calltip}, is enough to give a hint or a reminder about the options available for a given command. 
 
-When an official command is typed with the aid of autocompletion, and immediately followed by a left bracket \type{[} (the \quotation{trigger}), a calltip appears. The native \NPP{} calltip mechanism is one-dimensional: Once the calltip pertaining to some language appears following autocompletion and the relevant trigger, it shows a single line of information about the function. Any additional line of information must be selected by scrolling with a mouse. For viewing what is often a wide array of \Context{} options this can be very inefficient. The \Context-plugin implementation is two-dimensional: After the calltip triggered, it appears as a pane in columns; see \in{Figure}[calltip].
+Once such an official command is typed with the aid of function completion and immediately followed by a left bracket \type{[} (the \quotation{trigger}), a calltip appears. The native \NPP{} calltip mechanism is one-dimensional: Once the calltip pertaining to some language appears following autocompletion and the relevant trigger, it shows a single line of information about the function. Any additional line of information must be selected by scrolling with a mouse. For viewing what is often a wide array of \Context{} options this can be very inefficient. The \Context-plugin implementation is two-dimensional: After the calltip triggered, it appears as a pane in columns; see \in{Figure}[calltip].
 
 \startplacefigure[title={Calltips},reference={calltip},location=here,number=yes]
 \startalignment[middle]
@@ -1689,7 +1726,48 @@ The current selection of available information about any given command reflects 
 In a future version we intend to add the ability to select parameters for each supported command.
 \stopfootnote{}
 
-Private commands and macros are not included \type{context.xml}; hence there is no function completion available for them. They may, however, be included in \type{context-user.xml}. Here, advanced users may also configure calltip information for private macros. This will be useful for, e.g., writers of add-on modules for \Context.
+\startsubsubsection[title={Function Completion for Residual and User-Defined Commands},reference={residualcommands}]
+
+There is a significant residue of official commands not captured by the Python scripts, e.g., \type{\crlf}, \type{\endgraf}, \type{\emph}, \type{\paperwidth}, \type{\start}, and \type{\stop}. In addition, there are those commands which are locally defined by the user. To enable semantic highlighting support for commands not generated by the scripts, one has to add them via Style Configurator to the \type{User-defined keywords} field for one of the \type{ConTeXt} classes (see \in{Section}[styleconfiguratorxml], \in{Heading}[head:style]). However, since user-defined keywords and locally defined commands are not included in \type{context.xml}, there is still no function completion available for them. Furthermore, word completion supports only alphabetic and numeric strings. This leaves user-defined and local commands in something of a \quotation{no-man's land} with respect to autocompletion. 
+
+In order to obtain function-completion for a given user-defined keyword or local command, it must be included in \type{context-user.xml}; this file follows the syntax of \type{APIs/context.xml}. Here is an extract from \type{context-user.xml} (minus the \type{<Environment>} tag):
+
+\starttyping
+<?xml version="1.0" encoding="Windows-1252"?>
+<NotepadPlus>
+    <AutoComplete language="ConTeXt">                 
+        <KeyWord ctxname="\booktitle"/>
+        <KeyWord ctxname="\crlf"/>
+        <KeyWord ctxname="\emph"/>
+        <KeyWord ctxname="\emphasis"/>
+        <KeyWord ctxname="\endgraf"/>
+        <KeyWord ctxname="\important"/>
+        <KeyWord ctxname="\paperwidth"/>
+        <KeyWord ctxname="\quran"/>
+        <KeyWord ctxname="\SCITE"/>
+        <KeyWord ctxname="\start"/>
+        <KeyWord ctxname="\stop"/>
+        <!-- <KeyWord ctxname=""/> -->
+    </AutoComplete>
+</NotepadPlus>
+\stoptyping
+
+This sample includes an alphabetically-sorted
+\startfootnote
+Under \type{TextFX – TextFX Tools} the user will find some ready-made functions useful for sorting a selected set of lines.
+\stopfootnote{}
+list of commands taken from the version of \type{ConTeXt.xml} that ships with \NPP{} for \Context: \type{PRIVATE} class keywords, set within the \type{<Keywords name="6">} tag; and user-defined keywords, set within the \type{<WordsStyle>} tag (see \in{Section}[styleconfiguratorxml]).
+
+In \type{context-user.xml}, advanced users may also configure calltip information for private macros; just follow the syntax of \type{APIs/context.xml}. There is an extensive sample provided in the shipped file: See the attributes set within the tag \type{<KeyWord ctxname="\PRIVATEMACROb">}. This functionality will be useful for, e.g., writers of add-on modules for \Context{} or other macros meant for distribution. 
+
+In order to obtain word completion for, e.g., very short-term or scratch private control sequences, or for when one is feeling too lazy to add one's definitions to \type{context-user.xml}, one may use the following workaround. For a previously defined or used \type{\mycommand}, type the first three letters of that command: \type{myc}. The word-completion drop-down menu will appear: Click on the desired string, then execute the shortcut for the recorder macro
+
+\starttyping
+Macro – Complete TeX Control Sequence (Ctrl+Shift+D)
+\stoptyping
+
+This will prefix a backslash to \type{mycommand} and return the cursor to the end of the control sequence. See also \in{Section}[macrosubmenu].
+\stopsubsubsection
 
 %% \starttyping
 %% Update ConTeXt user macros
@@ -1876,7 +1954,7 @@ The \type{User} attribute (empty in the above snippet) allows the user to give a
 \stopsubsubsection
 
 \startsubsubsection[title={Keys},reference={commands}]
-The default submenu configuration that ships with \NPP{} for \Context{} features over 80 markup tags, and many more could be added. Some tags will be used frequently; it would be convenient to have shortcuts for them. Unfortunately, Shortcut Mapper is not designed to handle Level-3 submenus. Misfortune in this case gave way to the opportunity to do something better: Second author Luigi Scarso has implemented a \emph{key-based} shortcut system for our \Context{} plugin.
+The default submenu configuration that ships with \NPP{} for \Context{} features over 80 markup tags, and the user is free to add many more. Some tags will be used frequently; it would be convenient to have shortcuts for them. Unfortunately, Shortcut Mapper is not designed to handle Level-3 submenus. Misfortune in this case gave way to the opportunity to do something better: Second author Luigi Scarso has implemented a \emph{key-based} shortcut system for our \Context{} plugin.
 \startfootnote
 This is inspired, in part, by the \quotation{mnemonics} system used by Emacs.
 % This is inspired, by the \quotation{mnemonics} system used by Spacemacs (an ambitious hybrid of Emacs and Vim built on top of the former); see
@@ -1913,10 +1991,16 @@ Opening the key window triggers a timer: To wrap some selected \type{<text>} in 
 [CommandsSetup]
 usermacro:elapse=400
 um:elapse_shift=500
-um:display_rows=40
+um:display_rows=100
+um:window_width=280
+um:window_height=1400
 \stoptyping
 
 The two elapse variables are in milliseconds. The second variable, \type{um:elapse_shift} gives the time lapse for keys that require a \type{Shift}, e.g., capital letters. One can fine tune the values of the elapse variables until they are in sync with one's typing speed. The third variable controls the number of rows displayed in the popup: The current maximum value is 100.
+
+Note that \type{um:window_height} overrides \type{um:display_rows}. If one prefers to work with  \type{um:display_rows} then the user should comment out the \type{um:window_height} line.
+
+The popup window may also be resized manually by dragging an edge or corner. 
 
 Finally, one can invoke a macro directly from the popup window: Just double click on any row that corresponds to a markup tag and it will wrap the selected text with that tag.
 
@@ -2058,6 +2142,11 @@ The original \Context{} UDL|<|see \in{Section}[history]|>|uses the second mode, 
 
 A related question is whether or not \NPP{} or the \Context{} lexer can be extended via, e.g., a \LUA{} extension, to fully support bidirectional editing in the proper manner. Of course, the best solution would be for the Scintilla development team to add bidirectional support to \SCINTILLA{} directly.
 \stopsection
+
+\startsubject[title={Acknowledgments},reference={}]
+The authors gratefully acknowledge the support of Alan Braslau, Hans Hagen, and Wolfgang Schuster. Their assistance has been critical for the development of this project.
+\stopsubject
+
 \startsubject[title={References},reference={}]
 \placelistofpublications
 \stopsubject
