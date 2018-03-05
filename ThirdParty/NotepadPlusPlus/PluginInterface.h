@@ -37,6 +37,10 @@
 #include "Notepad_plus_msgs.h"
 #endif //NOTEPAD_PLUS_MSGS_H
 
+#define CTX_USRMACRO 0xff000000
+#define CTX_USRMACRO_GETRESIZE 0x1
+#define CTX_USRMACRO_SETRESIZE 0x2
+
 const int nbChar = 64;
 
 typedef const TCHAR * (__cdecl * PFUNCGETNAME)();

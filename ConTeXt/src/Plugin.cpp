@@ -29,9 +29,28 @@ void About()
 {
 	MessageBox(
 		g_NppWindow,
-		L"This plugin aims to support the editing of ConTeXt documents by integrating the files "
-		L"included in the standalone distribution. For more information on ConTeXt see\n"
-		L"http ://wiki.contextgarden.net/Main_Page\nand\nhttp://www.pragma-ade.nl/index.htm",
+		L"Notepad++ for ConTeXt: A Lexer and Commands Utility for editing ConTeXt Documents\n"
+		L"Version 0.98\n"
+		L"https ://github.com/luigiScarso/context-npp\n"
+		L" \n"
+		L"This is a plugin that implements, for the ConTeXt document processing system,\n"
+		L"i)   a language lexer for semantic highlighting of ConTeXt commands;\n"
+	    L"ii)  autocompletion of commands with full support for calltips(set in columns);\n"
+	    L"iii) tagging and insertion of markup and templates, with support for mnemonic keys\n"
+		L" \n"
+	    L"The plugin is accompanied by two complementary Notepad++ themes:\n"
+	    L"Silver Twilight Hi and Silver Twilight Lo.\n"
+		L" \n"
+		L"Project vision, development planning, Silver Twilight themes, and Solarized++ color scheme :\n"
+	    L"Professor Idris Samawi Hamid(Colorado State University)\n"
+		L"email : ishamid@colostate.edu\n"
+		L" \n"
+		L"Original C++ plugin and lexer development :\n"
+	    L"Dr.Jason Wu(Colorado State University)\n"
+		L" \n"
+		L"Current C++ plugin and lexer development :\n"
+	    L"Luigi Scarso(ConTeXt Development Team)\n"
+		L"email : luigi.scarso@gmail.com",
 		ConTeXt_TITLE,
 		MB_OK);
 }
