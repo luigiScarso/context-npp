@@ -1,0 +1,1 @@
+start SumatraPDF %1
