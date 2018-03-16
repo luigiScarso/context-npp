@@ -25303,6 +25303,7 @@
                 <Param ctxname="NUMBER*middle" delimiters="" lists="yes" optional="yes" paramset="2"/>
                 <Param ctxname="NUMBER*right" delimiters="" lists="yes" optional="yes" paramset="2"/>
                 <Param ctxname="reset" delimiters="" lists="yes" optional="yes" paramset="2"/>
+                <Param ctxname="reverse" delimiters="" lists="yes" optional="yes" paramset="2"/>
             </Overload>
         </KeyWord>
         <KeyWord ctxname="\startnarrower" func="yes">
@@ -25314,6 +25315,7 @@
                 <Param ctxname="NUMBER*middle" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="NUMBER*right" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="reset" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="reverse" delimiters="" lists="yes" optional="yes" paramset="1"/>
             </Overload>
         </KeyWord>
         <KeyWord ctxname="\startnegative"/>
@@ -28482,6 +28484,7 @@
                 <Param ctxname="enable" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="disable" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="nowhite" delimiters="" lists="yes" optional="yes" paramset="1"/>
+                <Param ctxname="packed" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="back" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="overlay" delimiters="" lists="yes" optional="yes" paramset="1"/>
                 <Param ctxname="always" delimiters="" lists="yes" optional="yes" paramset="1"/>
