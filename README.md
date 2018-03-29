@@ -177,3 +177,6 @@ These ways of inserting markup tags are independent, so it's possible to
 have several ways to insert the same text. However, it's likely that in 
 a future release this will be simplified or streamlined. 
 
+
+This package is released under the GPL: see the file LICENSE for the full
+text.
